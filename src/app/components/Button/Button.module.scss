@@ -1,0 +1,30 @@
+.button {
+  padding: 8px 0;
+  font-family: 'SF UI Display', sans-serif;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 19px;
+  border: none;
+  border-radius: 30px;
+  cursor: pointer;
+  transition: 1s linear;
+
+  &:active {
+    transform: scale(0.5);
+  }
+}
+
+.primary {
+  padding-left: 64px;
+  padding-right: 64px;
+  color: #ECECF9;
+  background: #21268F;
+  box-shadow: 0px 4px 18px rgba(33, 38, 143, 0.35), inset 0px 1px 0px rgba(255, 255, 255, 0.3);
+}
+
+.secondary {
+  padding-left: 37px;
+  padding-right: 37px;
+  color: #21268F;
+  background: #D7D8EF;
+}
