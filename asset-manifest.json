@@ -1,0 +1,14 @@
+{
+  "files": {
+    "main.css": "/project-cards-front/static/css/main.ab6df5bc.css",
+    "main.js": "/project-cards-front/static/js/main.210d2be5.js",
+    "static/media/eye.svg": "/project-cards-front/static/media/eye.42d7381558d2648d6db6b26182299cc4.svg",
+    "index.html": "/project-cards-front/index.html",
+    "main.ab6df5bc.css.map": "/project-cards-front/static/css/main.ab6df5bc.css.map",
+    "main.210d2be5.js.map": "/project-cards-front/static/js/main.210d2be5.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.ab6df5bc.css",
+    "static/js/main.210d2be5.js"
+  ]
+}
