@@ -1,11 +1,14 @@
-import {applyMiddleware, combineReducers, createStore} from 'redux';
+import {AnyAction, applyMiddleware, combineReducers, createStore} from 'redux';
+
+import thunk, {ThunkAction, ThunkDispatch} from 'redux-thunk';
+
+import {useDispatch} from 'react-redux';
 
 import {LoginActionType, loginReducer} from './reducers/loginReducer';
 import {ProfileActionType, profileReducer} from './reducers/profileReducer';
 import {PasswordActionType, passwordReducer} from './reducers/passwordReducer';
 import {RecoveryActionType, recoveryReducer} from './reducers/recoveryReducer';
 import {RegistrationActionType, registrationReducer} from './reducers/registrationReducer';
-import thunk from 'redux-thunk';
 
 
 export type AppRootStateType = ReturnType<typeof rootReducer>
@@ -17,6 +20,11 @@ export type AppRootActionType = ProfileActionType
 	| RecoveryActionType
 	| RegistrationActionType
 
+
+export const AppDispatch = () => useDispatch<ThunkDispatch<AppRootStateType,void,AnyAction>>();
+
+// для типизации thunk
+export type AppThunkType = ThunkAction<boolean, AppRootStateType, unknown, AnyAction>
 
 const rootReducer = combineReducers({
 	profile: profileReducer,
