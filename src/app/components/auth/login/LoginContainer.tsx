@@ -1,28 +1,37 @@
-import React, {ChangeEvent, useState} from 'react';
+import React, {ChangeEvent, useEffect, useState} from 'react';
 
 import {useNavigate} from 'react-router-dom';
+import {useSelector} from 'react-redux';
+
 
 import {PATH} from '../../Routing/Routing';
 
-import {AppDispatch} from '../../../store/store';
-
+import {AppDispatch, AppRootStateType} from '../../../store/store';
 import {setDataLoginTC} from '../../../store/reducers/loginReducer';
-
-import s from './LoginContainer.module.scss';
 
 import {Login} from './login';
 
+import s from './LoginContainer.module.scss';
+
+
 export const LoginContainer = () => {
-	
+
+	const navigate = useNavigate();
+
 	const dispatch = AppDispatch();
 
 	const [email, setEmail] = useState<string>('');
 	const [password, setPassword] = useState<string>('');
 	const [rememberMe, setRememberMe] = useState<boolean>(false);
-	const [activeBtn, setActiveBtn] = useState<boolean>(false);
+	// const [activeBtn, setActiveBtn] = useState<boolean>(false);
+
+	const activeLoginBtn = useSelector<AppRootStateType, boolean>(state => state.login.activeLoginBtn);
+	const isLogin = useSelector<AppRootStateType, boolean>(state => state.login.isLogin);
 
 
-	const navigate = useNavigate();
+	useEffect(() => {
+		if (isLogin) navigate(PATH.PROFILE);
+	},[isLogin, navigate]);
 
 	// редирект на если забыли пароль
 	const redirectLink = () => {
@@ -49,15 +58,12 @@ export const LoginContainer = () => {
 	const onSubmitHandler = () => {
 		// validate data email password
 		if (email.length > 5 && password.length > 6) {
-			
-			setActiveBtn(true);
-			
+
 			// упакавали в obj email password rememberMe
 			const data = {email, password, rememberMe};
 
 			// после окончания запроса вернёться true
-			const result = dispatch(setDataLoginTC(data));
-			if (result) setActiveBtn(false);
+			dispatch(setDataLoginTC(data));
 		}
 	};
 
@@ -66,7 +72,7 @@ export const LoginContainer = () => {
 			<Login
 				email={email}
 				password={password}
-				activeBtn={activeBtn}
+				activeLoginBtn={activeLoginBtn}
 				rememberMe={rememberMe}
 				onChangeChecked={onChangeChecked}
 				onChangeHandlerEmail={onChangeHandlerEmail}

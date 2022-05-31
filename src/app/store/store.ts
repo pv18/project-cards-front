@@ -24,7 +24,7 @@ export type AppRootActionType = ProfileActionType
 export const AppDispatch = () => useDispatch<ThunkDispatch<AppRootStateType,void,AnyAction>>();
 
 // для типизации thunk
-export type AppThunkType = ThunkAction<boolean, AppRootStateType, unknown, AnyAction>
+export type AppThunkType = ThunkAction<void, AppRootStateType, unknown, AnyAction>
 
 const rootReducer = combineReducers({
 	profile: profileReducer,

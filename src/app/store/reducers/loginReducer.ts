@@ -1,8 +1,7 @@
 import {AuthAPI, LoginDataType} from '../../api/api';
 import {AppThunkType} from '../store';
 
-
-type LoginStateType = {
+type UserDataType = {
 	_id: string;
 	email: string;
 	name: string;
@@ -17,22 +16,37 @@ type LoginStateType = {
 	error?: string;
 }
 
-export type LoginActionType = ReturnType<typeof setDataLoginAC> | ReturnType<typeof setErrorMessage>
+type LoginStateType = {
+	userData: UserDataType
+	isLogin: boolean,
+	error?: string,
+	activeLoginBtn: boolean;
+}
+
+export type LoginActionType = ReturnType<typeof setDataLoginAC> 
+	| ReturnType<typeof setErrorMessage>
+	| ReturnType<typeof isToggleLoginBtn>
+	| ReturnType<typeof setIsLogin>
 
 
 const initialState: LoginStateType = {
-	_id: '',
-	email: '',
-	name: '',
-	avatar: '',
-	publicCardPacksCount: 0,
+	userData: {
+		_id: '',
+		email: '',
+		name: '',
+		avatar: '',
+		publicCardPacksCount: 0,
 // количество колод
-	created: '',
-	updated: '',
-	isAdmin: false,
-	verified: false, // подтвердил ли почту
-	rememberMe: false,
+		created: '',
+		updated: '',
+		isAdmin: false,
+		verified: false, // подтвердил ли почту
+		rememberMe: false,
+		error: '',
+	},
+	isLogin: false,
 	error: '',
+	activeLoginBtn: false,
 };
 
 export const loginReducer = (state = initialState, action: LoginActionType) => {
@@ -41,7 +55,8 @@ export const loginReducer = (state = initialState, action: LoginActionType) => {
 		case 'LOGIN/SET-DATA': {
 			return {
 				...state,
-				...action.data,
+				...state.userData,
+				userData: action.data,
 			};
 		}
 		case 'LOGIN/SET-ERROR': {
@@ -50,19 +65,34 @@ export const loginReducer = (state = initialState, action: LoginActionType) => {
 				error: action.error,
 			};
 		}
+		case 'LOGIN/IS-TOGGLE-ACTIVE-BTN': {
+			return {
+				...state,
+				activeLoginBtn: action.isToggle,
+			};
+		}
+		case 'LOGIN/SET-IS-LOGIN': {
+			return {
+				...state,
+				isLogin: action.isLogin,
+			};
+		}
 
 		default: return state;
 	}
 };
 
+// actions creators
 
-const setDataLoginAC = (data: LoginStateType) => {
+// userData записываем данные в state
+const setDataLoginAC = (data: UserDataType) => {
 	return {
 		type: 'LOGIN/SET-DATA',
 		data,
 	} as const;
 };
 
+// error записываем ошибку в state
 const setErrorMessage = (error: string) => {
 	return {
 		type: 'LOGIN/SET-ERROR',
@@ -70,15 +100,35 @@ const setErrorMessage = (error: string) => {
 	} as const;
 };
 
+// вовремя запроса disabled button login
+const isToggleLoginBtn = (isToggle: boolean) => {
+	return {
+		type: 'LOGIN/IS-TOGGLE-ACTIVE-BTN',
+		isToggle,
+	} as const;
+};
+
+// если залогинились true, default false
+const setIsLogin = (isLogin: boolean) => {
+	return {
+		type: 'LOGIN/SET-IS-LOGIN',
+		isLogin,
+	} as const;
+};
+
+// thunk creator
+
 export const setDataLoginTC = (data: LoginDataType): AppThunkType => (dispatch) => {
+	dispatch(isToggleLoginBtn(true));
 	AuthAPI.loginMe(data)
 		.then(res => {
 			dispatch(setDataLoginAC(res.data));
+			dispatch(setIsLogin(true));
 		})
 		.catch(error => {
 			dispatch(setErrorMessage(error.response.data.error));
+		})
+		.finally(() => {
+			dispatch(isToggleLoginBtn(false));
 		});
-
-	// после окночания запроса возрощаем true что бы раздизайблить кнопку
-	return true;
 };
