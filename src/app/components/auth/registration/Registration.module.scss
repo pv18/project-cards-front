@@ -1,0 +1,42 @@
+.wrapper {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  .card {
+    width: 413px;
+    height: 540px;
+    padding: 25px 33px 60px;
+    background: #F9F9FE;
+    border-radius: 8px;
+
+    h2 {
+      margin-bottom: 30px;
+      font-family: 'Poppins', sans-serif;
+      font-weight: 600;
+      font-size: 26px;
+      line-height: 39px;
+      text-align: center;
+    }
+
+    h3 {
+      margin-bottom: 47px;
+      font-family: 'Poppins', sans-serif;
+      font-weight: 600;
+      font-size: 22px;
+      line-height: 33px;
+      text-align: center;
+    }
+
+    form {
+      margin-bottom: 85px;
+    }
+
+    .buttons {
+      display: flex;
+      justify-content: space-around;
+    }
+  }
+
+}
