@@ -1,14 +1,15 @@
 {
   "files": {
-    "main.css": "/project-cards-front/static/css/main.ab6df5bc.css",
-    "main.js": "/project-cards-front/static/js/main.210d2be5.js",
-    "static/media/eye.svg": "/project-cards-front/static/media/eye.42d7381558d2648d6db6b26182299cc4.svg",
+    "main.css": "/project-cards-front/static/css/main.6beea180.css",
+    "main.js": "/project-cards-front/static/js/main.0b2edaad.js",
     "index.html": "/project-cards-front/index.html",
-    "main.ab6df5bc.css.map": "/project-cards-front/static/css/main.ab6df5bc.css.map",
-    "main.210d2be5.js.map": "/project-cards-front/static/js/main.210d2be5.js.map"
+    "static/media/eye-crossed.svg": "/project-cards-front/static/media/eye-crossed.1e68d9d1e04a7dc43bfa15ddb42e2027.svg",
+    "static/media/eye.svg": "/project-cards-front/static/media/eye.9c21d66c33457286b48ebf820326cb2f.svg",
+    "main.6beea180.css.map": "/project-cards-front/static/css/main.6beea180.css.map",
+    "main.0b2edaad.js.map": "/project-cards-front/static/js/main.0b2edaad.js.map"
   },
   "entrypoints": [
-    "static/css/main.ab6df5bc.css",
-    "static/js/main.210d2be5.js"
+    "static/css/main.6beea180.css",
+    "static/js/main.0b2edaad.js"
   ]
 }
