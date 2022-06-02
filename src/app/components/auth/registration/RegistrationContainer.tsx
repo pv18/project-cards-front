@@ -11,6 +11,7 @@ export const RegistrationContainer = () => {
     const [password, setPassword] = useState<string>('')
     const [password2, setPassword2] = useState<string>('')
     const registration = useSelector<AppRootStateType, boolean>(state => state.registration.registration)
+    const error = useSelector<AppRootStateType, string | undefined>(state => state.registration.error)
     const dispatch = AppDispatch()
     const navigate = useNavigate()
 
@@ -47,6 +48,7 @@ export const RegistrationContainer = () => {
     return (
         <>
             <Registration email={email}
+                          error={error}
                           password={password}
                           password2={password2}
                           changeEmail={emailChangeHandler}

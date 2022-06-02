@@ -6,7 +6,7 @@ type RegistrationStateType = {
     registration: boolean
 }
 
-export type RegistrationActionsType = ReturnType<typeof setDataRegister> |
+export type RegistrationActionsType =
     ReturnType<typeof setErrorMessage> |
     ReturnType<typeof setRegistrationStatus>
 
@@ -17,10 +17,6 @@ const initialState: RegistrationStateType = {
 
 export const registrationReducer = (state = initialState, action: RegistrationActionsType) => {
     switch (action.type) {
-        case 'REGISTRATION/SET-DATA':
-            return {
-                ...state
-            }
         case 'REGISTRATION/SET-ERROR':
             return {
                 ...state,
@@ -36,8 +32,6 @@ export const registrationReducer = (state = initialState, action: RegistrationAc
     }
 };
 
-
-const setDataRegister = (data: RegistrationStateType) => ({type: 'REGISTRATION/SET-DATA', data} as const)
 const setErrorMessage = (error: string) => ({type: 'REGISTRATION/SET-ERROR', error} as const)
 const setRegistrationStatus = (registration: boolean) => ({type: 'REGISTRATION/SET-STATUS', registration} as const)
 
