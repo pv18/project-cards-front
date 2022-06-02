@@ -35,7 +35,7 @@ const instance = axios.create({
 	// process.env.REACT_APP_BACK_URL || для gh-page
 	baseURL: 'http://localhost:7542/2.0/',
 	withCredentials: true,
-})
+});
 
 
 export const AuthAPI = {
@@ -44,8 +44,23 @@ export const AuthAPI = {
 		return instance.post<AuthResponseType>('auth/login', data);
 	},
     registrationMe(data: RegistrationDataType) {
-        return instance.post<RegistrationResponseType>('auth/register', data)
+        return instance.post<RegistrationResponseType>('auth/register', data);
     },
 
+};
+
+export const ProfileAPI = {
+	getProfile() {
+		return instance.post('/auth/me', {})
+		.then(res => {
+			return res.data;
+		});
+	},
+	putProfile(name:string, avatar: string) {
+		return instance.put('/auth/me', {name, avatar})
+		.then(res => {
+			return res.data;
+		});
+	},
 };
 
