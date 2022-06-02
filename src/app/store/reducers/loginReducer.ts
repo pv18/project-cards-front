@@ -1,5 +1,7 @@
 import {AuthAPI, LoginDataType} from '../../api/api';
 import {AppThunkType} from '../store';
+import {setProfile} from "./profileReducer";
+import {setIsAuth} from "./appReducer";
 
 type UserDataType = {
 	_id: string;
@@ -123,6 +125,8 @@ export const setDataLoginTC = (data: LoginDataType): AppThunkType => (dispatch) 
 	AuthAPI.loginMe(data)
 		.then(res => {
 			dispatch(setDataLoginAC(res.data));
+			dispatch(setProfile(res.data));
+			dispatch(setIsAuth(true));
 			dispatch(setIsLogin(true));
 		})
 		.catch(error => {

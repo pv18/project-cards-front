@@ -1,7 +1,9 @@
 import React from 'react';
-import {Main} from './components/Main';
+
 import {HashRouter} from 'react-router-dom';
 import {Provider} from 'react-redux';
+
+import {Main} from './components/Main';
 import {store} from './store/store';
 
 const App = () => {

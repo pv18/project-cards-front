@@ -8,6 +8,7 @@ import {ProfileActionType, profileReducer} from './reducers/profileReducer';
 import {PasswordActionType, passwordReducer} from './reducers/passwordReducer';
 import {RecoveryActionType, recoveryReducer} from './reducers/recoveryReducer';
 import {RegistrationActionsType, registrationReducer} from './reducers/registrationReducer';
+import {AppActionsType, appReducer} from './reducers/appReducer';
 
 
 export type AppRootStateType = ReturnType<typeof rootReducer>
@@ -18,6 +19,7 @@ export type AppRootActionType = ProfileActionType
 	| PasswordActionType
 	| RecoveryActionType
 	| RegistrationActionsType
+	| AppActionsType
 
 
 export const AppDispatch = () => useDispatch<ThunkDispatch<AppRootStateType,void,AnyAction>>();
@@ -31,6 +33,7 @@ const rootReducer = combineReducers({
 	password: passwordReducer,
 	recovery: recoveryReducer,
 	registration: registrationReducer,
+	app: appReducer,
 });
 
 export const store = createStore(rootReducer, applyMiddleware(thunk));

@@ -1,6 +1,8 @@
 import React, {useEffect} from 'react';
-import s from './Profile.module.scss'
-import {Button} from "../Button/Button";
+
+import {Button} from '../Button/Button';
+
+import s from './Profile.module.scss';
 type ProfilePropsType = {
     email: string,
     name: string,
@@ -13,7 +15,9 @@ const Profile = (props: ProfilePropsType) => {
                 <div className={s.photo}></div>
                 <span className={s.name}>{props.name}</span>
                 <span className={s.profession}>Front-end developer</span>
-                <div className={s.edit}><Button variant={"secondary"} onClick={props.onClickHandler}>Edit profile</Button></div>
+                <div className={s.edit}>
+                    <Button variant={'secondary'} onClick={props.onClickHandler}>Edit profile</Button>
+                </div>
             </div>
         </div>
     );

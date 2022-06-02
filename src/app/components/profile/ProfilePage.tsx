@@ -1,6 +1,7 @@
 import React from 'react';
-import s from './ProfilePage.module.scss'
-import ProfileContainer from "./ProfileContainer";
+
+import s from './ProfilePage.module.scss';
+import ProfileContainer from './ProfileContainer';
 
 export const ProfilePage = () => {
     return (

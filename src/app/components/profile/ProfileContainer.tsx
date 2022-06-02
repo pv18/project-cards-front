@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, {useEffect} from 'react';
 
 import {useNavigate} from 'react-router-dom';
 
@@ -10,16 +10,19 @@ import {AppDispatch, AppRootStateType} from '../../store/store';
 
 import Profile from './Profile';
 
+
 const ProfileContainer = () => {
 
     const navigate = useNavigate();
     const dispatch = AppDispatch(); //поменять
-    const email = useSelector<AppRootStateType, string>(state => state.profile.email);
-    const name = useSelector<AppRootStateType, string>(state => state.profile.name);
+    const email = useSelector<AppRootStateType, string>(state => state.profile.userData.email);
+    const name = useSelector<AppRootStateType, string>(state => state.profile.userData.name);
 
-    useEffect(()=>{
-        dispatch(getUserProfile());
-    },[]);
+    const isAuth = useSelector<AppRootStateType, boolean>(state => state.app.isAuth);
+
+    useEffect(()=> {
+        if (!isAuth) dispatch(getUserProfile());
+    },[isAuth, dispatch]);
 
     // обработчик для кнопки редактирования профиля
     const onClickHandler = () => {

@@ -51,7 +51,7 @@ export const AuthAPI = {
 
 export const ProfileAPI = {
 	getProfile() {
-		return instance.post('/auth/me', {})
+		return instance.post<AuthResponseType>('/auth/me', {})
 		.then(res => {
 			return res.data;
 		});

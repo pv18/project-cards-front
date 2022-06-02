@@ -1,30 +1,38 @@
 import React, {useEffect, useState} from 'react';
-import EditProfile from "./EditProfile";
-import {useSelector} from "react-redux";
-import {AppDispatch, AppRootStateType} from "../../../store/store";
-import {putUserProfile} from "../../../store/reducers/profileReducer";
+
+import {useSelector} from 'react-redux';
+
+import {AppDispatch, AppRootStateType} from '../../../store/store';
+import {getUserProfile, putUserProfile} from '../../../store/reducers/profileReducer';
+
+import EditProfile from './EditProfile';
 
 const EditProfileContainer = () => {
     const dispatch = AppDispatch();
-    const email = useSelector<AppRootStateType, string>(state => state.profile.email)
-    const name = useSelector<AppRootStateType, string>(state => state.profile.name)
-    const isFetching = useSelector<AppRootStateType, boolean>(state => state.profile.isFetching)
-    const [newName, setNewName] = useState<string>(name)
-    const [newAvatar, setNewAvatar] = useState<string>('')
+    const email = useSelector<AppRootStateType, string>(state => state.profile.userData.email);
+    const name = useSelector<AppRootStateType, string>(state => state.profile.userData.name);
+    const isFetching = useSelector<AppRootStateType, boolean>(state => state.profile.isFetching);
+    const isAuth = useSelector<AppRootStateType, boolean>(state => state.app.isAuth);
+
+    const [newName, setNewName] = useState<string>(name);
+
+    let avatar = '';
 
     useEffect(()=>{
-        !isFetching && dispatch(putUserProfile(newName,newAvatar))
 
-    },[newAvatar,newName])
+        // !isFetching && dispatch(putUserProfile(newName,newAvatar));
+        if (!isAuth) dispatch(getUserProfile());
+    },[isAuth, dispatch]);
 
     //обработчик на нажатие Save в редактировании профиля
-    const onClickHandlerSave = (newName:string,avatar:string) => {
-        setNewName(newName)
-    }
+    const onClickHandlerSave = () => {
+        dispatch(putUserProfile(newName, avatar));
+    };
     return (
         <div>
             <EditProfile email={email}
-                         name={name}
+                         name={newName}
+                         setNewName={setNewName}
                          onClickHandlerSave={onClickHandlerSave}
                          isFetching={isFetching}
             />
