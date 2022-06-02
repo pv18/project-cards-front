@@ -1,0 +1,52 @@
+.container {
+  width: 243px;
+  height: 216px;
+  background: #D9D9F1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  .photo {
+    width: 96px;
+    height: 96px;
+    background: #2D2E46;
+    margin-top: 24px;
+    border-radius: 50%;
+  }
+  .name {
+    left: 206px;
+    top: 208px;
+
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 18px;
+    line-height: 27px;
+    margin-top: 4px;
+    /* identical to box height */
+
+    color: #2D2E46;
+  }
+  .profession {
+    left: 196px;
+    top: 239px;
+
+    font-family: 'SF UI Display';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 17px;
+    margin-top: 4px;
+    /* identical to box height */
+
+    text-align: center;
+
+    color: #2D2E46;
+
+    opacity: 0.5;
+  }
+  .edit {
+    border: 1px solid #635D80;
+    border-radius: 2px;
+  }
+}
