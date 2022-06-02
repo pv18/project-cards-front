@@ -1,0 +1,80 @@
+.blockEditProfile {
+  width: 100vm;
+  height: 720px;
+  background: linear-gradient(180deg, #E6D4DE 0%, #9890C7 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  .containerEditProfile {
+    width: 412px;
+    height: 540px;
+
+    background: #F9F9FE;
+    border-radius: 8px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    &__personal {
+      font-family: 'Poppins';
+      font-style: normal;
+      font-weight: 600;
+      font-size: 22px;
+      line-height: 33px;
+      margin-top: 36px;
+      /* identical to box height */
+
+      text-align: right;
+
+      color: #2D2E46;
+    }
+
+    &__avatar {
+      display: flex;
+
+      &_photo {
+        background: blue;
+        width: 96px;
+        height: 96px;
+        border-radius: 50%;
+        margin-top: 15px;
+      }
+
+      &_icon {
+        background: #e34141;
+        width: 30px;
+        height: 30px;
+        border-radius: 50%;
+        margin-top: 81px;
+        margin-left: -30px;
+      }
+    }
+
+    &__form {
+      width: 347px;
+      margin-top: 38px;
+    }
+
+    &__buttons {
+      width: 347px;
+      margin-top: 80px;
+      display: flex;
+      justify-content: space-between;
+
+      ._button {
+        padding: 8px 0;
+        font-family: 'SF UI Display', sans-serif;
+        font-weight: 500;
+        font-size: 16px;
+        line-height: 19px;
+        border: none;
+        border-radius: 30px;
+        cursor: pointer;
+        transition: 1s linear;
+      }
+    }
+  }
+
+}

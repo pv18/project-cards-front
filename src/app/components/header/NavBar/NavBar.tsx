@@ -8,7 +8,7 @@ export const NavBar = () => {
 
     return (
         <nav>
-            <NavLink to={'/'} className={setActive}>Profile</NavLink>
+            <NavLink to={PATH.PROFILE} className={setActive}>Profile</NavLink>
             <NavLink to={PATH.LOGIN} className={setActive}>Login</NavLink>
             <NavLink to={PATH.PASSWORD} className={setActive}>Password</NavLink>
             <NavLink to={PATH.RECOVERY} className={setActive}>Recovery</NavLink>

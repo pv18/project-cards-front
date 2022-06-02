@@ -1,0 +1,34 @@
+.block {
+  width: 100vm;
+  height: 720px;
+  background: linear-gradient(180deg, #E6D4DE 0%, #9890C7 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  .container {
+    width: 1008px;
+    height: 636px;
+    left: 136px;
+    top: 84px;
+
+    background: #FEFEFF;
+    border-radius: 8px;
+
+    .sidebar {
+      &__numberOfCards {
+        width: 243px;
+        height: 420px;
+        left: 136px;
+        top: 84px;
+
+        background: #ECECF9;
+      }
+    }
+
+    .myPacksList {
+
+    }
+
+  }
+}

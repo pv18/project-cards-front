@@ -1,11 +1,12 @@
 import React from 'react';
 import {Route, Routes} from 'react-router-dom';
-import {ProfileContainer} from '../profile/ProfileContainer';
+import {ProfilePage} from '../profile/ProfilePage';
 import {ErrorPage} from '../404/ErrorPage';
 import {LoginContainer} from '../auth/login/LoginContainer';
 import {PasswordContainer} from '../auth/password/PasswordContainer';
 import {RecoveryContainer} from '../auth/recovery/RecoveryContainer';
 import {TestPage} from '../TestPage/TestPage';
+import EditProfileContainer from '../profile/editProfile/EditProfileContainer';
 
 export const PATH = {
     LOGIN: '/login',
@@ -13,13 +14,15 @@ export const PATH = {
     PROFILE: '/profile',
     RECOVERY: '/recovery',
     TEST_PAGE: '/test_page',
+    EDIT_PROFILE: '/edit_profile'
 }
 
 export const Routing = () => {
     return (
         <>
             <Routes>
-                <Route path={'/'} element={<ProfileContainer/>}/>
+                <Route path={PATH.PROFILE} element={<ProfilePage/>}/>
+                <Route path={PATH.EDIT_PROFILE} element={<EditProfileContainer/>}/>
                 <Route path={PATH.LOGIN} element={<LoginContainer/>}/>
                 <Route path={PATH.PASSWORD} element={<PasswordContainer/>}/>
                 <Route path={PATH.RECOVERY} element={<RecoveryContainer/>}/>
