@@ -29,6 +29,7 @@ export type LoginActionType = ReturnType<typeof setDataLoginAC>
 	| ReturnType<typeof setErrorMessage>
 	| ReturnType<typeof isToggleLoginBtn>
 	| ReturnType<typeof setIsLogin>
+	| ReturnType<typeof recoveryPassword>
 
 
 const initialState: LoginStateType = {
@@ -79,7 +80,11 @@ export const loginReducer = (state = initialState, action: LoginActionType) => {
 				isLogin: action.isLogin,
 			};
 		}
-
+		case 'LOGIN/RECOVERY-PASSWORD': {
+			return {
+				...state
+			}
+		}
 		default: return state;
 	}
 };
@@ -118,6 +123,13 @@ const setIsLogin = (isLogin: boolean) => {
 	} as const;
 };
 
+//
+const recoveryPassword = () => {
+	return {
+		type: 'LOGIN/RECOVERY-PASSWORD',
+
+	} as const;
+}
 // thunk creator
 
 export const setDataLoginTC = (data: LoginDataType): AppThunkType => (dispatch) => {

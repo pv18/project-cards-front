@@ -1,10 +1,10 @@
 import React from 'react';
+import RecoveryPassword from "./RecoveryPassword";
 
 export const RecoveryContainer = () => {
     return (
         <div>
-            {/*добвали заголовок*/}
-            <h2>recovery</h2>
+            <RecoveryPassword />
         </div>
     );
 };

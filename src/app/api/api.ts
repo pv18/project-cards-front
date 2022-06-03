@@ -48,6 +48,9 @@ export const AuthAPI = {
     registrationMe(data: RegistrationDataType) {
         return instance.post<RegistrationResponseType>('auth/register', data);
     },
+	recoveryPassword(data: any) {
+		return instance.put('auth/forgot', data)
+	},
 
 };
 

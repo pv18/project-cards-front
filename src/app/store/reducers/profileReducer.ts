@@ -3,7 +3,6 @@ import {Dispatch} from 'redux';
 import {ProfileAPI} from '../../api/api';
 import {setIsAuth} from "./appReducer";
 
-
 type UserDataType = {
     _id: string;
     email: string;
@@ -24,20 +23,6 @@ type ProfileStateType = {
     isFetching: boolean
 }
 
-type SetActionType = {
-    type: 'SET_USER_PROFILE',
-    data: UserDataType
-}
-type PutActionType = {
-    type: 'PUT_USER_PROFILE',
-    name: string,
-    avatar: string,
-}
-type ToggleFetchingActionType = {
-    type: 'TOGGLE_FETCHING',
-    isFetching: boolean,
-}
-
 const initialState: ProfileStateType = {
     userData: {
         _id: '',
@@ -56,16 +41,18 @@ const initialState: ProfileStateType = {
 
     isFetching: false,
 };
-export type ProfileActionType = SetActionType | PutActionType | ToggleFetchingActionType
+export type ProfileActionType = ReturnType<typeof setProfile>
+    | ReturnType<typeof putProfile>
+    | ReturnType<typeof toggleFetching>
 
 export const profileReducer = (state = initialState, action: ProfileActionType) => {
     switch (action.type) {
-        case 'SET_USER_PROFILE':
+        case 'PROFILE/SET-USER':
             return {
                 ...state,
                 userData: {...action.data},
             };
-        case 'PUT_USER_PROFILE':
+        case 'PROFILE/PUT-USER':
             return {
                 ...state,
                 userData: {
@@ -74,7 +61,7 @@ export const profileReducer = (state = initialState, action: ProfileActionType) 
                     avatar: action.avatar,
                 },
             };
-        case 'TOGGLE_FETCHING':
+        case 'PROFILE/TOGGLE-FETCHING':
             return {
                 ...state,
                 isFetching: action.isFetching,
@@ -84,13 +71,13 @@ export const profileReducer = (state = initialState, action: ProfileActionType) 
     }
 };
 // AC создание action получения профиля
-export const setProfile = (data: UserDataType):SetActionType => ({type: 'SET_USER_PROFILE', data});
+export const setProfile = (data: UserDataType) => ({type: 'PROFILE/SET-USER', data} as const);
 
 // AC создание action редактирования профиля
-export const putProfile = (name: string, avatar: string):PutActionType => ({type: 'PUT_USER_PROFILE', name, avatar});
+export const putProfile = (name: string, avatar: string) => ({type: 'PROFILE/PUT-USER', name, avatar} as const);
 
 // AC переключение состояния запроса (true - выполняется запрос на сервер)
-export const toggleFetching = (isFetching: boolean):ToggleFetchingActionType => ({type: 'TOGGLE_FETCHING', isFetching});
+export const toggleFetching = (isFetching: boolean) => ({type: 'PROFILE/TOGGLE-FETCHING', isFetching} as const);
 
 // TC получение профиля
 export const getUserProfile = () => (dispatch: Dispatch) => {
