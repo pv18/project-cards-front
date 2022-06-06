@@ -3,11 +3,16 @@ import React, {useEffect, useState} from 'react';
 import {useSelector} from 'react-redux';
 
 import {AppDispatch, AppRootStateType} from '../../../store/store';
-import {getUserProfile, putUserProfile} from '../../../store/reducers/profileReducer';
+import {putUserProfile} from '../../../store/reducers/profileReducer';
 
 import EditProfile from './EditProfile';
+import {PATH} from "../../Routing/Routing";
+import {useNavigate} from "react-router-dom";
+import {setIsAuth} from "../../../store/reducers/appReducer";
+import { setIsLogin } from '../../../store/reducers/loginReducer';
 
 const EditProfileContainer = () => {
+    const navigate = useNavigate()
     const dispatch = AppDispatch();
     const email = useSelector<AppRootStateType, string>(state => state.profile.userData.email);
     const name = useSelector<AppRootStateType, string>(state => state.profile.userData.name);
@@ -19,14 +24,14 @@ const EditProfileContainer = () => {
     let avatar = '';
 
     useEffect(()=>{
-
-        // !isFetching && dispatch(putUserProfile(newName,newAvatar));
-        if (!isAuth) dispatch(getUserProfile());
+        if (!isAuth) navigate(PATH.LOGIN);
     },[isAuth, dispatch]);
 
     //обработчик на нажатие Save в редактировании профиля
     const onClickHandlerSave = () => {
         dispatch(putUserProfile(newName, avatar));
+        dispatch(setIsAuth(false))
+        dispatch(setIsLogin(false))
     };
     return (
         <div>

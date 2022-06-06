@@ -9,6 +9,7 @@ import {getUserProfile} from '../../store/reducers/profileReducer';
 import {AppDispatch, AppRootStateType} from '../../store/store';
 
 import Profile from './Profile';
+import {setLogOut} from "../../store/reducers/loginReducer";
 
 
 const ProfileContainer = () => {
@@ -20,8 +21,9 @@ const ProfileContainer = () => {
 
     const isAuth = useSelector<AppRootStateType, boolean>(state => state.app.isAuth);
 
+    //если не залогинены, от редирект на страницу логинизации
     useEffect(()=> {
-        if (!isAuth) dispatch(getUserProfile());
+    if (!isAuth) navigate(PATH.LOGIN)
     },[isAuth, dispatch]);
 
     // обработчик для кнопки редактирования профиля

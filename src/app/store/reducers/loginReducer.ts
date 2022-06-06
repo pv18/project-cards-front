@@ -30,6 +30,7 @@ export type LoginActionType = ReturnType<typeof setDataLoginAC>
 	| ReturnType<typeof isToggleLoginBtn>
 	| ReturnType<typeof setIsLogin>
 	| ReturnType<typeof recoveryPassword>
+	| ReturnType<typeof logOut>
 
 
 const initialState: LoginStateType = {
@@ -85,6 +86,11 @@ export const loginReducer = (state = initialState, action: LoginActionType) => {
 				...state
 			}
 		}
+		case 'LOGIN/LOG-OUT': {
+			return {
+				...state
+			}
+		}
 		default: return state;
 	}
 };
@@ -116,10 +122,17 @@ const isToggleLoginBtn = (isToggle: boolean) => {
 };
 
 // если залогинились true, default false
-const setIsLogin = (isLogin: boolean) => {
+export const setIsLogin = (isLogin: boolean) => {
 	return {
 		type: 'LOGIN/SET-IS-LOGIN',
 		isLogin,
+	} as const;
+};
+
+//
+const logOut = () => {
+	return {
+		type: 'LOGIN/LOG-OUT',
 	} as const;
 };
 
@@ -148,3 +161,20 @@ export const setDataLoginTC = (data: LoginDataType): AppThunkType => (dispatch) 
 			dispatch(isToggleLoginBtn(false));
 		});
 };
+
+export const setLogOut = ():AppThunkType => (dispatch) => {
+	AuthAPI.logOut()
+		.then(resData => {
+			if (resData.info.length) {
+				dispatch(logOut())
+				dispatch(setIsAuth(false))
+				dispatch(setIsLogin(false))
+			}
+		})
+/*		.catch(error => {
+			console.log(error.response.data.error)
+		})
+		.finally(() => {
+			dispatch(isToggleLoginBtn(false));
+		});*/
+}

@@ -1,13 +1,14 @@
 import React from 'react';
 import {NavLink} from 'react-router-dom';
 import {PATH} from '../../Routing/Routing';
+import s from './NavBar.module.scss'
 
 export const NavBar = () => {
     // const setActive = ({isActive}:any) => isActive ? s.active : '';
     const setActive = ''
 
     return (
-        <nav>
+        <nav className={s.block}>
             <NavLink to={PATH.PROFILE} className={setActive}>Profile</NavLink>
             <NavLink to={PATH.LOGIN} className={setActive}>Login</NavLink>
             <NavLink to={PATH.REGISTRATION} className={setActive}>Registration</NavLink>
