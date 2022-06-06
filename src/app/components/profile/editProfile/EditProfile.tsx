@@ -35,8 +35,7 @@ const EditProfile = (props: EditProfilePropsType) => {
         navigate(-1);
     };
 
-    // обработчик для кнопки Save
-    // (передать параметры контейнерной компоненте (доделать вернуться на предыдущую страницу)
+    // обработчик для кнопки Save (передать параметры контейнерной компоненте)
     const onClickHandlerSave = () => {
         props.onClickHandlerSave();
     };

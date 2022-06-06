@@ -38,13 +38,12 @@ const initialState: ProfileStateType = {
         rememberMe: false,
         error: '',
     },
-
     isFetching: false,
 };
 export type ProfileActionType = ReturnType<typeof setProfile>
     | ReturnType<typeof putProfile>
     | ReturnType<typeof toggleFetching>
-
+    | ReturnType<typeof setErrorMessage>
 export const profileReducer = (state = initialState, action: ProfileActionType) => {
     switch (action.type) {
         case 'PROFILE/SET-USER':
@@ -52,6 +51,15 @@ export const profileReducer = (state = initialState, action: ProfileActionType) 
                 ...state,
                 userData: {...action.data},
             };
+        case 'PROFILE/SET-ERROR': {
+            return {
+                ...state,
+                userData: {
+                    ...state.userData,
+                    error: action.error,
+                }
+            };
+        }
         case 'PROFILE/PUT-USER':
             return {
                 ...state,
@@ -79,6 +87,9 @@ export const putProfile = (name: string, avatar: string) => ({type: 'PROFILE/PUT
 // AC переключение состояния запроса (true - выполняется запрос на сервер)
 export const toggleFetching = (isFetching: boolean) => ({type: 'PROFILE/TOGGLE-FETCHING', isFetching} as const);
 
+// error записываем ошибку в state
+const setErrorMessage = (error: string) => ({type: 'PROFILE/SET-ERROR', error} as const);
+
 // TC получение профиля
 export const getUserProfile = () => (dispatch: Dispatch) => {
     ProfileAPI.getProfile()
@@ -87,7 +98,7 @@ export const getUserProfile = () => (dispatch: Dispatch) => {
             dispatch(setIsAuth(true));
         })
         .catch((error)=>{
-            // alert(`Сервер вернул ошибку: "${error.response.data.error}"`);
+            dispatch(setErrorMessage(error.response.data.error))
         });
 };
 // TC редактирования профиля
@@ -99,7 +110,6 @@ export const putUserProfile = (name:string, avatar:string) => (dispatch: Dispatc
             dispatch(toggleFetching(false));
         })
         .catch((error)=>{
-            // alert(`Сервер вернул ошибку: "${error.response.data.error}"`);
             dispatch(toggleFetching(false));
         });
 };

@@ -30,7 +30,10 @@ export type RegistrationResponseType = {
 	addUser: any,
 	error?: string,
 }
-
+export type LogOutResponseType = {
+	info: string,
+	error: string;
+}
 const instance = axios.create({
 	// process.env.REACT_APP_BACK_URL || для gh-page
 	// https://neko-back.herokuapp.com/2.0/ для gh-page
@@ -51,6 +54,10 @@ export const AuthAPI = {
 	recoveryPassword(data: any) {
 		return instance.put('auth/forgot', data)
 	},
+	logOut() {
+		return instance.delete<LogOutResponseType>('/auth/me',{})
+			.then(res => res.data)
+	}
 
 };
 
