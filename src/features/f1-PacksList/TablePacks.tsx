@@ -21,16 +21,15 @@ export const TablePacks = () => {
 	useEffect(() => {
 		apiCards.getCards()
 			.then(res => {
-				console.log(res.data);
+				// console.log(res.data);
 				dispatch(setPackList(res.data));
 			})
 			.catch(err => {
-				console.log(err);
+				// console.log(err);
 			});
 	},[]);
 	
 	const renderCardsPacks = ():any => {
-		console.log(cardPacks);
 		return cardPacks.map(el => {
 			return (
 				<tr key={el._id} className={s.table__wrap}>
@@ -61,17 +60,6 @@ export const TablePacks = () => {
 					</tr>
 				</thead>
 				<tbody className={s.table__body}>
-					{/*<tr className={s.table__wrap}>*/}
-					{/*	<th>Pack Name</th>*/}
-					{/*	<th>4</th>*/}
-					{/*	<th>18.03.2021</th>*/}
-					{/*	<th>Ivan Ivanov</th>*/}
-					{/*	<th>*/}
-					{/*		<button>Delete</button>*/}
-					{/*		<button>Edit</button>*/}
-					{/*		<button>Learn</button>*/}
-					{/*	</th>*/}
-					{/*</tr>*/}
 					{renderCardsPacks()}
 				</tbody>
 			</table>
