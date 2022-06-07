@@ -1,0 +1,33 @@
+$colorBg: #ECECF9;
+$colorWhite: #FFFFFF;
+$colorGray: #F8F7FD;
+
+
+.tablePacks {
+	//border: 1px solid black;
+	//overflow: scroll;
+}
+
+.table {
+	width: 100%;
+	//border: 1px solid red;
+
+	&__wrap {
+		//align-items: end;
+	}
+
+
+	&__head {
+		height: 48px;
+		background-color: $colorBg;
+		margin: 0;
+		padding: 0;
+	}
+
+	&__body {
+		& tr {
+			background-color: $colorGray;
+			height: 48px;
+		}
+	}
+}

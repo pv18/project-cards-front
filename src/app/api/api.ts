@@ -1,5 +1,7 @@
 import axios from 'axios';
 
+import {PackStateType} from '../../features/f1-PacksList/api/n0-bll/packListReducer';
+
 export type LoginDataType = {
 	email: string,
 	password: string,
@@ -34,6 +36,23 @@ export type LogOutResponseType = {
 	info: string,
 	error: string;
 }
+
+type GetParamsType = {
+	packName?: string
+	min?: number
+	max?: number
+	sortPacks?: string
+	page?: number
+	pageCount?: number
+	user_id?: string
+}
+
+type NewCardsPack = {
+	name?: string
+	deckCover?: string
+	private?: boolean
+}
+
 const instance = axios.create({
 	// process.env.REACT_APP_BACK_URL || для gh-page
 	// https://neko-back.herokuapp.com/2.0/ для gh-page
@@ -53,12 +72,12 @@ export const AuthAPI = {
         return instance.post<RegistrationResponseType>('auth/register', data);
     },
 	recoveryPassword(data: any) {
-		return instance.put('auth/forgot', data)
+		return instance.put('auth/forgot', data);
 	},
 	logOut() {
 		return instance.delete<LogOutResponseType>('/auth/me',{})
-			.then(res => res.data)
-	}
+			.then(res => res.data);
+	},
 
 };
 
@@ -74,6 +93,20 @@ export const ProfileAPI = {
 		.then(res => {
 			return res.data;
 		});
+	},
+};
+
+export const ApiCards = {
+	getCards(params?: GetParamsType) {
+		return instance.get<PackStateType>('cards/pack', {params});
+	},
+
+	postCards(cardsPack: NewCardsPack) {
+		return instance.post<PackStateType>('cards/pack', {cardsPack});
+	},
+
+	deletePack(idPack: string) {
+		return instance.delete<PackStateType>('cards/pack', {params:{id: idPack}});
 	},
 };
 
