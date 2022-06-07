@@ -8,6 +8,7 @@ import {RecoveryContainer} from '../auth/recovery/RecoveryContainer';
 import {TestPage} from '../TestPage/TestPage';
 import {RegistrationContainer} from '../auth/registration/RegistrationContainer';
 import EditProfileContainer from '../profile/editProfile/EditProfileContainer';
+import {PacksList} from '../packs-list/PacksList';
 
 export const PATH = {
     LOGIN: '/login',
@@ -16,7 +17,8 @@ export const PATH = {
     PROFILE: '/profile',
     RECOVERY: '/recovery',
     TEST_PAGE: '/test_page',
-    EDIT_PROFILE: '/edit_profile'
+    EDIT_PROFILE: '/edit_profile',
+    PACKS_LIST: '/packs_list'
 }
 
 export const Routing = () => {
@@ -30,6 +32,7 @@ export const Routing = () => {
                 <Route path={PATH.PASSWORD} element={<PasswordContainer/>}/>
                 <Route path={PATH.RECOVERY} element={<RecoveryContainer/>}/>
                 <Route path={PATH.TEST_PAGE} element={<TestPage/>}/>
+                <Route path={PATH.PACKS_LIST} element={<PacksList/>}/>
                 <Route path={'/*'} element={<ErrorPage/>}/>
             </Routes>
         </>

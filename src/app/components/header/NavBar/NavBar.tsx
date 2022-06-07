@@ -15,6 +15,7 @@ export const NavBar = () => {
             <NavLink to={PATH.PASSWORD} className={setActive}>Password</NavLink>
             <NavLink to={PATH.RECOVERY} className={setActive}>Recovery</NavLink>
             <NavLink to={PATH.TEST_PAGE} className={setActive}>Test Page</NavLink>
+            <NavLink to={PATH.PACKS_LIST} className={setActive}>Packs List</NavLink>
             <NavLink to={'/*'} className={setActive}>404</NavLink>
         </nav>
     );
