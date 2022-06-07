@@ -19,7 +19,7 @@ export const TablePacks = () => {
 
 
 	useEffect(() => {
-		apiCards.getCards()
+		apiCards.getCards({pageCount: 10, page: 1})
 			.then(res => {
 				// console.log(res.data);
 				dispatch(setPackList(res.data));
@@ -28,6 +28,11 @@ export const TablePacks = () => {
 				// console.log(err);
 			});
 	},[]);
+
+    // для удаления pack карточек
+	const onClickDeletePack = (id: string) => {
+		apiCards.deletePack(id);
+	};
 	
 	const renderCardsPacks = ():any => {
 		return cardPacks.map(el => {
@@ -38,7 +43,7 @@ export const TablePacks = () => {
 					<th>18.03.2021-date</th>
 					<th>{el.user_name}</th>
 					<th>
-						<button>Delete</button>
+						<button onClick={()=> onClickDeletePack(el._id)}>Delete</button>
 						<button>Edit</button>
 						<button>Learn</button>
 					</th>

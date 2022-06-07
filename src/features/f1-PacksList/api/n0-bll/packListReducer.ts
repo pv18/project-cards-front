@@ -18,7 +18,7 @@ export type CardPacksType = {
 	_id: string
 }
 
-export type PackStateType ={
+export type PackStateType = {
 	cardPacks: Array<CardPacksType>
 	cardPacksTotalCount: number
 	maxCardsCount: number
