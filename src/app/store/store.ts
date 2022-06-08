@@ -3,13 +3,14 @@ import {AnyAction, applyMiddleware, combineReducers, createStore} from 'redux';
 import thunk, {ThunkAction, ThunkDispatch} from 'redux-thunk';
 import {useDispatch} from 'react-redux';
 
+
 import {LoginActionType, loginReducer} from './reducers/loginReducer';
 import {ProfileActionType, profileReducer} from './reducers/profileReducer';
 import {PasswordActionType, passwordReducer} from './reducers/passwordReducer';
 import {RecoveryActionType, recoveryReducer} from './reducers/recoveryReducer';
 import {RegistrationActionsType, registrationReducer} from './reducers/registrationReducer';
 import {AppActionsType, appReducer} from './reducers/appReducer';
-import {PackListActionType, packListReducer} from "../../features/f1-PacksList/api/n0-bll/packListReducer";
+import {PackListActionType, tablePacksReducer} from './reducers/tablePacksReducer';
 
 
 export type AppRootStateType = ReturnType<typeof rootReducer>
@@ -36,7 +37,7 @@ const rootReducer = combineReducers({
 	recovery: recoveryReducer,
 	registration: registrationReducer,
 	app: appReducer,
-	packList: packListReducer,
+	tablePacks: tablePacksReducer,
 });
 
 export const store = createStore(rootReducer, applyMiddleware(thunk));

@@ -1,3 +1,7 @@
+import {AppThunkType} from '../store';
+import {ApiCards, GetParamsType} from '../../api/api';
+
+import {setIsLoading} from './appReducer';
 
 export type CardPacksType = {
 	cardsCount: number
@@ -59,7 +63,7 @@ const initialState: PackStateType = {
 	tokenDeathTime: 1655151219458,
 };
 
-export const packListReducer = (state = initialState, acton: PackListActionType): PackStateType => {
+export const tablePacksReducer = (state = initialState, acton: PackListActionType): PackStateType => {
 	switch (acton.type) {
 		case 'PACK/SET-PACK_LIST': {
 			return {
@@ -72,10 +76,41 @@ export const packListReducer = (state = initialState, acton: PackListActionType)
 	}
 };
 
-
+// set PackList
 export const setPackList = (data: PackStateType) => {
 	return {
 		type: 'PACK/SET-PACK_LIST',
 		data,
 	} as const;
+};
+
+
+// Thunk Creator
+
+export const getPackListTC = (params?: GetParamsType): AppThunkType => (dispatch) => {
+		dispatch(setIsLoading(true));
+		ApiCards.getCards(params)
+			.then(res => {
+				dispatch(setPackList(res.data));
+			})
+			.catch(err => {
+				// console.log(err);
+			})
+			.finally(() => {
+				dispatch(setIsLoading(false));
+			});
+};
+
+export const postNewPackTC = (name: string):AppThunkType => (dispatch) => {
+	dispatch(setIsLoading(true));
+	ApiCards.postCards({name})
+		.then(res => {
+			dispatch(getPackListTC({pageCount: 10, page: 1}));
+		})
+		.catch(err => {
+			// console.log(err);
+		})
+		.finally(() => {
+			dispatch(setIsLoading(false));
+		});
 };

@@ -1,8 +1,10 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 
 import {useSelector} from 'react-redux';
 
-import {AppRootStateType} from '../store/store';
+import {AppDispatch, AppRootStateType} from '../store/store';
+
+import {getUserProfile} from '../store/reducers/profileReducer';
 
 import {Routing} from './Routing/Routing';
 import {HeaderContainer} from './header/HeaderContainer';
@@ -12,6 +14,15 @@ import {Preloader} from './Preloader/Preloader';
 export const Main = () => {
 
     const isLoading = useSelector<AppRootStateType, boolean>(state => state.app.isLoading);
+    const isAuth = useSelector<AppRootStateType, boolean>(state => state.app.isAuth);
+
+    const dispatch = AppDispatch();
+
+    useEffect(() => {
+        if (!isAuth) {
+            dispatch(getUserProfile());
+        }
+    },[isAuth]);
 
     return (
         <div className={s.wrapper}>

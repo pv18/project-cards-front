@@ -37,7 +37,7 @@ export type LogOutResponseType = {
 	error: string;
 }
 
-type GetParamsType = {
+export type GetParamsType = {
 	packName?: string
 	min?: number
 	max?: number

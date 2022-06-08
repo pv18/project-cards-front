@@ -1,7 +1,8 @@
 import {AuthAPI, LoginDataType} from '../../api/api';
 import {AppThunkType} from '../store';
-import {setProfile} from "./profileReducer";
-import {setIsAuth} from "./appReducer";
+
+import {setProfile} from './profileReducer';
+import {setIsAuth} from './appReducer';
 
 type UserDataType = {
 	_id: string;
@@ -53,7 +54,7 @@ const initialState: LoginStateType = {
 	activeLoginBtn: false,
 };
 
-export const loginReducer = (state = initialState, action: LoginActionType) => {
+export const loginReducer = (state = initialState, action: LoginActionType):LoginStateType => {
 
 	switch (action.type) {
 		case 'LOGIN/SET-DATA': {
@@ -83,13 +84,13 @@ export const loginReducer = (state = initialState, action: LoginActionType) => {
 		}
 		case 'LOGIN/RECOVERY-PASSWORD': {
 			return {
-				...state
-			}
+				...state,
+			};
 		}
 		case 'LOGIN/LOG-OUT': {
 			return {
-				...state
-			}
+				...state,
+			};
 		}
 		default: return state;
 	}
@@ -142,7 +143,7 @@ const recoveryPassword = () => {
 		type: 'LOGIN/RECOVERY-PASSWORD',
 
 	} as const;
-}
+};
 // thunk creator
 
 export const setDataLoginTC = (data: LoginDataType): AppThunkType => (dispatch) => {
@@ -166,15 +167,15 @@ export const setLogOut = ():AppThunkType => (dispatch) => {
 	AuthAPI.logOut()
 		.then(resData => {
 			if (resData.info.length) {
-				dispatch(logOut())
-				dispatch(setIsAuth(false))
-				dispatch(setIsLogin(false))
+				dispatch(logOut());
+				dispatch(setIsAuth(false));
+				dispatch(setIsLogin(false));
 			}
-		})
+		});
 /*		.catch(error => {
 			console.log(error.response.data.error)
 		})
 		.finally(() => {
 			dispatch(isToggleLoginBtn(false));
 		});*/
-}
+};

@@ -1,36 +1,24 @@
-import React, {useEffect} from 'react';
+import React from 'react';
 
-import {useDispatch, useSelector} from 'react-redux';
-
-import {Dispatch} from 'redux';
+import {useSelector} from 'react-redux';
 
 import {AppRootStateType} from '../../store/store';
-import {CardPacksType, PackListActionType, setPackList} from '../../store/reducers/packListReducer';
-import {ApiCards} from '../../api/api';
+import {CardPacksType} from '../../store/reducers/tablePacksReducer';
 
 import s from './TablePacks.module.scss';
 
+type TablePacksPropsType = {
+	onClickDeletePack: (id: string) => void
+	showCardsPack: (id: string) => void
+}
 
-export const TablePacks = () => {
 
-	const dispatch = useDispatch<Dispatch<PackListActionType>>();
-	const cardPacks = useSelector<AppRootStateType, Array<CardPacksType>>(state => state.packList.cardPacks);
+export const TablePacks = (props: TablePacksPropsType) => {
 
-	useEffect(() => {
-		ApiCards.getCards({pageCount: 10, page: 1})
-		.then(res => {
-			// console.log(res.data);
-			dispatch(setPackList(res.data));
-		})
-		.catch(err => {
-			// console.log(err);
-		});
-	}, []);
+	const {onClickDeletePack, showCardsPack} = props;
 
-	// для удаления pack карточек
-	const onClickDeletePack = (id: string) => {
-		ApiCards.deletePack(id);
-	};
+	const cardPacks = useSelector<AppRootStateType, Array<CardPacksType>>(state => state.tablePacks.cardPacks);
+	const userId = useSelector<AppRootStateType, any>(state => state.profile.userData._id);
 
 	// отрисовываем Pack в таблице
 	const renderCardsPacks = () => {
@@ -42,9 +30,13 @@ export const TablePacks = () => {
 					<th>18.03.2021-date</th>
 					<th>{el.user_name}</th>
 					<th>
-						<button onClick={() => onClickDeletePack(el._id)}>Delete</button>
-						<button>Edit</button>
-						<button>Learn</button>
+						{el.user_id === userId &&
+							<>
+								<button onClick={() => onClickDeletePack(el._id)}>Delete</button>
+								<button>Edit</button>
+							</>
+						}
+						<button onClick={() => showCardsPack(el._id)}>Learn</button>
 					</th>
 				</tr>
 			);
