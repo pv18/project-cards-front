@@ -35,10 +35,12 @@ const EditProfile = (props: EditProfilePropsType) => {
         navigate(-1);
     };
 
+/*
     // обработчик для кнопки Save (передать параметры контейнерной компоненте)
     const onClickHandlerSave = () => {
         props.onClickHandlerSave();
     };
+*/
 
     return (
         <div className={s.blockEditProfile}>
@@ -71,7 +73,7 @@ const EditProfile = (props: EditProfilePropsType) => {
                         </Button></div>
                     <div className={s._button}>
                         <Button variant={'primary'}
-                                onClick={onClickHandlerSave}
+                                onClick={props.onClickHandlerSave}
                                 disabled={props.isFetching}>
                             Save
                         </Button>
