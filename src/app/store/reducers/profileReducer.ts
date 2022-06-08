@@ -2,6 +2,7 @@ import {Dispatch} from 'redux';
 
 import {ProfileAPI} from '../../api/api';
 import {setIsAuth} from "./appReducer";
+import {AppThunkType} from "../store";
 
 type UserDataType = {
     _id: string;
@@ -91,7 +92,7 @@ export const toggleFetching = (isFetching: boolean) => ({type: 'PROFILE/TOGGLE-F
 const setErrorMessage = (error: string) => ({type: 'PROFILE/SET-ERROR', error} as const);
 
 // TC получение профиля
-export const getUserProfile = () => (dispatch: Dispatch) => {
+export const getUserProfile = (): AppThunkType => (dispatch) => {
     ProfileAPI.getProfile()
         .then(resData => {
             dispatch(setProfile(resData));
@@ -102,7 +103,7 @@ export const getUserProfile = () => (dispatch: Dispatch) => {
         });
 };
 // TC редактирования профиля
-export const putUserProfile = (name:string, avatar:string) => (dispatch: Dispatch) => {
+export const putUserProfile = (name:string, avatar:string): AppThunkType => (dispatch: Dispatch) => {
     dispatch(toggleFetching(true));
     ProfileAPI.putProfile(name,avatar)
         .then(resData => {
