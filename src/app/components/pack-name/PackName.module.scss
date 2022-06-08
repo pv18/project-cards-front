@@ -1,0 +1,29 @@
+.wrapper {
+  .table {
+    width: 1008px;
+    height: auto;
+    padding: 19px 24px;
+    margin: 0 auto;
+    display: flex;
+    background: #FEFEFF;
+    border-radius: 8px;
+
+    .title {
+      margin-bottom: 20px;
+      font-family: 'Poppins', sans-serif;
+      font-style: normal;
+      font-weight: 600;
+      font-size: 22px;
+      line-height: 33px;
+      color: #2D2E46;
+
+      span {
+        margin-left: 10px;
+      }
+    }
+
+    .search {
+      margin-bottom: 24px;
+    }
+  }
+}

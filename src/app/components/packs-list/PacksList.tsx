@@ -12,6 +12,7 @@ export const PacksList = () => {
                 </div>
                 <div className={s.main}>
                     <h2 className={s.title}>Packs list</h2>
+
                 </div>
             </div>
         </div>
