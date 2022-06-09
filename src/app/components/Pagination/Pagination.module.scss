@@ -1,0 +1,26 @@
+.block {
+  margin-top: 20px;
+  margin-left: 20px;
+  display: flex;
+  flex-direction: row;
+  .block__pages {
+    margin-right: 2px;
+    .page {
+      margin-right: 2px;
+      padding: 5px;
+      border: 1px solid #999;
+    }
+
+    .page_active {
+      margin-right: 2px;
+      padding: 5px;
+      color: #F2F5F7;
+      background: #21268F;
+      border: 1px solid #21268F;
+    }
+  }
+  & span {
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+}
