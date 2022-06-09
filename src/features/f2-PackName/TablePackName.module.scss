@@ -1,0 +1,88 @@
+.table {
+  border-spacing: 0;
+  border-collapse: collapse;
+  width: 100%;
+  text-align: left;
+  box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.2);
+
+  thead {
+    background: #ECECF9;
+
+    tr {
+      height: 48px;
+    }
+
+    th {
+      font-family: 'SF UI Display', sans-serif;
+      font-style: normal;
+      font-weight: 700;
+      font-size: 13px;
+      line-height: 16px;
+      color: #2D2E46;
+      cursor: pointer;
+
+      &:first-child {
+        width: 35%;
+        padding-left: 24px;
+      }
+
+      &:nth-child(2) {
+        width: 35%;
+      }
+
+      &:nth-child(3) {
+        width: 15%;
+      }
+
+      &:last-child {
+        padding-right: 24px;
+      }
+
+      span {
+        margin-right: 5px;
+      }
+    }
+  }
+
+  tbody {
+    tr {
+      height: 48px;
+
+      &:nth-child(2n + 1) {
+        background: #fff;
+      }
+
+      &:nth-child(2n) {
+        background: #F8F7FD;
+      }
+    }
+
+    td {
+      position: relative;
+      font-family: 'SF UI Display', sans-serif;
+      font-style: normal;
+      font-weight: 400;
+      font-size: 13px;
+      line-height: 16px;
+      color: #000000;
+
+      &:first-child {
+        width: 35%;
+        padding-left: 24px;
+      }
+
+      &:nth-child(2) {
+        width: 35%;
+      }
+
+      &:nth-child(3) {
+        width: 15%;
+      }
+
+      &:last-child {
+        padding-right: 24px;
+      }
+    }
+  }
+
+}
