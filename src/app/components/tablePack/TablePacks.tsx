@@ -25,7 +25,7 @@ export const TablePacks = (props: TablePacksPropsType) => {
 		return cardPacks.map(el => {
 			return (
 				<tr key={el._id} className={s.table__wrap}>
-					<th>{el.name}</th>
+					<th onClick={() => showCardsPack(el._id)}>{el.name}</th>
 					<th>{el.cardsCount}</th>
 					<th>18.03.2021-date</th>
 					<th>{el.user_name}</th>
@@ -36,7 +36,7 @@ export const TablePacks = (props: TablePacksPropsType) => {
 								<button>Edit</button>
 							</>
 						}
-						<button onClick={() => showCardsPack(el._id)}>Learn</button>
+						<button>Learn</button>
 					</th>
 				</tr>
 			);

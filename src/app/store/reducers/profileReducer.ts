@@ -98,7 +98,8 @@ export const getUserProfile = () => (dispatch: Dispatch) => {
             dispatch(setIsAuth(true));
         })
         .catch((error)=>{
-            dispatch(setErrorMessage(error.response.data.error))
+            dispatch(setErrorMessage(error.response.data.error));
+            dispatch(setIsAuth(false));
         });
 };
 // TC редактирования профиля

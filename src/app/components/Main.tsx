@@ -22,7 +22,7 @@ export const Main = () => {
         if (!isAuth) {
             dispatch(getUserProfile());
         }
-    },[isAuth]);
+    },[isAuth, dispatch]);
 
     return (
         <div className={s.wrapper}>

@@ -114,3 +114,14 @@ export const postNewPackTC = (name: string):AppThunkType => (dispatch) => {
 			dispatch(setIsLoading(false));
 		});
 };
+
+export const deleteCardsPack = (id: string):AppThunkType => (dispatch) => {
+	dispatch(setIsLoading(true));
+	ApiCards.deletePack(id)
+		.then(res => {
+			dispatch(getPackListTC({pageCount: 10, page: 1}));
+		})
+		.finally(() => {
+			dispatch(setIsLoading(true));
+		});
+};

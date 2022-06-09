@@ -6,11 +6,12 @@ $colorGray: #F8F7FD;
 .tablePacks {
 	//border: 1px solid black;
 	//overflow: scroll;
+
 }
 
 .table {
 	width: 100%;
-	//border: 1px solid red;
+
 
 	&__wrap {
 		//align-items: end;
@@ -28,6 +29,7 @@ $colorGray: #F8F7FD;
 		& tr {
 			background-color: $colorGray;
 			height: 48px;
+			//height: 38px;
 		}
 	}
 }

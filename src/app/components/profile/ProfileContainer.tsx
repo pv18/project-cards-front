@@ -5,17 +5,14 @@ import {useNavigate} from 'react-router-dom';
 import {useSelector} from 'react-redux';
 
 import {PATH} from '../Routing/Routing';
-import {getUserProfile} from '../../store/reducers/profileReducer';
-import {AppDispatch, AppRootStateType} from '../../store/store';
+import {AppRootStateType} from '../../store/store';
 
 import Profile from './Profile';
-import {setLogOut} from "../../store/reducers/loginReducer";
 
 
 const ProfileContainer = () => {
 
     const navigate = useNavigate();
-    const dispatch = AppDispatch(); //поменять
     const email = useSelector<AppRootStateType, string>(state => state.profile.userData.email);
     const name = useSelector<AppRootStateType, string>(state => state.profile.userData.name);
 
@@ -23,8 +20,8 @@ const ProfileContainer = () => {
 
     //если не залогинены, от редирект на страницу логинизации
     useEffect(()=> {
-    if (!isAuth) navigate(PATH.LOGIN)
-    },[isAuth, dispatch]);
+        if (!isAuth) navigate(PATH.LOGIN);
+    },[isAuth, navigate]);
 
     // обработчик для кнопки редактирования профиля
     const onClickHandler = () => {
