@@ -26,10 +26,6 @@ export const TablePacksContainer = () => {
 
 	// для добавления карточек Pack
 	const onHandlerSubmitPackName = () => {
-		// if (namePack.length > 5) {
-		// 	dispatch(postNewPackTC(namePack));
-		// }
-
 		dispatch(postNewPackTC('Name pack Hello'));
 	};
 

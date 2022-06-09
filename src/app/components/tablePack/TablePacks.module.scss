@@ -11,7 +11,7 @@ $colorGray: #F8F7FD;
 
 .table {
 	width: 100%;
-
+	border-collapse: collapse;
 
 	&__wrap {
 		//align-items: end;
@@ -31,5 +31,6 @@ $colorGray: #F8F7FD;
 			height: 48px;
 			//height: 38px;
 		}
+
 	}
 }
