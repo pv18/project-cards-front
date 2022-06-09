@@ -1,6 +1,7 @@
 import React from 'react';
 import Arrow from '../../assets/img/arrow-left.svg';
 import s from './PackName.module.scss';
+import {TablePackNameContainer} from '../../../features/f2-PackName/TablePackNameContainer';
 
 export const PackName = () => {
     return (
@@ -12,6 +13,7 @@ export const PackName = () => {
                     <span>Pack Name</span>
                 </h2>
                 <div className={s.search}></div>
+                <TablePackNameContainer/>
             </div>
         </div>
     );
