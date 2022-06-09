@@ -4,6 +4,7 @@ import s from './PackName.module.scss';
 import {TablePackNameContainer} from '../../../features/f2-PackName/TablePackNameContainer';
 
 export const PackName = () => {
+
     return (
         <div className={s.wrapper}>
             <div>ЗДЕСЬ БУДЕТ HEADER</div>

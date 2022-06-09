@@ -24,17 +24,15 @@ export const TablePackNameContainer = () => {
     const cards = useSelector<AppRootStateType, CardPackNameType[]>(state => state.packName.cards)
     const dispatch = useDispatch()
 
+    // 62a1fe66b3c86440ec4713ab
+    // 62a075dbe7b613cfe4265865
+
     useEffect(() => {
-        apiCard.getCards({cardsPack_id: '62a075dbe7b613cfe4265865'})
+        apiCard.getCards({cardsPack_id: '62a1fe66b3c86440ec4713ab'})
             .then(res => {
                 dispatch(setPackNameList(res.data.cards))
             })
     }, [])
-
-    const changeFilter = (filter: FilterPackName) => {
-        console.log(filter)
-        setFilter(filter)
-    }
 
     const getFilteredCards = (cards: CardPackNameType[], filter: FilterPackName) => {
         switch (filter) {
@@ -51,7 +49,6 @@ export const TablePackNameContainer = () => {
         }
     }
     const filteredCards = getFilteredCards(cards, filter)
-    console.log(filteredCards)
     return (
         <div>
             <TablePackName data={filteredCards} filter={filter} changeFilter={setFilter}/>
