@@ -9,7 +9,7 @@ import s from './TablePacks.module.scss';
 
 type TablePacksPropsType = {
 	onClickDeletePack: (id: string) => void
-	showCardsPack: (id: string) => void
+	showCardsPack: (id: string, pageCount: number) => void
 }
 
 
@@ -25,7 +25,7 @@ export const TablePacks = (props: TablePacksPropsType) => {
 		return cardPacks.map(el => {
 			return (
 				<tr key={el._id} className={s.table__wrap}>
-					<th onClick={() => showCardsPack(el._id)}>{el.name}</th>
+					<th onClick={() => showCardsPack(el._id, el.cardsCount)}>{el.name}</th>
 					<th>{el.cardsCount}</th>
 					<th>18.03.2021-date</th>
 					<th>{el.user_name}</th>

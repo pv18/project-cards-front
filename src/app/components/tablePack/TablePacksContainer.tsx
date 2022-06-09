@@ -42,8 +42,8 @@ export const TablePacksContainer = () => {
 	};
 
 	// навигация на таблицу карточек
-	const showCardsPack = (id: string) => {
-		navigate(`${PATH.PACKS_LIST}/${id}`);
+	const showCardsPack = (id: string, pageCount: number) => {
+		navigate(`${PATH.PACK_NAME}/${id}/${pageCount}`);
 	};
 	
 	return (

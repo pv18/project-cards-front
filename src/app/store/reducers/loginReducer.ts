@@ -1,7 +1,8 @@
 import {AuthAPI, LoginDataType} from '../../api/api';
 import {AppThunkType} from '../store';
-import {setProfile} from "./profileReducer";
-import {setIsAuth} from "./appReducer";
+
+import {setProfile} from './profileReducer';
+import {setIsAuth} from './appReducer';
 
 type UserDataType = {
 	_id: string;
@@ -28,7 +29,6 @@ type LoginStateType = {
 export type LoginActionType = ReturnType<typeof setDataLoginAC> 
 	| ReturnType<typeof setErrorMessage>
 	| ReturnType<typeof isToggleLoginBtn>
-	| ReturnType<typeof setIsLogin>
 	| ReturnType<typeof recoveryPassword>
 	| ReturnType<typeof logOut>
 
@@ -75,21 +75,15 @@ export const loginReducer = (state = initialState, action: LoginActionType) => {
                 activeLoginBtn: action.isToggle,
             };
         }
-        case 'LOGIN/SET-IS-LOGIN': {
-            return {
-                ...state,
-                isLogin: action.isLogin,
-            };
-        }
         case 'LOGIN/RECOVERY-PASSWORD': {
             return {
-                ...state
-            }
+                ...state,
+            };
         }
         case 'LOGIN/LOG-OUT': {
             return {
-                ...state
-            }
+                ...state,
+            };
         }
         default:
             return state;
@@ -122,15 +116,7 @@ const isToggleLoginBtn = (isToggle: boolean) => {
 	} as const;
 };
 
-// если залогинились true, default false
-export const setIsLogin = (isLogin: boolean) => {
-	return {
-		type: 'LOGIN/SET-IS-LOGIN',
-		isLogin,
-	} as const;
-};
 
-//
 const logOut = () => {
 	return {
 		type: 'LOGIN/LOG-OUT',
@@ -142,7 +128,7 @@ const recoveryPassword = (info:string, error:string) => {
     return {
         type: 'LOGIN/RECOVERY-PASSWORD',
     } as const;
-}
+};
 // thunk creator
 
 export const setDataLoginTC = (data: LoginDataType): AppThunkType => (dispatch) => {
@@ -152,7 +138,6 @@ export const setDataLoginTC = (data: LoginDataType): AppThunkType => (dispatch) 
 			dispatch(setDataLoginAC(res.data));
 			dispatch(setProfile(res.data));
 			dispatch(setIsAuth(true));
-			dispatch(setIsLogin(true));
 		})
 		.catch(error => {
 			dispatch(setErrorMessage(error.response.data.error));
@@ -166,20 +151,19 @@ export const setLogOut = (): AppThunkType => (dispatch) => {
     AuthAPI.logOut()
         .then(resData => {
             if (resData.info.length) {
-                dispatch(logOut())
-                dispatch(setIsAuth(false))
-                dispatch(setIsLogin(false))
+                dispatch(logOut());
+                dispatch(setIsAuth(false));
             }
         })
         .catch(error => {
             // вывести ошибку
             // dispatch(setErrorMessage(error.response.data.error));
         });
-}
+};
 
 export const recoveryPass = (email: string): AppThunkType => (dispatch) => {
     AuthAPI.recoveryPass(email)
         .then(resData => {
-            dispatch(recoveryPassword(resData.info, resData.error))
-        })
-}
+            dispatch(recoveryPassword(resData.info, resData.error));
+        });
+};

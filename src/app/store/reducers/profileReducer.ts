@@ -104,11 +104,12 @@ export const getUserProfile = (): AppThunkType => (dispatch) => {
         });
 };
 // TC редактирования профиля
-export const putUserProfile = (name:string, avatar:string): AppThunkType => (dispatch: Dispatch) => {
+export const putUserProfile = (name:string, avatar:string): AppThunkType => (dispatch) => {
     dispatch(toggleFetching(true));
     ProfileAPI.putProfile(name,avatar)
         .then(resData => {
-            dispatch(putProfile(resData.name, resData.avatar));
+            // dispatch(putProfile(resData.name, resData.avatar));
+            dispatch(getUserProfile());
             dispatch(toggleFetching(false));
         })
         .catch((error)=>{

@@ -1,5 +1,7 @@
 import axios from 'axios';
 
+import {PackStateType} from '../store/reducers/tablePacksReducer';
+
 export type LoginDataType = {
 	email: string,
 	password: string,
@@ -76,20 +78,20 @@ export const AuthAPI = {
     recoveryPass(email: string) {
         return instance.put<RecoveryResponseType>('auth/forgot', {
             email, // кому восстанавливать пароль
-            from: "test-front-admin <kisseli@mail.ru>",
+            from: 'test-front-admin <kisseli@mail.ru>',
             // можно указать разработчика фронта)
             message: `<div style="background-color: lime; padding: 15px">
             password recovery link: 
             <a href='http://localhost:3000/#/set-new-password/$token$'>
             link</a>
-            </div>` // хтмп-письмо, вместо $token$ бэк вставит токен
+            </div>`, // хтмп-письмо, вместо $token$ бэк вставит токен
         })
-            .then(res => res.data)
+            .then(res => res.data);
     },
     logOut() {
         return instance.delete<LogOutResponseType>('/auth/me', {})
-            .then(res => res.data)
-    }
+            .then(res => res.data);
+    },
 
 };
 

@@ -26,12 +26,12 @@ export const LoginContainer = () => {
 	// const [activeBtn, setActiveBtn] = useState<boolean>(false);
 
 	const activeLoginBtn = useSelector<AppRootStateType, boolean>(state => state.login.activeLoginBtn);
-	const isLogin = useSelector<AppRootStateType, boolean>(state => state.login.isLogin);
+	const isAuth = useSelector<AppRootStateType, boolean>(state => state.app.isAuth);
 
 
 	useEffect(() => {
-		if (isLogin) navigate(PATH.PROFILE);
-	},[isLogin, navigate]);
+		if (isAuth) navigate(PATH.PROFILE);
+	},[isAuth, navigate]);
 
 	// редирект на если забыли пароль
 	const redirectLink = () => {
