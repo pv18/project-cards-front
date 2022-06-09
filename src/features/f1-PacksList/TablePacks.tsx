@@ -15,7 +15,7 @@ export const TablePacks = () => {
 	
 	const dispatch = useDispatch<Dispatch<PackListActionType>>();
 	
-	const cardPacks = useSelector<AppRootStateType, Array<CardPacksType>>(state => state.packList.cardPacks);
+	const cardPacks = useSelector<AppRootStateType, Array<CardPacksType>>(state => state.tablePacks.cardPacks);
 
 
 	useEffect(() => {

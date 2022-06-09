@@ -1,5 +1,6 @@
 import React from 'react';
 import {Route, Routes} from 'react-router-dom';
+
 import {ProfilePage} from '../profile/ProfilePage';
 import {ErrorPage} from '../404/ErrorPage';
 import {LoginContainer} from '../auth/login/LoginContainer';
@@ -34,8 +35,11 @@ export const Routing = () => {
                 <Route path={PATH.PASSWORD} element={<PasswordContainer/>}/>
                 <Route path={PATH.RECOVERY} element={<RecoveryContainer/>}/>
                 <Route path={PATH.TEST_PAGE} element={<TestPage/>}/>
-                <Route path={PATH.PACKS_LIST} element={<PacksList/>}/>
                 <Route path={PATH.PACK_NAME} element={<PackName/>}/>
+                <Route path={PATH.PACKS_LIST} element={<PacksList/>}>
+                    {/*роутинг на таблицу с карточками вместо PacksList доделать*/}
+                    <Route path={':packId'} element={<PacksList/>}/>
+                </Route>
                 <Route path={'/*'} element={<ErrorPage/>}/>
             </Routes>
         </>

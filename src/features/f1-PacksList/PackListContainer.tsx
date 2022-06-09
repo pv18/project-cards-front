@@ -16,10 +16,10 @@ export const PackListContainer = () => {
 		if (namePack.length > 5) {
 			apiCards.postCards({name: namePack})
 				.then(res => {
-					console.log(res);
+					// console.log(res);
 				})
 				.catch(err => {
-					console.log(err);
+					// console.log(err);
 				});
 		}
 	};

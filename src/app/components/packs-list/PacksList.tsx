@@ -1,4 +1,7 @@
 import React from 'react';
+
+import {TablePacksContainer} from '../tablePack/TablePacksContainer';
+
 import s from './PacksList.module.scss';
 
 export const PacksList = () => {
@@ -12,7 +15,7 @@ export const PacksList = () => {
                 </div>
                 <div className={s.main}>
                     <h2 className={s.title}>Packs list</h2>
-
+                    <TablePacksContainer/>
                 </div>
             </div>
         </div>
