@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import React, {ChangeEvent, useEffect, useState} from 'react';
 
 import {useNavigate} from 'react-router-dom';
 
@@ -10,31 +10,40 @@ import {PATH} from '../Routing/Routing';
 
 import {TablePacks} from './TablePacks';
 
-export const TablePacksContainer = () => {
+type TablePropsType = {
+	id?: string
+}
+
+export const TablePacksContainer = (props: TablePropsType) => {
 
 	const navigate = useNavigate();
 	const dispatch = AppDispatch();
 
 	const isAuth = useSelector<AppRootStateType, boolean>(state => state.app.isAuth);
+	const currentPage = useSelector<AppRootStateType, number>(state => state.app.currentPage);
+	const pageCount = useSelector<AppRootStateType, number>(state => state.app.pageCount);
 
-	// const [namePack, setNamePack] = useState<string>('');
+
+	const [namePack, setNamePack] = useState<string>('');
 
 	// read input value
-	// const onChangePackName = (e: ChangeEvent<HTMLInputElement>) => {
-	// 	setNamePack(e.currentTarget.value);
-	// };
+	const onChangePackName = (e: ChangeEvent<HTMLInputElement>) => {
+		setNamePack(e.currentTarget.value);
+	};
 
 	// для добавления карточек Pack
 	const onHandlerSubmitPackName = () => {
-		dispatch(postNewPackTC('Name pack Hello'));
+		if (namePack) {
+			dispatch(postNewPackTC(namePack));
+		}
 	};
 
 	useEffect(() => {
-		const params = {pageCount: 10, page: 1};
+		const params = {pageCount: pageCount, page: currentPage, user_id: props.id };
 		if (isAuth) {
 			dispatch(getPackListTC(params));
 		}
-	}, [isAuth, dispatch]);
+	}, [isAuth, currentPage, pageCount,dispatch, props.id]);
 
 	// для удаления pack карточек
 	const onClickDeletePack = (id: string) => {
@@ -42,14 +51,14 @@ export const TablePacksContainer = () => {
 	};
 
 	// навигация на таблицу карточек
-	const showCardsPack = (id: string, pageCount: number) => {
-		navigate(`${PATH.PACK_NAME}/${id}/${pageCount}`);
+	const showCardsPack = (id: string, pageCount: number, name: string) => {
+		navigate(`${PATH.PACK_NAME}/${name}/${id}/${pageCount}`);
 	};
 	
 	return (
 		<>
 			<div>
-				{/*<input onChange={onChangePackName} value={namePack}/>*/}
+				<input onChange={onChangePackName} value={namePack}/>
 				<button onClick={onHandlerSubmitPackName}>
 					add new pack
 				</button>

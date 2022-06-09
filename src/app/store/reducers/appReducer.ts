@@ -40,7 +40,7 @@ export const appReducer = (state = initialState, action: AppActionsType): AppSta
                 ...state,
                 currentPage: action.currentPage,
                 pageCount: action.pageCount,
-            }
+            };
         }
         default:
             return state;

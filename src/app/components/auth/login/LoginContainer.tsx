@@ -38,6 +38,10 @@ export const LoginContainer = () => {
 		navigate(PATH.RECOVERY);
 	};
 
+	const navigateRegistration = () => {
+		navigate(PATH.REGISTRATION);
+	};
+
 	// слушаем импут email и записывает в setState
 	const onChangeHandlerEmail = (e: ChangeEvent<HTMLInputElement>) => {
 		setEmail(e.currentTarget.value);
@@ -79,6 +83,7 @@ export const LoginContainer = () => {
 				onChangeHandlerPassword={onChangeHandlerPassword}
 				onSubmitHandler={onSubmitHandler}
 				redirectLink={redirectLink}
+				navigateRegistration={navigateRegistration}
 			/>
 		</div>
 	);

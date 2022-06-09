@@ -22,6 +22,7 @@ type LoginPropsType = {
 	onChangeChecked: (e: ChangeEvent<HTMLInputElement>) => void
 	onSubmitHandler: () => void
 	redirectLink: () => void
+	navigateRegistration: () => void
 }
 
 export const Login = (props: LoginPropsType) => {
@@ -69,7 +70,9 @@ export const Login = (props: LoginPropsType) => {
 			<div className={s.login__quest}>
 				Don’t have an account?
 			</div>
-			<div className={s.login__subTitle}>
+			<div
+				className={s.login__subTitle}
+				onClick={props.navigateRegistration}>
 				Sign Up
 			</div>
 		</section>

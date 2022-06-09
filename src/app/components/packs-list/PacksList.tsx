@@ -1,6 +1,7 @@
 import React from 'react';
 
 import {TablePacksContainer} from '../tablePack/TablePacksContainer';
+import PaginationContainer from '../Pagination/PaginationContainer';
 
 import s from './PacksList.module.scss';
 
@@ -16,6 +17,7 @@ export const PacksList = () => {
                 <div className={s.main}>
                     <h2 className={s.title}>Packs list</h2>
                     <TablePacksContainer/>
+                    <PaginationContainer/>
                 </div>
             </div>
         </div>
