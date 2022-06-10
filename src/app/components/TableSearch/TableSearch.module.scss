@@ -1,0 +1,33 @@
+.wrapper {
+  width: 100%;
+  height: 36px;
+  padding: 0 17px;
+  display: flex;
+  align-items: center;
+  background: #ECECF9;
+  border: 1px solid #dddde9;
+  border-radius: 4px;
+
+  img {
+    margin-right: 5px;
+  }
+
+  .input {
+    border: none;
+    background: transparent;
+    outline: none;
+    font-family: 'SF UI Display', sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 24px;
+    color: #2D2E46;
+  }
+
+  input[type="search"]::-webkit-search-decoration,
+  input[type="search"]::-webkit-search-cancel-button,
+  input[type="search"]::-webkit-search-results-button,
+  input[type="search"]::-webkit-search-results-decoration {
+    display: none;
+  }
+}

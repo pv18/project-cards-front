@@ -25,24 +25,12 @@ export type CardsType = {
 
 export type FilterPackName = 'answer' | 'question' | 'updated' | 'grade'
 
-export const TablePackNameContainer = () => {
+interface ITablePackNameContainer {
+    data: CardsType[]
+}
+
+export const TablePackNameContainer: React.FC<ITablePackNameContainer> = (props) => {
     const [filter, setFilter] = useState<FilterPackName>('updated');
-    const cards = useSelector<AppRootStateType, CardPackNameType[]>(state => state.packName.cards);
-    const dispatch = useDispatch();
-
-    const {packId, pageCount} = useParams();
-
-    // 62a1fe66b3c86440ec4713ab
-    // 62a075dbe7b613cfe4265865
-
-    useEffect(() => {
-       if (packId && pageCount) {
-           apiCard.getCards({cardsPack_id: packId, pageCount: +pageCount})
-               .then(res => {
-                   dispatch(setPackNameList(res.data.cards));
-               });
-       }
-    }, []);
 
     const getFilteredCards = (cards: CardPackNameType[], filter: FilterPackName) => {
         switch (filter) {
@@ -58,7 +46,7 @@ export const TablePackNameContainer = () => {
                 return cards;
         }
     };
-    const filteredCards = getFilteredCards(cards, filter);
+    const filteredCards = getFilteredCards(props.data, filter);
     return (
         <div>
             <TablePackName data={filteredCards} filter={filter} changeFilter={setFilter}/>

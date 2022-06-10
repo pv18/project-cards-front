@@ -5,9 +5,10 @@ type DefaultButtonPropsType = DetailedHTMLProps<ButtonHTMLAttributes<HTMLButtonE
 
 type ButtonPropsType = DefaultButtonPropsType & {
     variant?: 'primary' | 'secondary'
+    width?: string
 }
 
-export const Button = ({variant = 'primary', ...rest}: ButtonPropsType) => {
+export const Button = ({variant = 'primary', width = '187px', ...rest}: ButtonPropsType) => {
     let colorButton = '';
     switch (variant) {
         case 'secondary':
@@ -18,6 +19,6 @@ export const Button = ({variant = 'primary', ...rest}: ButtonPropsType) => {
     }
     const finalStyle = `${s.button} ${colorButton}`
 
-    return <button className={finalStyle} {...rest}></button>
+    return <button className={finalStyle} style={{width: width}} {...rest}></button>
 };
 

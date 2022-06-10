@@ -61,7 +61,8 @@ export const Login = (props: LoginPropsType) => {
 				<div className={s.form__buttonWrap}>
 					<Button
 						disabled={props.activeLoginBtn}
-						onClick={props.onSubmitHandler}>
+						onClick={props.onSubmitHandler}
+						width={'266px'}>
 						Login
 					</Button>
 					{/*<button className={s.form__button} type={'submit'}>Login</button>*/}

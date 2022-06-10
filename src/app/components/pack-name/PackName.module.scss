@@ -4,7 +4,6 @@
     height: auto;
     padding: 19px 24px;
     margin: 0 auto;
-    //display: flex;
     background: #FEFEFF;
     border-radius: 8px;
 
@@ -23,6 +22,8 @@
     }
 
     .search {
+      display: flex;
+      justify-content: space-between;
       margin-bottom: 24px;
     }
   }
