@@ -1,10 +1,12 @@
-import React, {ChangeEvent, useState} from 'react';
+import React, {ChangeEvent} from 'react';
 
 import {useNavigate} from 'react-router-dom';
 
 import {TextField} from '../../Textfield/TextField';
 
 import {Button} from '../../Button/Button';
+
+import {Preloader} from '../../Preloader/Preloader';
 
 import s from './EditProfile.module.scss';
 
@@ -35,16 +37,9 @@ const EditProfile = (props: EditProfilePropsType) => {
         navigate(-1);
     };
 
-/*
-    // обработчик для кнопки Save (передать параметры контейнерной компоненте)
-    const onClickHandlerSave = () => {
-        props.onClickHandlerSave();
-    };
-*/
-
     return (
         <div className={s.blockEditProfile}>
-            {props.isFetching && <span>Идет загрузка</span>}
+            {props.isFetching && <Preloader/>}
             <div className={s.containerEditProfile}>
                 <span className={s.containerEditProfile__personal}>
                     Personal Information

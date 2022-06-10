@@ -3,7 +3,7 @@ type AppStateType = {
     isLoading: boolean
     currentPage: number
     pageCount: number
-    //userId: string
+    packName: string
 }
 
 
@@ -12,13 +12,14 @@ const initialState: AppStateType = {
     isLoading: false,
     currentPage: 1,
     pageCount: 10,
-    //userId: ''
+    packName: '',
 };
 
 
 export type AppActionsType = ReturnType<typeof setIsAuth>
     | ReturnType<typeof setIsLoading>
     | ReturnType<typeof setPagination>
+    | ReturnType<typeof setPackName>
 
 
 export const appReducer = (state = initialState, action: AppActionsType): AppStateType => {
@@ -40,6 +41,12 @@ export const appReducer = (state = initialState, action: AppActionsType): AppSta
                 ...state,
                 currentPage: action.currentPage,
                 pageCount: action.pageCount,
+            };
+        }
+        case 'APP/SET-PACK-NAME': {
+            return {
+                ...state,
+                packName: action.packName,
             };
         }
         default:
@@ -66,5 +73,11 @@ export const setPagination = (pageCount: number, currentPage: number) => {
         type: 'APP/SET-PAGINATION',
         pageCount,
         currentPage,
+    } as const;
+};
+export const setPackName = (packName: string) => {
+    return {
+        type: 'APP/SET-PACK-NAME',
+        packName,
     } as const;
 };
