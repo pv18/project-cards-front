@@ -10,7 +10,7 @@ import Pagination from './Pagination';
 const PaginationContainer = () => {
     const dispatch = AppDispatch();
     const [currentPage, setCurrentPage] = useState<number>(1);
-    const [pageCount, setPageCount] = useState<number>(10);
+    const [pageCount, setPageCount] = useState<number>(8);
 
 
     useEffect(() => {

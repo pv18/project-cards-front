@@ -15,12 +15,12 @@ const Pagination = (props: PaginationPropsType) => {
     const pageNumbers = [];
     const rangePages = 10
 
-    if ( props.currentPage < 10 ) {
-        for (let i = 1; i <= 10; i++) {
+    if ( props.currentPage < rangePages ) {
+        for (let i = 1; i <= rangePages; i++) {
             pageNumbers.push(i);
         }
-    } else if (props.currentPage >= Math.ceil(props.totalCount / props.pageCount)- 10) {
-        for (let i = 1; i <= 10; i++)
+    } else if (props.currentPage >= Math.ceil(props.totalCount / props.pageCount)- rangePages) {
+        for (let i = 1; i <= rangePages; i++)
             pageNumbers.push(i);
         } else {
         for (let i = props.currentPage - rangePages / 2; i <= props.currentPage + rangePages / 2; i++) {
@@ -51,10 +51,9 @@ const Pagination = (props: PaginationPropsType) => {
             <form>
                 <select onChange={onChangeHandlerRange}>
                     <option value={4}>4</option>
-                    <option value={7}>7</option>
-                    <option selected value={10}>10</option>
-                    <option value={20}>20</option>
-                    <option value={50}>50</option>
+                    <option value={6}>6</option>
+                    <option selected value={8}>8</option>
+                    <option value={10}>10</option>
                 </select>
             </form>
             <span>Cards per Page</span>
