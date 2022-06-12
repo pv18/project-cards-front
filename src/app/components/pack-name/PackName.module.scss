@@ -22,9 +22,14 @@
     }
 
     .search {
+      width: 100%;
       display: flex;
       justify-content: space-between;
       margin-bottom: 24px;
+
+      .buttonWrap {
+        margin-left: 24px;
+      }
     }
   }
 }
