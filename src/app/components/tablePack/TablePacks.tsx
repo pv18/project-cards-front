@@ -27,16 +27,20 @@ export const TablePacks = (props: TablePacksPropsType) => {
 				<tr key={el._id} className={s.table__wrap}>
 					<th onClick={() => showCardsPack(el._id, el.cardsCount, el.name)}>{el.name}</th>
 					<th>{el.cardsCount}</th>
-					<th>18.03.2021-date</th>
+					<th>{new Date(Date.parse(el.updated)).toLocaleDateString()}</th>
 					<th>{el.user_name}</th>
-					<th>
+					<th className={s.table__wrapBtn}>
 						{el.user_id === userId &&
-							<>
-								<button onClick={() => onClickDeletePack(el._id)}>Delete</button>
-								<button>Edit</button>
-							</>
+							<span>
+								<button
+									className={`${s.table__btn} ${s.table__btn_delete}`}
+									onClick={() => onClickDeletePack(el._id)}>
+										Delete
+								</button>
+								<button className={s.table__btn}>Edit</button>
+							</span>
 						}
-						<button>Learn</button>
+						<button className={s.table__btn}>Learn</button>
 					</th>
 				</tr>
 			);
