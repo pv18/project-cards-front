@@ -1,24 +1,34 @@
-import React from 'react';
+import React, {useState} from 'react';
 
 import {useSelector} from 'react-redux';
 
 import {AppRootStateType} from '../../store/store';
 import {CardPacksType} from '../../store/reducers/tablePacksReducer';
 
+import Arrow from '../../assets/img/polygon.svg';
+
 import s from './TablePacks.module.scss';
 
 type TablePacksPropsType = {
 	onClickDeletePack: (id: string) => void
 	showCardsPack: (id: string, pageCount: number, name: string) => void
+	sortTableValue: (value: string) => void
 }
 
 
 export const TablePacks = (props: TablePacksPropsType) => {
 
-	const {onClickDeletePack, showCardsPack} = props;
+	const {onClickDeletePack, showCardsPack, sortTableValue} = props;
 
 	const cardPacks = useSelector<AppRootStateType, Array<CardPacksType>>(state => state.tablePacks.cardPacks);
-	const userId = useSelector<AppRootStateType, any>(state => state.profile.userData._id);
+	const userId = useSelector<AppRootStateType, string>(state => state.profile.userData._id);
+
+	const [sortName, setSortName] = useState<string>('updated');
+
+	const onClickSort = (name: string) => {
+		setSortName(name);
+		sortTableValue(name);
+	};
 
 	// отрисовываем Pack в таблице
 	const renderCardsPacks = () => {
@@ -52,9 +62,23 @@ export const TablePacks = (props: TablePacksPropsType) => {
 			<table className={s.table}>
 				<thead className={s.table__head}>
 				<tr className={s.table__wrap}>
-					<th>Name</th>
-					<th>Cards</th>
-					<th>Last Updated</th>
+					<th onClick={() => onClickSort('name')}
+					>
+						Name
+						{sortName === 'name' && <img src={Arrow} alt='Arrow'/>}
+					</th>
+					<th
+						onClick={() => onClickSort('cardsCount')}
+					>
+						Cards
+						{sortName === 'cardsCount' && <img src={Arrow} alt='Arrow'/>}
+					</th>
+					<th
+						onClick={() => onClickSort('updated')}
+					>
+						Last Updated
+						{sortName === 'updated' && <img src={Arrow} alt='Arrow'/>}
+					</th>
 					<th>Created by</th>
 					<th>Actions</th>
 				</tr>
