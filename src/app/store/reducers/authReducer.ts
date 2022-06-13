@@ -82,11 +82,6 @@ export const authReducer = (state = initialState, action: AuthActionsType) => {
                 /*...state.userData, email: '',*/
             };
         }
-        /*        case 'REGISTRATION/SET-ERROR':
-                    return {
-                        ...state,
-                        error: action.error
-                    }*/
         case 'REGISTRATION/SET-STATUS': {
             return {
                 ...state,
