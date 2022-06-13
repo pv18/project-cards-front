@@ -10,11 +10,11 @@ import {PATH} from '../Routing/Routing';
 
 import {TablePacks} from './TablePacks';
 
-type TablePropsType = {
+/*type TablePropsType = {
 	id?: string
-}
+}*/
 
-export const TablePacksContainer = (props: TablePropsType) => {
+export const TablePacksContainer = (/*props: TablePropsType*/) => {
 
 	const navigate = useNavigate();
 	const dispatch = AppDispatch();
@@ -22,7 +22,9 @@ export const TablePacksContainer = (props: TablePropsType) => {
 	const isAuth = useSelector<AppRootStateType, boolean>(state => state.app.isAuth);
 	const currentPage = useSelector<AppRootStateType, number>(state => state.app.currentPage);
 	const pageCount = useSelector<AppRootStateType, number>(state => state.app.pageCount);
-
+	// для отрисовки моих или всех
+	const isId = useSelector<AppRootStateType, boolean>(state => state.app.isId);
+	const myId = useSelector<AppRootStateType, string>(state => state.profile.userData._id);
 
 	const [namePack, setNamePack] = useState<string>('');
 
@@ -39,11 +41,12 @@ export const TablePacksContainer = (props: TablePropsType) => {
 	};
 
 	useEffect(() => {
-		const params = {pageCount: pageCount, page: currentPage, user_id: props.id };
+		const paramsId = isId ? {user_id: myId} : {}
+		const params = {pageCount: pageCount, page: currentPage, ...paramsId};
 		if (isAuth) {
 			dispatch(getPackListTC(params));
 		}
-	}, [isAuth, currentPage, pageCount,dispatch, props.id]);
+	}, [isAuth, currentPage, pageCount, dispatch, isId]);
 
 	// для удаления pack карточек
 	const onClickDeletePack = (id: string) => {

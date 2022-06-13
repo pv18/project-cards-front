@@ -1,23 +1,27 @@
 import React, {useState, ChangeEvent, useEffect} from 'react';
-import {Registration} from './Registration';
+
 import {useNavigate} from 'react-router-dom';
-import {PATH} from '../../Routing/Routing';
-import {postRegisterTC} from '../../../store/reducers/registrationReducer';
-import {AppDispatch, AppRootStateType} from '../../../store/store';
+
 import {useSelector} from 'react-redux';
 
+import {PATH} from '../../Routing/Routing';
+import {AppDispatch, AppRootStateType} from '../../../store/store';
+import {postRegisterTC} from '../../../store/reducers/authReducer';
+
+import {Registration} from './Registration';
+
 export const RegistrationContainer = () => {
-    const [email, setEmail] = useState<string>('')
-    const [password, setPassword] = useState<string>('')
-    const [password2, setPassword2] = useState<string>('')
-    const registration = useSelector<AppRootStateType, boolean>(state => state.registration.registration)
-    const error = useSelector<AppRootStateType, string | undefined>(state => state.registration.error)
-    const dispatch = AppDispatch()
-    const navigate = useNavigate()
+    const [email, setEmail] = useState<string>('');
+    const [password, setPassword] = useState<string>('');
+    const [password2, setPassword2] = useState<string>('');
+    const registration = useSelector<AppRootStateType, boolean>(state => state.auth.registration);
+    const error = useSelector<AppRootStateType, string | undefined>(state => state.auth.error);
+    const dispatch = AppDispatch();
+    const navigate = useNavigate();
 
     useEffect(() => {
-        if (registration) navigate(PATH.LOGIN)
-    }, [registration])
+        if (registration) navigate(PATH.LOGIN);
+    }, [registration]);
 
     // слушаем импут email и записывает в setState
     const emailChangeHandler = (e: ChangeEvent<HTMLInputElement>) => {

@@ -1,8 +1,10 @@
 import React from 'react';
 
+/*import DoubleSlider from '../DoubleSlider/DoubleSlider';*/
+
 import s from './ProfilePage.module.scss';
 import ProfileContainer from './ProfileContainer';
-import MyPacksListContainer from "./myPacksList/MyPacksListContainer";
+import MyPacksListContainer from './myPacksList/MyPacksListContainer';
 
 export const ProfilePage = () => {
     return (

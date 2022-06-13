@@ -1,7 +1,9 @@
-import React, {ChangeEvent, useState} from 'react';
-import s from './RecoveryPassword.module.scss'
-import {Button} from "../../Button/Button";
-import {TextField} from "../../Textfield/TextField";
+import React, {ChangeEvent} from 'react';
+
+import {Button} from '../../Button/Button';
+import {TextField} from '../../Textfield/TextField';
+
+import s from './RecoveryPassword.module.scss';
 
 type RecoveryPasswordPropsType = {
     setEmail: (email:string) => void
@@ -25,13 +27,13 @@ const RecoveryPassword = (props: RecoveryPasswordPropsType) => {
                     Forgot your password?
                 </span>
                 <form className={s.inputContainer}>
-                    <TextField className={s.inputEmail} label={"Email"} onChange={onChangeHandler} value={props.email}/>
+                    <TextField className={s.inputEmail} label={'Email'} onChange={onChangeHandler} value={props.email}/>
                 </form>
                 <span className={s.email}>
                     Enter your email address and we will send you further instructions
                 </span>
                 <div className={s.buttonContainer}>
-                    <Button variant={"primary"} onClick={props.onClickHandlerRecoverySend}>Send Instructions</Button>
+                    <Button variant={'primary'} onClick={props.onClickHandlerRecoverySend}>Send Instructions</Button>
                 </div>
                 <span className={s.remember}>
                         'Did you remember your password?'

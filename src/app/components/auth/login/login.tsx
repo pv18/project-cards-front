@@ -27,7 +27,7 @@ type LoginPropsType = {
 
 export const Login = (props: LoginPropsType) => {
 
-	const error = useSelector<AppRootStateType, string | undefined>(state => state.login.error);
+	const error = useSelector<AppRootStateType, string | undefined>(state => state.auth.error);
 
 	return (
 		<section className={s.login}>

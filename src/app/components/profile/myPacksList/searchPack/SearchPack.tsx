@@ -1,5 +1,7 @@
 import React, {ChangeEvent} from 'react';
 
+import Search from '../../../../assets/img/search.svg';
+
 import s from './SearchPack.module.scss';
 type SearchPackPropsType = {
     setPackNameChange: (search: string) => void
@@ -11,8 +13,13 @@ const SearchPack = (props: SearchPackPropsType) => {
     };
     return (
         <div className={s.block}>
-            <div className={s.icon}> </div>
-            <input onChange={onChangeHandler} value={props.packNameChange}/>
+            <img src={Search} alt='search'/>
+            <input type='search'
+                   className={s.input}
+                   placeholder='Search by question...'
+                   value={props.packNameChange}
+                   onChange={onChangeHandler}
+            />
         </div>
     );
 };

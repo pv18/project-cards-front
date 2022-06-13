@@ -1,5 +1,6 @@
 import React, {ChangeEvent} from 'react';
-import s from './Pagination.module.scss'
+
+import s from './Pagination.module.scss';
 
 type PaginationPropsType = {
     pageCount: number
@@ -13,7 +14,7 @@ type PaginationPropsType = {
 
 const Pagination = (props: PaginationPropsType) => {
     const pageNumbers = [];
-    const rangePages = 10
+    const rangePages = 10;
 
     if ( props.currentPage < rangePages ) {
         for (let i = 1; i <= rangePages; i++) {
@@ -30,8 +31,8 @@ const Pagination = (props: PaginationPropsType) => {
 
 
     const onChangeHandlerRange = (e:ChangeEvent<HTMLSelectElement>) => {
-            props.setPageCount(+e.currentTarget.value)
-    }
+            props.setPageCount(+e.currentTarget.value);
+    };
     return (
         <div className={s.block}>
             <button onClick={props.prevPage}>Prev</button>

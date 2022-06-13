@@ -1,39 +1,24 @@
-import React, {useEffect, useState} from 'react';
+import React, {useEffect} from 'react';
 
 import {useSelector} from 'react-redux';
 
 import {AppDispatch, AppRootStateType} from '../../../store/store';
-import PaginationContainer from '../../Pagination/PaginationContainer';
-import { apiCards } from '../../../../features/f1-PacksList/api/api';
 
-import {TablePacksContainer} from '../../tablePack/TablePacksContainer';
-import {setPackName} from '../../../store/reducers/appReducer';
+import {setId} from '../../../store/reducers/appReducer';
 
-import SearchPack from './searchPack/SearchPack';
+import MyPacksList from './MyPacksList';
 
 
 const MyPacksListContainer = () => {
     const dispatch = AppDispatch();
-    const myId = useSelector<AppRootStateType, string>(state => state.profile.userData._id);
-    const [packNameChange, setPackNameChange] = useState<string>('');
-        useEffect(() => {
-            apiCards.getCards({user_id: myId})
-                .then(res => {
-                    dispatch(setPackName(packNameChange));
-                })
-                .catch(err => {
-                    // console.log(err);
-                });
-        },[myId]);
+    const isId = useSelector<AppRootStateType, boolean>(state => state.app.isId);
+
+    useEffect(() => {
+        dispatch(setId(true));
+    }, [isId, dispatch]);
 
     return (
-        <div>
-            My packs list
-            <SearchPack setPackNameChange={setPackNameChange} packNameChange={packNameChange}/>
-            <TablePacksContainer id={myId}/>
-            <PaginationContainer />
-        </div>
+        <MyPacksList/>
     );
 };
-
 export default MyPacksListContainer;

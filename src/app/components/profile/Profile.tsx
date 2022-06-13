@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import React from 'react';
 
 import {Button} from '../Button/Button';
 
@@ -14,7 +14,6 @@ const Profile = (props: ProfilePropsType) => {
             <div className={s.container}>
                 <div className={s.photo}></div>
                 <span className={s.name}>{props.name}</span>
-                <span className={s.profession}>Front-end developer</span>
                 <div className={s.edit}>
                     <Button variant={'secondary'} onClick={props.onClickHandler}>Edit profile</Button>
                 </div>

@@ -4,6 +4,7 @@ import {TablePacksContainer} from '../tablePack/TablePacksContainer';
 import PaginationContainer from '../Pagination/PaginationContainer';
 
 import s from './PacksList.module.scss';
+import MyAll from "../my-all/MyAll";
 
 export const PacksList = () => {
     return (
@@ -12,6 +13,7 @@ export const PacksList = () => {
             <div className={s.table}>
                 <div className={s.leftBar}>
                     <h4 className={s.title}>Show packs cards</h4>
+                    <MyAll/>
                     <h4 className={s.title}>Number of cards</h4>
                 </div>
                 <div className={s.main}>
