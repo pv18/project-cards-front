@@ -17,7 +17,6 @@ import {Button} from '../Button/Button';
 import s from './PackName.module.scss';
 import {NavBarContainer} from '../navbar/NavBarContainer';
 
-
 export const PackName = () => {
     const [search, setSearch] = useState<string>('');
     const navigate = useNavigate();
@@ -41,7 +40,7 @@ export const PackName = () => {
         : cards.filter(c => c.question.toLowerCase().includes(search.toLowerCase()));
 
     return (
-        <div className={s.wrapper}>
+        <div>
             <NavBarContainer/>
             <div className={s.table}>
                 <h2 className={s.title}>

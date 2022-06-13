@@ -8,6 +8,7 @@ import {PATH} from '../Routing/Routing';
 import {AppRootStateType} from '../../store/store';
 
 import Profile from './Profile';
+import {NavBar} from '../navbar/NavBar';
 
 
 const ProfileContainer = () => {

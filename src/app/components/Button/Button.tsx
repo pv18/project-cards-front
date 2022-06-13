@@ -4,7 +4,7 @@ import s from './Button.module.scss';
 type DefaultButtonPropsType = DetailedHTMLProps<ButtonHTMLAttributes<HTMLButtonElement>, HTMLButtonElement>
 
 type ButtonPropsType = DefaultButtonPropsType & {
-    variant?: 'primary' | 'secondary'
+    variant?: 'primary' | 'secondary' | 'error'
     width?: string
 }
 
@@ -13,6 +13,9 @@ export const Button = ({variant = 'primary', width = '187px', ...rest}: ButtonPr
     switch (variant) {
         case 'secondary':
             colorButton = s.secondary;
+            break;
+        case 'error':
+            colorButton = s.error;
             break;
         default:
             colorButton = s.primary;

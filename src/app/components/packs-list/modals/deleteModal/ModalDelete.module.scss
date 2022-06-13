@@ -1,0 +1,53 @@
+.wrapper {
+  box-sizing: border-box;
+  width: 395px;
+  padding: 0 24px 24px;
+
+  img {
+    cursor: pointer;
+  }
+
+  .title {
+    position: relative;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    &:after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      right: -24px;
+      height: 1px;
+      width: 395px;
+      background: #EDF0F6;
+    }
+
+    h3 {
+      font-family: 'Poppins', sans-serif;
+      font-style: normal;
+      font-weight: 500;
+      font-size: 18px;
+      color: #2D2E46;
+    }
+  }
+
+  .message {
+    margin-bottom: 29px;
+    font-family: 'SF UI Display', sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 24px;
+    color: #000000;
+    letter-spacing: -0.5px;
+  }
+
+  .buttons {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+}
