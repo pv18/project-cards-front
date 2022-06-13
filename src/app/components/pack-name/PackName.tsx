@@ -15,6 +15,8 @@ import {AppRootStateType} from '../../store/store';
 import {Button} from '../Button/Button';
 
 import s from './PackName.module.scss';
+import {NavBarContainer} from '../navbar/NavBarContainer';
+
 
 export const PackName = () => {
     const [search, setSearch] = useState<string>('');
@@ -40,16 +42,16 @@ export const PackName = () => {
 
     return (
         <div className={s.wrapper}>
-            <div>ЗДЕСЬ БУДЕТ HEADER</div>
+            <NavBarContainer/>
             <div className={s.table}>
                 <h2 className={s.title}>
-                    <img onClick={() => navigate(-1)} src={Arrow} alt='arrow left'/>
+                    <img onClick={() => navigate(-1)} src={Arrow} alt="arrow left"/>
                     <span>Pack Name "{name}"</span>
                 </h2>
                 <div className={s.search}>
                     <TableSearch title={search} changeTitle={setSearch}/>
                     <div className={s.buttonWrap}>
-                        <Button width={'184px'}>Add new pack</Button>
+                        <Button width={'200px'}>Add new question</Button>
                     </div>
                 </div>
                 <TablePackNameContainer data={getFilteredCardsAfterSearch}/>

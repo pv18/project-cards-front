@@ -1,0 +1,26 @@
+.wrapper {
+  position: relative;
+  height: 60px;
+  padding-left: 136px;
+  margin-bottom: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #EBE0E9;
+
+  .logo {
+    position: absolute;
+    top: -12px;
+    left: 100px;
+    font-family: 'Poppins', sans-serif;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 26px;
+    line-height: 39px;
+    color: #2D2E46;
+  }
+
+  .switch {
+    width: 346px;
+  }
+}
