@@ -1,0 +1,30 @@
+.block {
+  display: flex;
+  align-items: center;
+  width: 765px;
+  flex-direction: column;
+
+  .container {
+    margin-top: 20px;
+    width: 90%;
+    .title {
+      width: 145px;
+      height: 33px;
+
+      font-family: 'Poppins';
+      font-style: normal;
+      font-weight: 600;
+      font-size: 22px;
+      line-height: 33px;
+      /* identical to box height */
+
+
+      color: #2D2E46;
+    }
+
+    .wrapper_table {
+      width: 100%;
+    }
+  }
+
+}

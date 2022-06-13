@@ -9,7 +9,7 @@ import {Button} from '../../Button/Button';
 import {Preloader} from '../../Preloader/Preloader';
 
 import s from './EditProfile.module.scss';
-
+import iconImg from './../../../assets/img/union.svg'
 
 type EditProfilePropsType = {
     email: string
@@ -47,7 +47,11 @@ const EditProfile = (props: EditProfilePropsType) => {
                 <div className={s.containerEditProfile__avatar}>
                     <div className={s.containerEditProfile__avatar_photo}/>
                     <div className={s.containerEditProfile__avatar_icon}
-                         onClick={onClickHandlerAvatar}/>
+                         onClick={onClickHandlerAvatar}>
+                        <img src={iconImg}
+                             alt="icon"
+                             className={s.containerEditProfile__avatar_iconImg}/>
+                    </div>
                 </div>
                 <form className={s.containerEditProfile__form}>
                     <TextField type={'text'}

@@ -4,6 +4,7 @@ type AppStateType = {
     currentPage: number
     pageCount: number
     packName: string
+    isId: boolean
 }
 
 
@@ -13,13 +14,15 @@ const initialState: AppStateType = {
     currentPage: 1,
     pageCount: 10,
     packName: '',
+    isId: false,
 };
 
 
 export type AppActionsType = ReturnType<typeof setIsAuth>
     | ReturnType<typeof setIsLoading>
     | ReturnType<typeof setPagination>
-    | ReturnType<typeof setPackName>
+    | ReturnType<typeof setPackNameForSearch>
+    | ReturnType<typeof setId>
 
 
 export const appReducer = (state = initialState, action: AppActionsType): AppStateType => {
@@ -43,10 +46,16 @@ export const appReducer = (state = initialState, action: AppActionsType): AppSta
                 pageCount: action.pageCount,
             };
         }
-        case 'APP/SET-PACK-NAME': {
+        case 'APP/SET-PACK-NAME-FOR-SEARCH': {
             return {
                 ...state,
                 packName: action.packName,
+            };
+        }
+        case 'APP/SET-ID': {
+            return {
+                ...state,
+                isId: action.isId,
             };
         }
         default:
@@ -75,9 +84,17 @@ export const setPagination = (pageCount: number, currentPage: number) => {
         currentPage,
     } as const;
 };
-export const setPackName = (packName: string) => {
+//
+export const setPackNameForSearch = (packName: string) => {
     return {
-        type: 'APP/SET-PACK-NAME',
+        type: 'APP/SET-PACK-NAME-FOR-SEARCH',
         packName,
+    } as const;
+};
+// для фильтрации мои или все (и для отображения на странице профайла)
+export const setId = (isId: boolean) => {
+    return {
+        type: 'APP/SET-ID',
+        isId,
     } as const;
 };

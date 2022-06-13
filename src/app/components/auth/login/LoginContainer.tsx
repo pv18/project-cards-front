@@ -7,7 +7,8 @@ import {useSelector} from 'react-redux';
 import {PATH} from '../../Routing/Routing';
 
 import {AppDispatch, AppRootStateType} from '../../../store/store';
-import {setDataLoginTC} from '../../../store/reducers/loginReducer';
+
+import {setDataLoginTC} from '../../../store/reducers/authReducer';
 
 import {Login} from './login';
 
@@ -25,7 +26,7 @@ export const LoginContainer = () => {
 	const [rememberMe, setRememberMe] = useState<boolean>(false);
 	// const [activeBtn, setActiveBtn] = useState<boolean>(false);
 
-	const activeLoginBtn = useSelector<AppRootStateType, boolean>(state => state.login.activeLoginBtn);
+	const activeLoginBtn = useSelector<AppRootStateType, boolean>(state => state.auth.activeLoginBtn);
 	const isAuth = useSelector<AppRootStateType, boolean>(state => state.app.isAuth);
 
 

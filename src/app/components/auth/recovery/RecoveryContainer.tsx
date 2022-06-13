@@ -1,14 +1,17 @@
 import React, {useState} from 'react';
-import RecoveryPassword from "./RecoveryPassword";
-import {recoveryPass} from "../../../store/reducers/loginReducer";
-import {AppDispatch} from "../../../store/store";
+
+import {AppDispatch} from '../../../store/store';
+
+import {recoveryPass} from '../../../store/reducers/authReducer';
+
+import RecoveryPassword from './RecoveryPassword';
 
 export const RecoveryContainer = () => {
-    const dispatch = AppDispatch()
+    const dispatch = AppDispatch();
     const [email, setEmail] = useState<string>('');
     const onClickHandlerRecoverySend = () => {
-        dispatch(recoveryPass(email))
-    }
+        dispatch(recoveryPass(email));
+    };
     return (
         <div>
             <RecoveryPassword setEmail={setEmail} onClickHandlerRecoverySend={onClickHandlerRecoverySend}

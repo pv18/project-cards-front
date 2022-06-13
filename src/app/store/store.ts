@@ -5,14 +5,11 @@ import {useDispatch} from 'react-redux';
 
 import {packNameReducer} from '../../features/f2-PackName/api/bll/packNameReducer';
 
-import {LoginActionType, loginReducer} from './reducers/loginReducer';
 import {ProfileActionType, profileReducer} from './reducers/profileReducer';
-import {PasswordActionType, passwordReducer} from './reducers/passwordReducer';
-import {RecoveryActionType, recoveryReducer} from './reducers/recoveryReducer';
-import {RegistrationActionsType, registrationReducer} from './reducers/registrationReducer';
 import {AppActionsType, appReducer} from './reducers/appReducer';
 
 import {PackListActionType, tablePacksReducer} from './reducers/tablePacksReducer';
+import {authReducer} from './reducers/authReducer';
 
 
 
@@ -20,10 +17,6 @@ export type AppRootStateType = ReturnType<typeof rootReducer>
 
 // RootActionType
 export type AppRootActionType = ProfileActionType
-	| LoginActionType
-	| PasswordActionType
-	| RecoveryActionType
-	| RegistrationActionsType
 	| AppActionsType
 	| PackListActionType
 
@@ -35,10 +28,7 @@ export type AppThunkType = ThunkAction<void, AppRootStateType, unknown, AnyActio
 
 const rootReducer = combineReducers({
     profile: profileReducer,
-    login: loginReducer,
-    password: passwordReducer,
-    recovery: recoveryReducer,
-    registration: registrationReducer,
+    auth: authReducer,
     app: appReducer,
     packName: packNameReducer,
 	tablePacks: tablePacksReducer,

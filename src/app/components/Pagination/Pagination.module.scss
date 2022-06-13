@@ -3,6 +3,7 @@
   margin-left: 20px;
   display: flex;
   flex-direction: row;
+
   .block__pages {
     margin-right: 2px;
     .page {
@@ -22,5 +23,10 @@
   & span {
     padding-left: 10px;
     padding-right: 10px;
+
+    font-family: 'Lato';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 12px;
   }
 }
