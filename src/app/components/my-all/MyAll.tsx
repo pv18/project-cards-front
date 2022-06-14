@@ -12,9 +12,9 @@ import s from './MyAll.module.scss';
 
 const MyAll = () => {
     const dispatch = AppDispatch();
-   // const myId = useSelector<AppRootStateType, string>(state => state.profile.userData._id);
+    // const myId = useSelector<AppRootStateType, string>(state => state.profile.userData._id);
     const isId = useSelector<AppRootStateType, boolean>(state => state.app.isId);
-    
+
     const onclickHandlerMy = () => {
         dispatch(setId(true));
     };
@@ -23,8 +23,10 @@ const MyAll = () => {
     };
     return (
         <div className={s.block}>
-            <Button variant={isId ? 'primary' : 'secondary'} onClick={onclickHandlerMy}>My</Button>
-            <Button variant={!isId ? 'primary' : 'secondary'} onClick={onclickHandlerAll}>All</Button>
+            {/*<Button variant={isId ? 'primary' : 'secondary'} onClick={onclickHandlerMy}>My</Button>*/}
+            {/*<Button variant={!isId ? 'primary' : 'secondary'} onClick={onclickHandlerAll}>All</Button>*/}
+            <button className={!isId ? s.primary : s.active} onClick={onclickHandlerMy}>My</button>
+            <button className={isId ? s.primary : s.active} onClick={onclickHandlerAll}>All</button>
         </div>
     );
 };

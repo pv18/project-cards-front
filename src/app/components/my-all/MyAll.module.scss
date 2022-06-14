@@ -1,4 +1,33 @@
 .block {
+  width: 196px;
+  height: 36px;
   border-radius: 2px;
   display: flex;
+  font-family: 'SF UI Display', sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 17px;
+
+  button {
+    border: none;
+  }
+
+  .primary {
+    width: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #FFFFFF;
+    color: #2D2E46;
+  }
+
+  .active {
+    width: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #9A91C8;
+    color: #FFFFFF;
+  }
 }
