@@ -14,8 +14,9 @@ import {CardPackNameType, setPackNameList} from '../../../features/f2-PackName/a
 import {AppRootStateType} from '../../store/store';
 import {Button} from '../Button/Button';
 
-import s from './PackName.module.scss';
 import {NavBarContainer} from '../navbar/NavBarContainer';
+
+import s from './PackName.module.scss';
 
 export const PackName = () => {
     const [search, setSearch] = useState<string>('');
@@ -44,7 +45,7 @@ export const PackName = () => {
             <NavBarContainer/>
             <div className={s.table}>
                 <h2 className={s.title}>
-                    <img onClick={() => navigate(-1)} src={Arrow} alt="arrow left"/>
+                    <img onClick={() => navigate(-1)} src={Arrow} alt='arrow left'/>
                     <span>Pack Name "{name}"</span>
                 </h2>
                 <div className={s.search}>

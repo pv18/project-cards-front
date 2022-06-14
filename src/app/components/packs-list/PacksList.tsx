@@ -1,5 +1,7 @@
 import React, {useState} from 'react';
 
+import {useDispatch, useSelector} from 'react-redux';
+
 import {TablePacksContainer} from '../tablePack/TablePacksContainer';
 import PaginationContainer from '../Pagination/PaginationContainer';
 
@@ -8,13 +10,19 @@ import {Modal} from '../Modal/Modal';
 import {NavBarContainer} from '../navbar/NavBarContainer';
 import {Button} from '../Button/Button';
 
+import {AppRootStateType} from '../../store/store';
+
+import {changeModalADD, changeModalDelete} from '../../store/reducers/modalsReducer';
+
 import s from './PacksList.module.scss';
 import {ModalDelete} from './modals/deleteModal/ModalDelete';
 import {ModalAdd} from './modals/addModal/ModalAdd';
 
 export const PacksList = () => {
-    const [isDelete, setDelete] = useState<boolean>(false);
-    const [isADD, setADD] = useState<boolean>(false);
+    const isDelete = useSelector<AppRootStateType, boolean>(state => state.modals.modalDelete);
+    const isADD = useSelector<AppRootStateType, boolean>(state => state.modals.modalADD);
+    const dispatch = useDispatch();
+
     return (
         <div className={s.wrapper}>
             <NavBarContainer/>
@@ -31,8 +39,8 @@ export const PacksList = () => {
                         justifyContent: 'space-around',
                         alignItems: 'center',
                     }}>
-                        <Button onClick={() => setDelete(true)}>Delete Pack</Button>
-                        <Button onClick={() => setADD(true)}>Add new pack</Button>
+                        <Button onClick={() => dispatch(changeModalDelete(true))}>Delete Pack</Button>
+                        <Button onClick={() => dispatch(changeModalADD(true))}>Add new pack</Button>
                     </div>
                 </div>
                 <div className={s.main}>
@@ -41,10 +49,10 @@ export const PacksList = () => {
                     <PaginationContainer/>
                 </div>
             </div>
-            <Modal visibility={isDelete} changeVisibility={setDelete}>
+            <Modal visibility={isDelete}>
                 <ModalDelete/>
             </Modal>
-            <Modal visibility={isADD} changeVisibility={setADD}>
+            <Modal visibility={isADD}>
                 <ModalAdd/>
             </Modal>
         </div>

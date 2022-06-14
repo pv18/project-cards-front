@@ -10,18 +10,18 @@ import {AppActionsType, appReducer} from './reducers/appReducer';
 
 import {PackListActionType, tablePacksReducer} from './reducers/tablePacksReducer';
 import {authReducer} from './reducers/authReducer';
-
+import {modalsReducer} from './reducers/modalsReducer';
 
 
 export type AppRootStateType = ReturnType<typeof rootReducer>
 
 // RootActionType
 export type AppRootActionType = ProfileActionType
-	| AppActionsType
-	| PackListActionType
+    | AppActionsType
+    | PackListActionType
 
 
-export const AppDispatch = () => useDispatch<ThunkDispatch<AppRootStateType,void,AnyAction>>();
+export const AppDispatch = () => useDispatch<ThunkDispatch<AppRootStateType, void, AnyAction>>();
 
 // для типизации thunk
 export type AppThunkType = ThunkAction<void, AppRootStateType, unknown, AnyAction>
@@ -31,7 +31,8 @@ const rootReducer = combineReducers({
     auth: authReducer,
     app: appReducer,
     packName: packNameReducer,
-	tablePacks: tablePacksReducer,
+    tablePacks: tablePacksReducer,
+    modals: modalsReducer,
 });
 
 export const store = createStore(rootReducer, applyMiddleware(thunk));
