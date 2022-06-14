@@ -1,0 +1,51 @@
+@import "normalize.css";
+
+.page {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	height: 100vh;
+
+}
+
+
+.cards {
+	width: 413px;
+	min-height: 300px;
+	background: #F9F9FE;
+	border-radius: 8px;
+
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	flex-direction: column;
+
+	& h3 {
+		font-family: 'Poppins', sans-serif;
+		font-style: normal;
+		font-weight: 600;
+		font-size: 22px;
+		line-height: 33px;
+		margin: 36px 0 0 0;
+		color: #2D2E46;
+	}
+
+	&__question {
+		font-family: 'Poppins', sans-serif;
+		font-style: normal;
+		font-weight: 600;
+		font-size: 16px;
+		line-height: 24px;
+		color: #2D2E46;
+
+		& span {
+			font-weight: 400;
+			margin-left: 10px;
+		}
+	}
+
+
+	&__btnWrap {
+		margin-bottom: 60px;
+	}
+}
