@@ -14,7 +14,7 @@ import iconImg from './../../../assets/img/union.svg'
 type EditProfilePropsType = {
     email: string
     name: string
-    isFetching: boolean
+    isLoading: boolean
     setNewName: (name: string) => void
     onClickHandlerSave: () => void
 }
@@ -39,7 +39,7 @@ const EditProfile = (props: EditProfilePropsType) => {
 
     return (
         <div className={s.blockEditProfile}>
-            {props.isFetching && <Preloader/>}
+            {props.isLoading && <Preloader/>}
             <div className={s.containerEditProfile}>
                 <span className={s.containerEditProfile__personal}>
                     Personal Information
@@ -67,13 +67,13 @@ const EditProfile = (props: EditProfilePropsType) => {
                     <div className={s._button}>
                         <Button variant={'secondary'}
                                 onClick={onClickHandlerCancel}
-                                disabled={props.isFetching}>
+                                disabled={props.isLoading}>
                             Cancel
                         </Button></div>
                     <div className={s._button}>
                         <Button variant={'primary'}
                                 onClick={props.onClickHandlerSave}
-                                disabled={props.isFetching}>
+                                disabled={props.isLoading}>
                             Save
                         </Button>
                     </div>

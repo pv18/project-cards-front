@@ -5,6 +5,7 @@ type AppStateType = {
     pageCount: number
     packName: string
     isId: boolean
+    error: string
 }
 
 
@@ -15,6 +16,7 @@ const initialState: AppStateType = {
     pageCount: 10,
     packName: '',
     isId: false,
+    error: '',
 };
 
 
@@ -23,6 +25,7 @@ export type AppActionsType = ReturnType<typeof setIsAuth>
     | ReturnType<typeof setPagination>
     | ReturnType<typeof setPackNameForSearch>
     | ReturnType<typeof setId>
+    | ReturnType<typeof setErrorMessage>
 
 
 export const appReducer = (state = initialState, action: AppActionsType): AppStateType => {
@@ -56,6 +59,12 @@ export const appReducer = (state = initialState, action: AppActionsType): AppSta
             return {
                 ...state,
                 isId: action.isId,
+            };
+        }
+        case 'APP/SET-ERROR': {
+            return {
+                ...state,
+                error: action.error,
             };
         }
         default:
@@ -96,5 +105,12 @@ export const setId = (isId: boolean) => {
     return {
         type: 'APP/SET-ID',
         isId,
+    } as const;
+};
+// сетаю ошибку в стейт
+export const setErrorMessage = (error: string) => {
+    return {
+        type: 'APP/SET-ERROR',
+        error,
     } as const;
 };

@@ -37,7 +37,9 @@ export const Routing = () => {
                 <Route path={PATH.RECOVERY} element={<RecoveryContainer/>}/>
                 <Route path={PATH.CHECK_EMAIL} element={<CheckEmailContainer/>}/>
                 <Route path={PATH.TEST_PAGE} element={<TestPage/>}/>
-                <Route path={PATH.NEW_PASSWORD} element={<NewPasswordContainer/>}/>
+                <Route path={PATH.NEW_PASSWORD} element={<NewPasswordContainer/>}>
+                    <Route path={':resetPasswordToken'} element={<NewPasswordContainer/>}/>
+                </Route>
                 <Route path={PATH.PACK_NAME} element={<PackName/>}>
                     <Route path={':name/:packId/:pageCount'} element={<PackName/>}/>
                 </Route>

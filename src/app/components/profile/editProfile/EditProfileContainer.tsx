@@ -16,7 +16,7 @@ const EditProfileContainer = () => {
     const dispatch = AppDispatch();
     const email = useSelector<AppRootStateType, string>(state => state.profile.userData.email);
     const name = useSelector<AppRootStateType, string>(state => state.profile.userData.name);
-    const isFetching = useSelector<AppRootStateType, boolean>(state => state.profile.isFetching);
+    const isLoading = useSelector<AppRootStateType, boolean>(state => state.app.isLoading);
     const isAuth = useSelector<AppRootStateType, boolean>(state => state.app.isAuth);
 
     const [newName, setNewName] = useState<string>(name);
@@ -38,7 +38,7 @@ const EditProfileContainer = () => {
                 name={newName}
                 setNewName={setNewName}
                 onClickHandlerSave={onClickHandlerSave}
-                isFetching={isFetching}
+                isLoading={isLoading}
             />
         </div>
     );
