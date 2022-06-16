@@ -27,6 +27,7 @@ export const TablePacksContainer = (/*props: TablePropsType*/) => {
 	const myId = useSelector<AppRootStateType, string>(state => state.profile.userData._id);
 
 	const [namePack, setNamePack] = useState<string>('');
+	const [sortPacks, setSortPacks] = useState<string>('0updated');
 
 	// read input value
 	const onChangePackName = (e: ChangeEvent<HTMLInputElement>) => {
@@ -41,12 +42,12 @@ export const TablePacksContainer = (/*props: TablePropsType*/) => {
 	};
 
 	useEffect(() => {
-		const paramsId = isId ? {user_id: myId} : {}
-		const params = {pageCount: pageCount, page: currentPage, ...paramsId};
+		const paramsId = isId ? {user_id: myId} : {};
+		const params = {pageCount: pageCount, page: currentPage, sortPacks, ...paramsId};
 		if (isAuth) {
 			dispatch(getPackListTC(params));
 		}
-	}, [isAuth, currentPage, pageCount, dispatch, isId]);
+	}, [isAuth, currentPage, pageCount, dispatch, isId, sortPacks]);
 
 	// для удаления pack карточек
 	const onClickDeletePack = (id: string) => {
@@ -57,7 +58,11 @@ export const TablePacksContainer = (/*props: TablePropsType*/) => {
 	const showCardsPack = (id: string, pageCount: number, name: string) => {
 		navigate(`${PATH.PACK_NAME}/${name}/${id}/${pageCount}`);
 	};
-	
+
+	const sortTableValue = (value: string) => {
+		setSortPacks(0 + value);
+	};
+
 	return (
 		<>
 			<div>
@@ -67,10 +72,10 @@ export const TablePacksContainer = (/*props: TablePropsType*/) => {
 				</button>
 			</div>
 			<TablePacks
+				sortTableValue={sortTableValue}
 				onClickDeletePack={onClickDeletePack}
 				showCardsPack={showCardsPack}
 			/>
 		</>
 	);
 };
-
