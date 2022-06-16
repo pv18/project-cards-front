@@ -21,6 +21,7 @@ export const Main = () => {
     useEffect(() => {
         if (!isAuth) {
             dispatch(getUserProfile());
+            console.log ("You are not logged in!")
         }
     },[isAuth, dispatch]);
 

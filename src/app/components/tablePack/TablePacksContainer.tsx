@@ -10,11 +10,7 @@ import {PATH} from '../Routing/Routing';
 
 import {TablePacks} from './TablePacks';
 
-/*type TablePropsType = {
-	id?: string
-}*/
-
-export const TablePacksContainer = (/*props: TablePropsType*/) => {
+export const TablePacksContainer = () => {
 
 	const navigate = useNavigate();
 	const dispatch = AppDispatch();

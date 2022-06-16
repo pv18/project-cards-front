@@ -2,7 +2,7 @@ import {AuthAPI, LoginDataType, RegistrationDataType} from '../../api/api';
 import {AppThunkType} from '../store';
 
 import {setProfile} from './profileReducer';
-import {setIsAuth} from './appReducer';
+import {setIsAuth, setIsLoading} from './appReducer';
 
 type UserDataType = {
     _id: string;
@@ -25,13 +25,15 @@ type AuthStateType = {
     error?: string,
     activeLoginBtn: boolean;
     registration: boolean,
+    /*    recoverySuccess: boolean,*/
+    info: string,
 }
 
 export type AuthActionsType = ReturnType<typeof setDataLoginAC>
     | ReturnType<typeof setErrorMessage>
     | ReturnType<typeof isToggleLoginBtn>
     | ReturnType<typeof recoveryPassword>
-    | ReturnType<typeof logOut>
+    /*   | ReturnType<typeof logOut>*/
     | ReturnType<typeof setRegistrationStatus>
 
 const initialState: AuthStateType = {
@@ -40,8 +42,7 @@ const initialState: AuthStateType = {
         email: '',
         name: '',
         avatar: '',
-        publicCardPacksCount: 0,
-// количество колод
+        publicCardPacksCount: 0, // количество колод
         created: '',
         updated: '',
         isAdmin: false,
@@ -53,36 +54,38 @@ const initialState: AuthStateType = {
     error: '',
     activeLoginBtn: false,
     registration: false,
+    /*    recoverySuccess: false,*/
+    info: '',
 };
 
 export const authReducer = (state = initialState, action: AuthActionsType) => {
 
     switch (action.type) {
-        case 'LOGIN/SET-DATA': {
+        case 'AUTH/SET-DATA': {
             return {
                 ...state,
                 ...state.userData,
                 userData: action.data,
             };
         }
-        case 'LOGIN/IS-TOGGLE-ACTIVE-BTN': {
+        case 'AUTH/IS-TOGGLE-ACTIVE-BTN': {
             return {
                 ...state,
                 activeLoginBtn: action.isToggle,
             };
         }
-        case 'LOGIN/RECOVERY-PASSWORD': {
+        case 'AUTH/RECOVERY-PASSWORD': {
             return {
                 ...state,
             };
         }
-        case 'LOGIN/LOG-OUT': {
-            return {
-                ...state,
-                /*...state.userData, email: '',*/
-            };
-        }
-        case 'REGISTRATION/SET-STATUS': {
+        /*        case 'AUTH/LOG-OUT': {
+                    return {
+                        ...state,
+        /!*                ...state.userData, email: '',*!/
+                    };
+                }*/
+        case 'AUTH/SET-STATUS': {
             return {
                 ...state,
                 registration: action.registration,
@@ -104,7 +107,7 @@ export const authReducer = (state = initialState, action: AuthActionsType) => {
 // userData записываем данные в state
 const setDataLoginAC = (data: UserDataType) => {
     return {
-        type: 'LOGIN/SET-DATA',
+        type: 'AUTH/SET-DATA',
         data,
     } as const;
 };
@@ -120,22 +123,23 @@ const setErrorMessage = (error: string) => {
 // вовремя запроса disabled button login
 const isToggleLoginBtn = (isToggle: boolean) => {
     return {
-        type: 'LOGIN/IS-TOGGLE-ACTIVE-BTN',
+        type: 'AUTH/IS-TOGGLE-ACTIVE-BTN',
         isToggle,
     } as const;
 };
 
 
-const logOut = () => {
+/*const logOut = () => {
     return {
-        type: 'LOGIN/LOG-OUT',
+        type: 'AUTH/LOG-OUT',
     } as const;
-};
+};*/
 
 //
-const recoveryPassword = (info: string, error: string) => {
+const recoveryPassword = (recoverySuccess: boolean) => {
     return {
-        type: 'LOGIN/RECOVERY-PASSWORD',
+        type: 'AUTH/RECOVERY-PASSWORD',
+        recoverySuccess,
     } as const;
 };
 // thunk creator
@@ -160,36 +164,66 @@ export const setLogOut = (): AppThunkType => (dispatch) => {
     AuthAPI.logOut()
         .then(resData => {
             if (resData.info.length) {
-                dispatch(logOut());
                 dispatch(setIsAuth(false));
             }
         })
         .catch(error => {
-            // вывести ошибку
-            // dispatch(setErrorMessage(error.response.data.error));
+            dispatch(setErrorMessage(error.response.data.error));
         });
 };
 
+// ТС для страницы восстановления пароля
 export const recoveryPass = (email: string): AppThunkType => (dispatch) => {
+    dispatch(setErrorMessage(''));
     AuthAPI.recoveryPass(email)
         .then(resData => {
-            dispatch(recoveryPassword(resData.info, resData.error));
-        });
-};
-
-
-/*const setErrorMessage = (error: string) => ({type: 'REGISTRATION/SET-ERROR', error} as const)*/
-const setRegistrationStatus = (registration: boolean) => ({type: 'REGISTRATION/SET-STATUS', registration} as const);
-
-
-export const postRegisterTC = (data: RegistrationDataType): AppThunkType => (dispatch) => {
-    AuthAPI.registrationMe(data)
-        .then(res => {
-            console.log('Успех!!!');
-            dispatch(setRegistrationStatus(true));
+            if (resData.info.length) {
+                dispatch(recoveryPassword(true));
+            }
+            /*dispatch(recoveryPassword(resData.info, resData.error));*/
         })
         .catch(err => {
-            console.log(err);
             dispatch(setErrorMessage(err.response.data.error));
         });
 };
+
+
+// АС для страницы регистрации
+const setRegistrationStatus = (registration: boolean) => ({type: 'AUTH/SET-STATUS', registration} as const);
+
+// ТС для страницы регистрации
+export const postRegisterTC = (data: RegistrationDataType): AppThunkType => (dispatch) => {
+    AuthAPI.registrationMe(data)
+        .then(res => {
+            dispatch(setRegistrationStatus(true));
+
+        })
+        .catch(err => {
+            dispatch(setErrorMessage(err.response.data.error));
+        });
+};
+
+// АС для нового пароля ()
+const newPassword = (info: string) => ({
+    type: 'AUTH/NEW-PASSWORD',
+    info,
+} as const);
+
+export const createNewPassword = (password: string, resetPasswordToken: string | undefined): AppThunkType => (dispatch) => {
+    dispatch(setErrorMessage(''));
+    dispatch(setIsLoading(true));
+    AuthAPI.newPass(password, resetPasswordToken)
+        .then(resData => {
+            if (resData.info.length) {
+                dispatch(setIsAuth(false));
+                dispatch(newPassword(resData.info));
+            }
+        })
+        .catch(err => {
+            dispatch(setErrorMessage(err.response.data.error));
+        })
+        .finally(() => {
+            dispatch(setIsLoading(false));
+        });
+};
+

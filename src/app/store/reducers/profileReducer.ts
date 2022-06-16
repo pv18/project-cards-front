@@ -1,16 +1,15 @@
-import {Dispatch} from 'redux';
-
 import {ProfileAPI} from '../../api/api';
-import {setIsAuth} from "./appReducer";
-import {AppThunkType} from "../store";
+
+import {AppThunkType} from '../store';
+
+import {setIsAuth, setIsLoading} from './appReducer';
 
 type UserDataType = {
     _id: string;
     email: string;
     name: string;
     avatar?: string;
-    publicCardPacksCount: number;
-// количество колод
+    publicCardPacksCount: number; // количество колод
     created: string;
     updated: string;
     isAdmin: boolean;
@@ -21,7 +20,6 @@ type UserDataType = {
 
 type ProfileStateType = {
     userData: UserDataType
-    isFetching: boolean
 }
 
 const initialState: ProfileStateType = {
@@ -30,8 +28,7 @@ const initialState: ProfileStateType = {
         email: '',
         name: '',
         avatar: '',
-        publicCardPacksCount: 0,
-// количество колод
+        publicCardPacksCount: 0, // количество колод
         created: '',
         updated: '',
         isAdmin: false,
@@ -39,7 +36,7 @@ const initialState: ProfileStateType = {
         rememberMe: false,
         error: '',
     },
-    isFetching: false,
+/*    isFetching: false,*/
 };
 export type ProfileActionType = ReturnType<typeof setProfile>
     | ReturnType<typeof putProfile>
@@ -58,7 +55,7 @@ export const profileReducer = (state = initialState, action: ProfileActionType) 
                 userData: {
                     ...state.userData,
                     error: action.error,
-                }
+                },
             };
         }
         case 'PROFILE/PUT-USER':
@@ -105,7 +102,8 @@ export const getUserProfile = (): AppThunkType => (dispatch) => {
 };
 // TC редактирования профиля
 export const putUserProfile = (name:string, avatar:string): AppThunkType => (dispatch) => {
-    dispatch(toggleFetching(true));
+    dispatch(setIsLoading(true));
+    dispatch(setErrorMessage(''));
     ProfileAPI.putProfile(name,avatar)
         .then(resData => {
             // dispatch(putProfile(resData.name, resData.avatar));
@@ -113,6 +111,13 @@ export const putUserProfile = (name:string, avatar:string): AppThunkType => (dis
             dispatch(toggleFetching(false));
         })
         .catch((error)=>{
-            dispatch(toggleFetching(false));
+            if (error) {
+                dispatch(setErrorMessage(error.response.data.error));
+            } else {
+                dispatch(setErrorMessage('Some error!'));
+            }
+        })
+        .finally(() => {
+            dispatch(setIsLoading(false));
         });
 };
