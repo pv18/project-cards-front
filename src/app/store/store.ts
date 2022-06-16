@@ -5,6 +5,8 @@ import {useDispatch} from 'react-redux';
 
 import {packNameReducer} from '../../features/f2-PackName/api/bll/packNameReducer';
 
+import {learnCardsReducer} from '../../features/f3-LearnCards/learnCardsReducer';
+
 import {ProfileActionType, profileReducer} from './reducers/profileReducer';
 import {AppActionsType, appReducer} from './reducers/appReducer';
 
@@ -32,6 +34,7 @@ const rootReducer = combineReducers({
     app: appReducer,
     packName: packNameReducer,
 	tablePacks: tablePacksReducer,
+	learnCards: learnCardsReducer,
 });
 
 export const store = createStore(rootReducer, applyMiddleware(thunk));

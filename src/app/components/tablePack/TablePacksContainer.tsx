@@ -9,6 +9,7 @@ import {deleteCardsPack, getPackListTC, postNewPackTC} from '../../store/reducer
 import {PATH} from '../Routing/Routing';
 
 import {TablePacks} from './TablePacks';
+import {getLearnCardsPack} from "../../../features/f3-LearnCards/learnCardsReducer";
 
 /*type TablePropsType = {
 	id?: string
@@ -63,6 +64,11 @@ export const TablePacksContainer = (/*props: TablePropsType*/) => {
 		setSortPacks(0 + value);
 	};
 
+	const learnCardsPack = (id: string) => {
+		dispatch(getLearnCardsPack(id));
+		navigate(PATH.LEARN_CARDS);
+	};
+
 	return (
 		<>
 			<div>
@@ -75,6 +81,7 @@ export const TablePacksContainer = (/*props: TablePropsType*/) => {
 				sortTableValue={sortTableValue}
 				onClickDeletePack={onClickDeletePack}
 				showCardsPack={showCardsPack}
+				learnCardsPack={learnCardsPack}
 			/>
 		</>
 	);

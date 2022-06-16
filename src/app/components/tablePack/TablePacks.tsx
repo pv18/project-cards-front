@@ -13,12 +13,13 @@ type TablePacksPropsType = {
 	onClickDeletePack: (id: string) => void
 	showCardsPack: (id: string, pageCount: number, name: string) => void
 	sortTableValue: (value: string) => void
+	learnCardsPack: (id: string) => void
 }
 
 
 export const TablePacks = (props: TablePacksPropsType) => {
 
-	const {onClickDeletePack, showCardsPack, sortTableValue} = props;
+	const {onClickDeletePack, showCardsPack, sortTableValue, learnCardsPack} = props;
 
 	const cardPacks = useSelector<AppRootStateType, Array<CardPacksType>>(state => state.tablePacks.cardPacks);
 	const userId = useSelector<AppRootStateType, string>(state => state.profile.userData._id);
@@ -50,7 +51,7 @@ export const TablePacks = (props: TablePacksPropsType) => {
 								<button className={s.table__btn}>Edit</button>
 							</span>
 						}
-						<button className={s.table__btn}>Learn</button>
+						<button onClick={() => learnCardsPack(el._id)} className={s.table__btn}>Learn</button>
 					</th>
 				</tr>
 			);
