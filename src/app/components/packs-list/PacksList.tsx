@@ -31,17 +31,6 @@ export const PacksList = () => {
                     <h4 className={s.title}>Show packs cards</h4>
                     <MyAll/>
                     <h4 className={s.title}>Number of cards</h4>
-                    // Нужно потом УДАЛИТЬ!!!
-                    <div style={{
-                        height: '100px',
-                        display: 'flex',
-                        flexDirection: 'column',
-                        justifyContent: 'space-around',
-                        alignItems: 'center',
-                    }}>
-                        <Button onClick={() => dispatch(changeModalDelete(true))}>Delete Pack</Button>
-                        <Button onClick={() => dispatch(changeModalADD(true))}>Add new pack</Button>
-                    </div>
                 </div>
                 <div className={s.main}>
                     <h2 className={s.title}>Packs list</h2>
@@ -49,12 +38,6 @@ export const PacksList = () => {
                     <PaginationContainer/>
                 </div>
             </div>
-            <Modal visibility={isDelete}>
-                <ModalDelete/>
-            </Modal>
-            <Modal visibility={isADD}>
-                <ModalAdd/>
-            </Modal>
         </div>
     );
 };

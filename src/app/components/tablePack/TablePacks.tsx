@@ -10,7 +10,7 @@ import Arrow from '../../assets/img/polygon.svg';
 import s from './TablePacks.module.scss';
 
 type TablePacksPropsType = {
-	onClickDeletePack: (id: string) => void
+	showModalDelete: (id: string, name: string) => void
 	showCardsPack: (id: string, pageCount: number, name: string) => void
 	sortTableValue: (value: string) => void
 }
@@ -18,7 +18,7 @@ type TablePacksPropsType = {
 
 export const TablePacks = (props: TablePacksPropsType) => {
 
-	const {onClickDeletePack, showCardsPack, sortTableValue} = props;
+	const {showModalDelete, showCardsPack, sortTableValue} = props;
 
 	const cardPacks = useSelector<AppRootStateType, Array<CardPacksType>>(state => state.tablePacks.cardPacks);
 	const userId = useSelector<AppRootStateType, string>(state => state.profile.userData._id);
@@ -29,6 +29,11 @@ export const TablePacks = (props: TablePacksPropsType) => {
 		setSortName(name);
 		sortTableValue(name);
 	};
+
+	// открываем модалку для удаления
+	const showModalDeleteHandler = (id: string, name: string) => {
+		showModalDelete(id, name)
+	}
 
 	// отрисовываем Pack в таблице
 	const renderCardsPacks = () => {
@@ -44,7 +49,7 @@ export const TablePacks = (props: TablePacksPropsType) => {
 							<span>
 								<button
 									className={`${s.table__btn} ${s.table__btn_delete}`}
-									onClick={() => onClickDeletePack(el._id)}>
+									onClick={() => showModalDeleteHandler(el._id, el.name)}>
 										Delete
 								</button>
 								<button className={s.table__btn}>Edit</button>
