@@ -44,14 +44,17 @@ export const LearnCardsContainer = () => {
 	// });
 
 	const data = useSelector<AppRootStateType, LearnCardsStateType>(state => state.learnCards);
-
-	console.log(data);
+	// @ts-ignore
+	console.log(data.cards[0].question);
 
 
 
 	return (
 		<>
-			<LearnCards/>
+			<LearnCards
+				question={data.cards[0].question}
+			/>
+
 		</>
 	);
 };

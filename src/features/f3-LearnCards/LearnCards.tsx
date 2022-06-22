@@ -4,7 +4,12 @@ import {Button} from '../../app/components/Button/Button';
 
 import s from './LearnCards.module.scss';
 
-export const LearnCards = () => {
+type LearnCardsType = {
+	question: string
+}
+
+
+export const LearnCards = (props: LearnCardsType) => {
 	return (
 		<div className={s.page}>
 			<div className={s.cards}>
@@ -14,7 +19,8 @@ export const LearnCards = () => {
 				<div className={s.cards__question}>
 					Question:
 					<span>
-						“How "This" works in JavaScript?”
+						{/*“How "This" works in JavaScript?”*/}
+						{props.question}
 					</span>
 				</div>
 

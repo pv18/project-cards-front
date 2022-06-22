@@ -54,6 +54,7 @@ export const learnCardsReducer = (state= initialState, action: LearnCardsActionT
 		case 'LEARN/SET-CARDS': {
 			return {
 				...state,
+				...action.data,
 			};
 		}
 		default: return state;
@@ -72,9 +73,10 @@ export const setCards = (data: LearnCardsStateType) => {
 
 export const getLearnCardsPack = (id: string):AppThunkType => (dispatch) => {
 	dispatch(setIsLoading(true));
-	apiCard.getCards({cardsPack_id: id})
+	apiCard.getCards({cardsPack_id: id, pageCount: 112})
 		.then(res => {
 			dispatch(setCards(res.data));
+			console.log(res.data);
 		})
 		.finally(() => {
 			dispatch(setIsLoading(false));
