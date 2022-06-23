@@ -2,20 +2,29 @@ import {AppThunkType} from '../../app/store/store';
 import {apiCard} from '../f2-PackName/api/api';
 import {setIsLoading} from '../../app/store/reducers/appReducer';
 
+export type LearnCardType = {
+	answer: string
+	answerImg: string
+	answerVideo: string
+	cardsPack_id: string
+	comments: string
+	created: string
+	grade: number
+	more_id: string
+	question: string
+	questionImg: string
+	questionVideo: string
+	rating: number
+	shots: number
+	type: string
+	updated: string
+	user_id: string
+	__v: number
+	_id: string
+}
+
 export type LearnCardsStateType = {
-	cards: [
-		{
-			answer: string
-			question: string
-			cardsPack_id: string
-			grade: number
-			shots: number
-			user_id: string
-			created: string
-			updated: string
-			_id: string
-		},
-	],
+	cards: Array<LearnCardType>,
 	cardsTotalCount: number
 	maxGrade: number
 	minGrade: number
@@ -29,15 +38,24 @@ export type LearnCardsActionType = ReturnType<typeof setCards>
 const initialState: LearnCardsStateType = {
 	cards: [
 		{
-			answer: 'no answer',
-			question: 'no question',
-			cardsPack_id: '5eb6a2f72f849402d46c6ac4',
-			grade: 4.987525071790364,
-			shots: 1,
-			user_id: '142151531535151',
-			created: '2020-05-13T11:05:44.867Z',
-			updated: '2020-05-13T11:05:44.867Z',
-			_id: '5ebbd48876810f1ad0e7ece3',
+			answer: '1',
+			answerImg: '',
+			answerVideo: '',
+			cardsPack_id: '622b52e929bee9000469654f',
+			comments: '',
+			created: '2022-06-23T15:34:53.466Z',
+			grade: 0,
+			more_id: '62242f0a6af372000457ad68',
+			question: '1',
+			questionImg: '',
+			questionVideo: '',
+			rating: 0,
+			shots: 0,
+			type: 'card',
+			updated: '2022-06-23T15:34:53.466Z',
+			user_id: '62242f0a6af372000457ad68',
+			__v: 0,
+			_id: '62b4881d022e2300041d17ac',
 		},
 		
 	],
