@@ -10,18 +10,18 @@ import {LearnCards} from './LearnCards';
 
 import {LearnCardsStateType} from './learnCardsReducer';
 
-const getCard = (cards: CardPackNameType[]) => {
-	const sum = cards.reduce((acc, card) => acc + (6 - card.grade) * (6 - card.grade), 0);
-	const rand = Math.random() * sum;
-	const res = cards.reduce((acc: { sum: number, id: number}, card, i) => {
-			const newSum = acc.sum + (6 - card.grade) * (6 - card.grade);
-			return {sum: newSum, id: newSum < rand ? i : acc.id};
-		}
-		, {sum: 0, id: -1});
-	console.log('test: ', sum, rand, res);
-
-	return cards[res.id + 1];
-};
+// const getCard = (cards: CardPackNameType[]) => {
+// 	const sum = cards.reduce((acc, card) => acc + (6 - card.grade) * (6 - card.grade), 0);
+// 	const rand = Math.random() * sum;
+// 	const res = cards.reduce((acc: { sum: number, id: number}, card, i) => {
+// 			const newSum = acc.sum + (6 - card.grade) * (6 - card.grade);
+// 			return {sum: newSum, id: newSum < rand ? i : acc.id};
+// 		}
+// 		, {sum: 0, id: -1});
+// 	console.log('test: ', sum, rand, res);
+//
+// 	return cards[res.id + 1];
+// };
 
 export const LearnCardsContainer = () => {
 
@@ -43,16 +43,34 @@ export const LearnCardsContainer = () => {
 	// 	updated: '',
 	// });
 
+	const [stateLearn, setStateLearn] = useState<'question' | 'answer'>('question');
+	const [currentQuestion, setCurrentQuestion] = useState<number>(0);
+
 	const data = useSelector<AppRootStateType, LearnCardsStateType>(state => state.learnCards);
-	// @ts-ignore
-	console.log(data.cards[0].question);
+
+	const onShowAnswer = () => {
+		setStateLearn('answer');
+	};
+
+	const onNextQuestion = () => {
+		if (data.cardsTotalCount === currentQuestion + 1) {
+			setCurrentQuestion(0);
+		} else {
+			setCurrentQuestion(currentQuestion + 1);
+		}
+		setStateLearn('question');
+	};
 
 
 
 	return (
 		<>
 			<LearnCards
-				question={data.cards[0].question}
+				stateLearn={stateLearn}
+				question={data.cards[currentQuestion].question}
+				answer={data.cards[currentQuestion].answer}
+				onShowAnswer={onShowAnswer}
+				onNextQuestion={onNextQuestion}
 			/>
 
 		</>
