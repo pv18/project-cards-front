@@ -94,7 +94,6 @@ export const getLearnCardsPack = (id: string):AppThunkType => (dispatch) => {
 	apiCard.getCards({cardsPack_id: id, pageCount: 112})
 		.then(res => {
 			dispatch(setCards(res.data));
-			console.log(res.data);
 		})
 		.finally(() => {
 			dispatch(setIsLoading(false));

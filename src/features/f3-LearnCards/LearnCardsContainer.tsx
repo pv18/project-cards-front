@@ -2,9 +2,13 @@ import React, {useState} from 'react';
 
 import {useSelector} from 'react-redux';
 
+import {Navigate, useNavigate} from 'react-router-dom';
+
 import {CardPackNameType} from '../f2-PackName/api/bll/packNameReducer';
 
 import {AppRootStateType} from '../../app/store/store';
+
+import {PATH} from '../../app/components/Routing/Routing';
 
 import {LearnCards} from './LearnCards';
 
@@ -43,6 +47,8 @@ export const LearnCardsContainer = () => {
 	// 	updated: '',
 	// });
 
+	const navigate = useNavigate();
+
 	const [stateLearn, setStateLearn] = useState<'question' | 'answer'>('question');
 	const [currentQuestion, setCurrentQuestion] = useState<number>(0);
 
@@ -60,6 +66,10 @@ export const LearnCardsContainer = () => {
 		}
 		setStateLearn('question');
 	};
+	
+	const onCancel = () => {
+		navigate(PATH.PACKS_LIST);
+	};
 
 
 
@@ -71,6 +81,7 @@ export const LearnCardsContainer = () => {
 				answer={data.cards[currentQuestion].answer}
 				onShowAnswer={onShowAnswer}
 				onNextQuestion={onNextQuestion}
+				onCancel={onCancel}
 			/>
 
 		</>
