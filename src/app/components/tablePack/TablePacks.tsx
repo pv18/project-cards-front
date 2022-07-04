@@ -19,7 +19,7 @@ type TablePacksPropsType = {
 
 export const TablePacks = (props: TablePacksPropsType) => {
 
-	const {onClickDeletePack, showCardsPack, sortTableValue, learnCardsPack, showModalDelete} = props;
+	const {showCardsPack, sortTableValue, learnCardsPack, showModalDelete} = props;
 
 	const cardPacks = useSelector<AppRootStateType, Array<CardPacksType>>(state => state.tablePacks.cardPacks);
 	const userId = useSelector<AppRootStateType, string>(state => state.profile.userData._id);
