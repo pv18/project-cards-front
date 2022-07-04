@@ -1,11 +1,13 @@
 import React from 'react';
 import {NavLink} from 'react-router-dom';
+
 import {PATH} from '../../Routing/Routing';
-import s from './NavBar.module.scss'
+
+import s from './NavBar.module.scss';
 
 export const NavBar = () => {
     // const setActive = ({isActive}:any) => isActive ? s.active : '';
-    const setActive = ''
+    const setActive = '';
 
     return (
         <nav className={s.block}>
@@ -18,6 +20,7 @@ export const NavBar = () => {
             <NavLink to={PATH.TEST_PAGE} className={setActive}>Test Page</NavLink>
             <NavLink to={PATH.PACKS_LIST} className={setActive}>Packs List</NavLink>
             <NavLink to={PATH.PACK_NAME} className={setActive}>Pack Name</NavLink>
+            <NavLink to={PATH.LEARN_CARDS} className={setActive}>Learn Cards</NavLink>
             <NavLink to={'/*'} className={setActive}>404</NavLink>
         </nav>
     );

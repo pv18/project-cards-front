@@ -50,10 +50,10 @@ const Pagination = (props: PaginationPropsType) => {
             <button onClick={props.nextPage}>Next</button>
             <span>Show</span>
             <form>
-                <select onChange={onChangeHandlerRange}>
+                <select defaultValue={8} onChange={onChangeHandlerRange}>
                     <option value={4}>4</option>
                     <option value={6}>6</option>
-                    <option selected value={8}>8</option>
+                    <option value={8}>8</option>
                     <option value={10}>10</option>
                 </select>
             </form>

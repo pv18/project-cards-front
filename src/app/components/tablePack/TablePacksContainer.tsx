@@ -9,6 +9,7 @@ import {deleteCardsPack, getPackListTC, postNewPackTC} from '../../store/reducer
 import {PATH} from '../Routing/Routing';
 
 import {TablePacks} from './TablePacks';
+import {getLearnCardsPack} from "../../../features/f3-LearnCards/learnCardsReducer";
 import {changeModalDelete} from '../../store/reducers/modalsReducer';
 import {ModalDelete} from '../packs-list/modals/deleteModal/ModalDelete';
 import {Modal} from '../Modal/Modal';
@@ -78,6 +79,11 @@ export const TablePacksContainer = () => {
 		setSortPacks(0 + value);
 	};
 
+	const learnCardsPack = (id: string) => {
+		dispatch(getLearnCardsPack(id));
+		navigate(PATH.LEARN_CARDS);
+	};
+
 	return (
 		<>
 			<div>
@@ -90,6 +96,7 @@ export const TablePacksContainer = () => {
 				sortTableValue={sortTableValue}
 				showModalDelete={showModalDelete}
 				showCardsPack={showCardsPack}
+				learnCardsPack={learnCardsPack}
 			/>
 			<Modal visibility={showModal}>
 			    <ModalDelete name={titleCard} onClickDeletePack={onClickDeletePack}/>

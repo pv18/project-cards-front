@@ -1,4 +1,5 @@
 import axios from 'axios';
+import {LearnCardsStateType} from "../../f3-LearnCards/learnCardsReducer";
 
 const instance = axios.create({
     baseURL: 'http://localhost:7542/2.0/',
@@ -8,7 +9,7 @@ const instance = axios.create({
 
 export const apiCard = {
     getCards(params?: GetCardsResponseType) {
-        return instance.get<GetCardsRequestType>('cards/card', {params});
+        return instance.get<LearnCardsStateType>('cards/card', {params});
     },
 };
 

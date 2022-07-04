@@ -12,6 +12,7 @@ import {PacksList} from '../packs-list/PacksList';
 import {PackName} from '../pack-name/PackName';
 import {CheckEmailContainer} from '../auth/check-email/CheckEmailContainer';
 import {NewPasswordContainer} from '../auth/new-password/NewPasswordContainer';
+import {LearnCardsContainer} from "../../../features/f3-LearnCards/LearnCardsContainer";
 
 export const PATH = {
     LOGIN: '/login',
@@ -24,6 +25,7 @@ export const PATH = {
     PACK_NAME: '/pack_name',
     CHECK_EMAIL: '/check_email',
     NEW_PASSWORD: '/new_password',
+    LEARN_CARDS: '/learn_cards',
 };
 
 export const Routing = () => {
@@ -49,6 +51,7 @@ export const Routing = () => {
                 <Route path={'/*'} element={<ErrorPage/>}/>
                 <Route path={'/'} element={<Navigate to={PATH.LOGIN}/>}/>
 
+                <Route path={PATH.LEARN_CARDS} element={<LearnCardsContainer/>}/>
             </Routes>
         </>
     );
