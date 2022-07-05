@@ -20,9 +20,9 @@ const ProfileContainer = () => {
     const isAuth = useSelector<AppRootStateType, boolean>(state => state.app.isAuth);
 
     //если не залогинены, от редирект на страницу логинизации
-    useEffect(()=> {
-        if (!isAuth) navigate(PATH.LOGIN);
-    },[isAuth, navigate]);
+    // useEffect(()=> {
+    //     if (!isAuth) navigate(PATH.LOGIN);
+    // },[isAuth, navigate]);
 
     // обработчик для кнопки редактирования профиля
     const onClickHandler = () => {

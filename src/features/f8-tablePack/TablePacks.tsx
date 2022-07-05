@@ -33,8 +33,8 @@ export const TablePacks = (props: TablePacksPropsType) => {
 
 	// открываем модалку для удаления
 	const showModalDeleteHandler = (id: string, name: string) => {
-		showModalDelete(id, name)
-	}
+		showModalDelete(id, name);
+	};
 
 	// отрисовываем Pack в таблице
 	const renderCardsPacks = () => {

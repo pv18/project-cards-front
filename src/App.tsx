@@ -3,15 +3,15 @@ import React from 'react';
 import {HashRouter} from 'react-router-dom';
 import {Provider} from 'react-redux';
 
-import {Main} from './app/Main';
 import {store} from './store/store';
+import {Routing} from './app/Routing/Routing';
 
 const App = () => {
     return (
         <>
             <HashRouter>
                 <Provider store={store}>
-                    <Main/>
+                    <Routing/>
                 </Provider>
             </HashRouter>
         </>

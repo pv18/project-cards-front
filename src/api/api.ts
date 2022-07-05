@@ -109,7 +109,7 @@ export const AuthAPI = {
     },
     newPass(password: string, resetPasswordToken: string | undefined) {
         return instance.post('/auth/set-new-password', {password, resetPasswordToken})
-            .then(res => res.data)
+            .then(res => res.data);
     },
     logOut() {
         return instance.delete<LogOutResponseType>('/auth/me', {})
@@ -147,7 +147,7 @@ export const ApiCards = {
     },
     sendRate(grade: number, card_id: string) {
         return instance.put<GradeResponseType>('/cards/grade', {grade, card_id})
-            .then(res => res.data)
+            .then(res => res.data);
     },
 };
 

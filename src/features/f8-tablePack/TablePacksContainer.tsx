@@ -8,11 +8,12 @@ import {AppDispatch, AppRootStateType} from '../../store/store';
 import {deleteCardsPack, getPackListTC, postNewPackTC} from '../../store/reducers/tablePacksReducer';
 import {PATH} from '../../app/Routing/Routing';
 
-import {TablePacks} from './TablePacks';
-import {getLearnCardsPack} from "../f3-learnCards/learnCardsReducer";
+import {getLearnCardsPack} from '../f3-learnCards/learnCardsReducer';
 import {changeModalDelete} from '../../store/reducers/modalsReducer';
 import {ModalDelete} from '../f11-packs-list/modals/deleteModal/ModalDelete';
 import {Modal} from '../../components/c6-modal/Modal';
+
+import {TablePacks} from './TablePacks';
 
 export const TablePacksContainer = () => {
 
@@ -30,9 +31,9 @@ export const TablePacksContainer = () => {
 	const [sortPacks, setSortPacks] = useState<string>('0updated');
 
 	// const isDelete = useSelector<AppRootStateType, boolean>(state => state.modals.modalDelete);
-	const [showModal, setShowModal] = useState<boolean>(false)
-	const [titleCard, setTitleCard] = useState<string>('')
-	const [titleCardID, setTitleCardID] = useState<string>('')
+	const [showModal, setShowModal] = useState<boolean>(false);
+	const [titleCard, setTitleCard] = useState<string>('');
+	const [titleCardID, setTitleCardID] = useState<string>('');
 
 
 	// read input value
@@ -57,17 +58,17 @@ export const TablePacksContainer = () => {
 
 	// для удаления pack карточек
 	const onClickDeletePack = (action?: 'delete') => {
-		if (action === 'delete') dispatch(deleteCardsPack(titleCardID))
-		setShowModal(false)
-		setTitleCard('')
-		setTitleCardID('')
+		if (action === 'delete') dispatch(deleteCardsPack(titleCardID));
+		setShowModal(false);
+		setTitleCard('');
+		setTitleCardID('');
 	};
 
 	// показать модалку удаления
 	const showModalDelete = (id: string, titleCard: string) => {
-		setTitleCard(titleCard)
-		setTitleCardID(id)
-		setShowModal(true)
+		setTitleCard(titleCard);
+		setTitleCardID(id);
+		setShowModal(true);
 	};
 
 	// навигация на таблицу карточек
