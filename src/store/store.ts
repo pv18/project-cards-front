@@ -5,7 +5,7 @@ import {useDispatch} from 'react-redux';
 
 import {packNameReducer} from '../features/f2-packName/api/bll/packNameReducer';
 
-import {learnCardsReducer} from '../features/f3-learnCards/learnCardsReducer';
+import {learnCardsReducer} from './reducers/learnCardsReducer';
 
 import {ProfileActionType, profileReducer} from './reducers/profileReducer';
 import {AppActionsType, appReducer} from './reducers/appReducer';

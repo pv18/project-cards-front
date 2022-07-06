@@ -8,7 +8,7 @@ import {AppDispatch, AppRootStateType} from '../../store/store';
 import {deleteCardsPack, getPackListTC, postNewPackTC} from '../../store/reducers/tablePacksReducer';
 import {PATH} from '../../app/Routing/Routing';
 
-import {getLearnCardsPack} from '../f3-learnCards/learnCardsReducer';
+import {getLearnCardsPack} from '../../store/reducers/learnCardsReducer';
 import {changeModalDelete} from '../../store/reducers/modalsReducer';
 import {ModalDelete} from '../f11-packs-list/modals/deleteModal/ModalDelete';
 import {Modal} from '../../components/c6-modal/Modal';

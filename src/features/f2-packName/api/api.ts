@@ -1,5 +1,5 @@
 import axios from 'axios';
-import {LearnCardsStateType} from "../../f3-learnCards/learnCardsReducer";
+import {LearnCardsStateType} from "../../../store/reducers/learnCardsReducer";
 
 const instance = axios.create({
     baseURL: 'http://localhost:7542/2.0/',
