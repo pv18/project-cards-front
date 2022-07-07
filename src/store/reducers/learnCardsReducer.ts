@@ -1,6 +1,6 @@
-import {AppThunkType} from '../../store/store';
-import {apiCard} from '../f2-packName/api/api';
-import {setIsLoading} from '../../store/reducers/appReducer';
+import {AppThunkType} from '../store';
+import {apiCard} from '../../features/f2-packName/api/api';
+import {setIsLoading} from './appReducer';
 
 export type LearnCardType = {
 	answer: string
