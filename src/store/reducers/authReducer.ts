@@ -163,9 +163,7 @@ export const setDataLoginTC = (data: LoginDataType): AppThunkType => (dispatch) 
 export const setLogOut = (): AppThunkType => (dispatch) => {
     AuthAPI.logOut()
         .then(resData => {
-            if (resData.info.length) {
                 dispatch(setIsAuth(false));
-            }
         })
         .catch(error => {
             dispatch(setErrorMessage(error.response.data.error));
