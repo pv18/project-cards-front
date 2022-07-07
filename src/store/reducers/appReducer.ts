@@ -6,6 +6,7 @@ type AppStateType = {
     packName: string
     isId: boolean
     error: string
+    activeMenuItem: string
 }
 
 
@@ -17,6 +18,7 @@ const initialState: AppStateType = {
     packName: '',
     isId: false,
     error: '',
+    activeMenuItem: '',
 };
 
 
@@ -26,6 +28,7 @@ export type AppActionsType = ReturnType<typeof setIsAuth>
     | ReturnType<typeof setPackNameForSearch>
     | ReturnType<typeof setId>
     | ReturnType<typeof setErrorMessage>
+    | ReturnType<typeof setActiveMenuItem>
 
 
 export const appReducer = (state = initialState, action: AppActionsType): AppStateType => {
@@ -65,6 +68,12 @@ export const appReducer = (state = initialState, action: AppActionsType): AppSta
             return {
                 ...state,
                 error: action.error,
+            };
+        }
+        case 'APP/SET-ACTIVE-MENU-ITEM': {
+            return {
+                ...state,
+                activeMenuItem: action.activeMenuItem,
             };
         }
         default:
@@ -112,5 +121,12 @@ export const setErrorMessage = (error: string) => {
     return {
         type: 'APP/SET-ERROR',
         error,
+    } as const;
+};
+// для стилизации пунктов меню активной страницы
+export const setActiveMenuItem = (activeMenuItem: string) => {
+    return {
+        type: 'APP/SET-ACTIVE-MENU-ITEM',
+        activeMenuItem,
     } as const;
 };

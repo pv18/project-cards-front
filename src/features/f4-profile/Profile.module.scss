@@ -1,54 +1,118 @@
-.container {
-  width: 243px;
-  height: 216px;
-  background: #D9D9F1;
+.blockProfile {
   display: flex;
-  flex-direction: column;
   align-items: center;
+  justify-content: center;
 
-  .photo {
-    width: 96px;
-    height: 96px;
-    background: #2D2E46;
-    margin-top: 24px;
-    border-radius: 50%;
+  .containerProfile {
+    width: 412px;
+    height: 540px;
+
+    background: #F9F9FE;
+    border-radius: 8px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    &__personal {
+      font-family: 'Poppins';
+      font-style: normal;
+      font-weight: 600;
+      font-size: 22px;
+      line-height: 33px;
+      margin-top: 36px;
+      /* identical to box height */
+
+      text-align: right;
+
+      color: #2D2E46;
+    }
+
+    &__avatar {
+      display: flex;
+
+      &_photo {
+        background: blue;
+        width: 150px;
+        height: 150px;
+        border-radius: 50%;
+        margin-top: 15px;
+      }
+
+      &_icon {
+        border-radius: 50%;
+        margin-top: 120px;
+        margin-left: -40px;
+        display: flex;
+        justify-content: center;
+
+        width: 40px;
+        height: 40px;
+        left: 657px;
+        top: 232px;
+
+        background: rgba(45, 46, 70, 0.5);
+        border: 1px solid #FFFFFF;
+      }
+      &_iconImg {
+        width: 18px;
+      }
+    }
+
+/*    &__form {
+      width: 347px;
+      margin-top: 38px;
+    }*/
+
+    &__buttons {
+      width: 347px;
+      margin-top: 80px;
+
+      ._button {
+        padding: 8px 0;
+        font-family: 'SF UI Display', sans-serif;
+        font-weight: 500;
+        font-size: 16px;
+        line-height: 19px;
+        border: none;
+        border-radius: 30px;
+        cursor: pointer;
+        transition: 1s linear;
+      }
+    }
+    &__description {
+      height: 60px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-around;
+      align-items: center;
+      margin-bottom: 30px;
+      margin-top: 15px;
+
+      ._name {
+        font-family: 'Poppins';
+        font-style: normal;
+        font-weight: 600;
+        font-size: 24px;
+        line-height: 27px;
+        /* identical to box height */
+        color: #2D2E46;
+      }
+      ._email {
+        font-family: 'SF UI Display';
+        font-style: normal;
+        font-weight: 400;
+        font-size: 16px;
+        line-height: 17px;
+        /* identical to box height */
+
+        text-align: center;
+
+        color: #2D2E46;
+
+        opacity: 0.5;
+      }
+    }
   }
-  .name {
-    left: 206px;
-    top: 208px;
 
-    font-family: 'Poppins';
-    font-style: normal;
-    font-weight: 600;
-    font-size: 18px;
-    line-height: 27px;
-    margin-top: 4px;
-    /* identical to box height */
-
-    color: #2D2E46;
-  }
-  .profession {
-    left: 196px;
-    top: 239px;
-
-    font-family: 'SF UI Display';
-    font-style: normal;
-    font-weight: 400;
-    font-size: 14px;
-    line-height: 17px;
-    margin-top: 4px;
-    /* identical to box height */
-
-    text-align: center;
-
-    color: #2D2E46;
-
-    opacity: 0.5;
-  }
-  .edit {
-    border: 1px solid #635D80;
-    border-radius: 2px;
-
-    margin-top: 5px;
-  }
 }

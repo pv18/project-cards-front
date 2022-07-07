@@ -9,6 +9,8 @@ import {putUserProfile} from '../../../store/reducers/profileReducer';
 
 import {PATH} from '../../../app/Routing/Routing';
 
+import {NavBarContainer} from '../../f6-navbar/NavBarContainer';
+
 import EditProfile from './EditProfile';
 
 const EditProfileContainer = () => {
@@ -33,6 +35,7 @@ const EditProfileContainer = () => {
     };
     return (
         <div>
+            <NavBarContainer/>
             <EditProfile
                 email={email}
                 name={newName}

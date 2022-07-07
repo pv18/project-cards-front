@@ -13,53 +13,66 @@ import {CheckEmailContainer} from '../../features/f0-auth/a0-check-email/CheckEm
 import {NewPasswordContainer} from '../../features/f0-auth/a2-new-password/NewPasswordContainer';
 import {LearnCardsContainer} from '../../features/f3-learnCards/LearnCardsContainer';
 import {Layout} from '../Layout';
-import {WithAuthRedirect} from "../../hoc/WithAuthRedirect";
+import {WithAuthRedirect} from '../../hoc/WithAuthRedirect';
 
 export const PATH = {
-	LOGIN: '/login',
-	REGISTRATION: '/registration',
-	PROFILE: '/profile',
-	RECOVERY: '/recovery',
-	TEST_PAGE: '/test_page',
-	EDIT_PROFILE: '/edit_profile',
-	PACKS_LIST: '/packs_list',
-	PACK_NAME: '/pack_name',
-	CHECK_EMAIL: '/check_email',
-	NEW_PASSWORD: '/new_password',
-	LEARN_CARDS: '/learn_cards',
+    LOGIN: '/login',
+    REGISTRATION: '/registration',
+    PROFILE: '/profile',
+    RECOVERY: '/recovery',
+    TEST_PAGE: '/test_page',
+    EDIT_PROFILE: '/edit_profile',
+    PACKS_LIST: '/packs_list',
+    PACK_NAME: '/pack_name',
+    CHECK_EMAIL: '/check_email',
+    NEW_PASSWORD: '/new_password',
+    LEARN_CARDS: '/learn_cards',
 };
 
 export const Routing = () => {
-	return (
-		<>
-			<Routes>
-				<Route path={'/'} element={<Layout/>}>
-					<Route path={PATH.PROFILE}
-						   element={
-							   <WithAuthRedirect>
-								   <ProfilePage/>
-							   </WithAuthRedirect>}/>
-					<Route path={PATH.EDIT_PROFILE} element={<EditProfileContainer/>}/>
-					<Route path={PATH.LOGIN} element={<LoginContainer/>}/>
-					<Route path={PATH.REGISTRATION} element={<RegistrationContainer/>}/>
-					<Route path={PATH.RECOVERY} element={<RecoveryContainer/>}/>
-					<Route path={PATH.CHECK_EMAIL} element={<CheckEmailContainer/>}/>
-					<Route path={PATH.NEW_PASSWORD} element={<NewPasswordContainer/>}>
-						<Route path={':resetPasswordToken'} element={<NewPasswordContainer/>}/>
-					</Route>
-					<Route path={PATH.PACK_NAME} element={<PackName/>}>
-						<Route path={':name/:packId/:pageCount'} element={<PackName/>}/>
-					</Route>
-					<Route path={PATH.PACKS_LIST} element={<PacksList/>}>
-						{/*роутинг на таблицу с карточками вместо PacksList доделать*/}
-					</Route>
-					<Route path={'*'} element={<ErrorPage/>}/>
-					<Route path={'/'} element={<Navigate to={PATH.LOGIN}/>}/>
+    return (
+        <>
+            <Routes>
+                <Route path={'/'} element={<Layout/>}>
+                    <Route path={PATH.PROFILE}
+                           element={
+                               <WithAuthRedirect>
+                                   <ProfilePage/>
+                               </WithAuthRedirect>}/>
+                    <Route path={PATH.EDIT_PROFILE}
+                           element={
+                               <WithAuthRedirect>
+                                   <EditProfileContainer/>
+                               </WithAuthRedirect>}/>
+                    <Route path={PATH.LOGIN} element={<LoginContainer/>}/>
+                    <Route path={PATH.REGISTRATION} element={<RegistrationContainer/>}/>
+                    <Route path={PATH.RECOVERY} element={<RecoveryContainer/>}/>
+                    <Route path={PATH.CHECK_EMAIL} element={<CheckEmailContainer/>}/>
+                    <Route path={PATH.NEW_PASSWORD} element={<NewPasswordContainer/>}>
+                        <Route path={':resetPasswordToken'} element={<NewPasswordContainer/>}/>
+                    </Route>
+                    <Route path={PATH.PACK_NAME} element={
+                        <WithAuthRedirect>
+                            <PackName/>
+                        </WithAuthRedirect>}>
+                        <Route path={':name/:packId/:pageCount'} element={
+                            <WithAuthRedirect>
+                                <PackName/>
+                            </WithAuthRedirect>}/>
+                    </Route>
+                    <Route path={PATH.PACKS_LIST} element={
+                        <WithAuthRedirect>
+                        <PacksList/>
+                        </WithAuthRedirect>}>
+                        {/*роутинг на таблицу с карточками вместо PacksList доделать*/}
+                    </Route>
+                    <Route path={'*'} element={<ErrorPage/>}/>
+                    <Route path={'/'} element={<Navigate to={PATH.LOGIN}/>}/>
 
-					<Route path={PATH.LEARN_CARDS} element={<LearnCardsContainer/>}/>
-				</Route>
-			</Routes>
-		</>
-	);
+                    <Route path={PATH.LEARN_CARDS} element={<LearnCardsContainer/>}/>
+                </Route>
+            </Routes>
+        </>
+    );
 };
 
