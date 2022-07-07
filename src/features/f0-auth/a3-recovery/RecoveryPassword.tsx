@@ -6,9 +6,10 @@ import {TextField} from '../../../components/с1-Textfield/TextField';
 import s from './RecoveryPassword.module.scss';
 
 type RecoveryPasswordPropsType = {
-    setEmail: (email:string) => void
+    setEmail: (email: string) => void
     onClickHandlerRecoverySend: () => void
     email: string
+    navigateLogInHandler: () => void
 }
 
 const RecoveryPassword = (props: RecoveryPasswordPropsType) => {
@@ -35,12 +36,13 @@ const RecoveryPassword = (props: RecoveryPasswordPropsType) => {
                 <div className={s.buttonContainer}>
                     <Button variant={'primary'} onClick={props.onClickHandlerRecoverySend}>Send Instructions</Button>
                 </div>
-                <span className={s.remember}>
+                <span className={s.recovery__question}>
                         'Did you remember your password?'
-                    </span>
-                <span className={s.tryLogIn}>
+                </span>
+                <span className={s.recovery__logIn}
+                      onClick={props.navigateLogInHandler}>
                         Try logging in
-                    </span>
+                </span>
             </div>
         </div>
     );

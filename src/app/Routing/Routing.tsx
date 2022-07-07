@@ -13,7 +13,7 @@ import {CheckEmailContainer} from '../../features/f0-auth/a0-check-email/CheckEm
 import {NewPasswordContainer} from '../../features/f0-auth/a2-new-password/NewPasswordContainer';
 import {LearnCardsContainer} from '../../features/f3-learnCards/LearnCardsContainer';
 import {Layout} from '../Layout';
-import {WithAuthRedirect} from "../../hoc/WithAuthRedirect";
+import {WithAuthRedirect} from '../../hoc/WithAuthRedirect';
 
 export const PATH = {
 	LOGIN: '/login',
@@ -38,7 +38,8 @@ export const Routing = () => {
 						   element={
 							   <WithAuthRedirect>
 								   <ProfilePage/>
-							   </WithAuthRedirect>}/>
+							   </WithAuthRedirect>}
+					/>
 					<Route path={PATH.EDIT_PROFILE} element={<EditProfileContainer/>}/>
 					<Route path={PATH.LOGIN} element={<LoginContainer/>}/>
 					<Route path={PATH.REGISTRATION} element={<RegistrationContainer/>}/>

@@ -10,6 +10,8 @@ import {AppDispatch, AppRootStateType} from '../../../store/store';
 
 import {setDataLoginTC} from '../../../store/reducers/authReducer';
 
+import {setActiveMenuItem} from '../../../store/reducers/appReducer';
+
 import {Login} from './login';
 
 import s from './LoginContainer.module.scss';
@@ -31,7 +33,10 @@ export const LoginContainer = () => {
 
 
 	useEffect(() => {
-		if (isAuth) navigate(PATH.PROFILE);
+		if (isAuth) {
+			dispatch(setActiveMenuItem('profil'));
+			navigate(PATH.PROFILE);
+		}
 	},[isAuth, navigate]);
 
 	// редирект на если забыли пароль

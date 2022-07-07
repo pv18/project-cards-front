@@ -1,6 +1,8 @@
 import React, {ChangeEvent} from 'react';
+
 import {Button} from '../../../components/c5-Button/Button';
 import {TextField} from '../../../components/с1-Textfield/TextField';
+
 import s from './Registration.module.scss';
 
 type RegistrationPropsType = {
@@ -12,6 +14,7 @@ type RegistrationPropsType = {
     changePassword: (e: ChangeEvent<HTMLInputElement>) => void
     changePassword2: (e: ChangeEvent<HTMLInputElement>) => void
     submitForm: () => void
+    navigateLogInHandler: ()=>void
 }
 
 export const Registration: React.FC<RegistrationPropsType> = (
@@ -24,7 +27,8 @@ export const Registration: React.FC<RegistrationPropsType> = (
         changePassword,
         changePassword2,
         submitForm,
-    }
+        navigateLogInHandler,
+    },
 ) => {
     return (
         <div className={s.wrapper}>
@@ -51,6 +55,13 @@ export const Registration: React.FC<RegistrationPropsType> = (
                 <div className={s.buttons}>
                     <Button onClick={submitForm}>Register</Button>
                 </div>
+                <span className={s.registration__question}>
+                        'Did you remember your password?'
+                </span>
+                <span className={s.registration__logIn}
+                      onClick={navigateLogInHandler}>
+                        Try logging in
+                </span>
             </div>
         </div>
     );

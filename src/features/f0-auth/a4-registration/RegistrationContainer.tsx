@@ -48,7 +48,10 @@ export const RegistrationContainer = () => {
             dispatch(postRegisterTC(data));
         }
     };
-
+    //
+    const navigateLogInHandler = () => {
+        navigate(PATH.LOGIN);
+    };
     return (
         <>
             <Registration email={email}
@@ -59,6 +62,7 @@ export const RegistrationContainer = () => {
                           changePassword={passwordChangeHandler}
                           changePassword2={password2ChangeHandler}
                           submitForm={submitHandler}
+                          navigateLogInHandler={navigateLogInHandler}
             />
         </>
     );

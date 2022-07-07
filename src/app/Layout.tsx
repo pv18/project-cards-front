@@ -4,8 +4,6 @@ import {useSelector} from 'react-redux';
 
 import {Outlet} from 'react-router-dom';
 
-import {HeaderContainer} from '../features/f5-header/HeaderContainer';
-
 import {Preloader} from '../components/с2-Preloader/Preloader';
 
 import {AppDispatch, AppRootStateType} from '../store/store';
@@ -31,9 +29,9 @@ export const Layout = () => {
 	
 	return (
 		<div className={s.wrapper}>
-			<div>
+{/*			<div>
 				<HeaderContainer/>
-			</div>
+			</div>*/}
 			<div>
 				{isLoading && <Preloader/>}
 			</div>
