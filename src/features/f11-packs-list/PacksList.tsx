@@ -11,21 +11,23 @@ import s from './PacksList.module.scss';
 export const PacksList = () => {
 
     return (
-        <div className={s.wrapper}>
+        <>
             <NavBarContainer/>
-            <div className={s.table}>
-                <div className={s.leftBar}>
-                    <h4 className={s.title}>Show packs cards</h4>
-                    <MyAll/>
-                    <h4 className={s.title}>Number of cards</h4>
-                </div>
-                <div className={s.main}>
-                    <h2 className={s.title}>Packs list</h2>
-                    <TablePacksContainer/>
-                    <PaginationContainer/>
+            <div className={s.wrapper}>
+                <div className={s.table}>
+                    <div className={s.leftBar}>
+                        <h4 className={s.title}>Show packs cards</h4>
+                        <MyAll/>
+                        <h4 className={s.title}>Number of cards</h4>
+                    </div>
+                    <div className={s.main}>
+                        <h2 className={s.title}>Packs list</h2>
+                        <TablePacksContainer/>
+                        <PaginationContainer/>
+                    </div>
                 </div>
             </div>
-        </div>
+        </>
     );
 };
 

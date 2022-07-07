@@ -125,7 +125,6 @@ export const setErrorMessage = (error: string) => {
 };
 // для стилизации пунктов меню активной страницы
 export const setActiveMenuItem = (activeMenuItem: string) => {
-    debugger;
     return {
         type: 'APP/SET-ACTIVE-MENU-ITEM',
         activeMenuItem,
