@@ -1,14 +1,7 @@
-import React, {useEffect, useState} from 'react';
-
-import {useDispatch, useSelector} from 'react-redux';
-
-import {useParams} from 'react-router-dom';
-
-import {AppRootStateType} from '../../store/store';
+import React, {useState} from 'react';
 
 import {TablePackName} from './TablePackName';
-import {apiCard} from './api/api';
-import {CardPackNameType, setPackNameList} from './api/bll/packNameReducer';
+import {CardPackNameType} from './api/bll/packNameReducer';
 
 
 export type CardsType = {
