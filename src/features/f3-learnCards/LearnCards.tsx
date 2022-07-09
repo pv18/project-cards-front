@@ -1,10 +1,11 @@
-import React from 'react';
+import React, {useState} from 'react';
 
 import {Button} from '../../components/c5-Button/Button';
 
 import SuperCheckbox from '../../components/с3-SuperCheckbox/SuperCheckbox';
 
 import s from './LearnCards.module.scss';
+import {SuperRadio} from "../../components/c7-SuperRadio/SuperRadio";
 
 type LearnCardsType = {
 	stateLearn: 'question' | 'answer'
@@ -17,6 +18,10 @@ type LearnCardsType = {
 
 
 export const LearnCards = (props: LearnCardsType) => {
+
+	const rate = ['Did not know', 'Forgot', 'A lot of thought', 'Сonfused', 'Knew the answer'];
+
+	const [yourself, setYourself] = useState<string>(rate[0]);
 
 
 	return (
@@ -51,21 +56,28 @@ export const LearnCards = (props: LearnCardsType) => {
 					props.stateLearn === 'answer' &&
 					<div className={s.cards__rate}>
 						<h4>Rate yourself:</h4>
-						<SuperCheckbox>
-							Did not know
-						</SuperCheckbox>
-						<SuperCheckbox>
-							Forgot
-						</SuperCheckbox>
-						<SuperCheckbox>
-							A lot of thought
-						</SuperCheckbox>
-						<SuperCheckbox>
-							Сonfused
-						</SuperCheckbox>
-						<SuperCheckbox>
-							Knew the answer
-						</SuperCheckbox>
+
+						<SuperRadio
+							name={'radio'}
+							options={rate}
+							value={yourself}
+							onChangeOption={setYourself}
+						/>
+						{/*<SuperCheckbox>*/}
+						{/*	Did not know*/}
+						{/*</SuperCheckbox>*/}
+						{/*<SuperCheckbox>*/}
+						{/*	Forgot*/}
+						{/*</SuperCheckbox>*/}
+						{/*<SuperCheckbox>*/}
+						{/*	A lot of thought*/}
+						{/*</SuperCheckbox>*/}
+						{/*<SuperCheckbox>*/}
+						{/*	Сonfused*/}
+						{/*</SuperCheckbox>*/}
+						{/*<SuperCheckbox>*/}
+						{/*	Knew the answer*/}
+						{/*</SuperCheckbox>*/}
 					</div>
 				}
 
