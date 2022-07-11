@@ -10,8 +10,9 @@ import {AppDispatch, AppRootStateType} from '../store/store';
 
 import {getUserProfile} from '../store/reducers/profileReducer';
 
-import s from './Layout.module.scss';
 import {HeaderContainer} from '../features/f5-header/HeaderContainer';
+
+import s from './Layout.module.scss';
 
 
 export const Layout = () => {
@@ -24,7 +25,7 @@ export const Layout = () => {
     useEffect(() => {
         if (!isAuth) {
             dispatch(getUserProfile());
-            console.log('You are not logged in!');
+            // console.log('You are not logged in!');
         }
     }, [isAuth, dispatch]);
 

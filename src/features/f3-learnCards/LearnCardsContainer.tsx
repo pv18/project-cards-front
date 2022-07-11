@@ -1,16 +1,14 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 
 import {useSelector} from 'react-redux';
 
-import {Navigate, useNavigate} from 'react-router-dom';
+import {useNavigate} from 'react-router-dom';
 
-import {CardPackNameType} from '../f2-packName/api/bll/packNameReducer';
-
-import {AppRootStateType} from '../../store/store';
+import {AppDispatch, AppRootStateType} from '../../store/store';
 
 import {PATH} from '../../app/Routing/Routing';
 
-import {LearnCardsStateType, LearnCardType} from '../../store/reducers/learnCardsReducer';
+import {LearnCardsStateType, LearnCardType, putRatingCard} from '../../store/reducers/learnCardsReducer';
 
 import {LearnCards} from './LearnCards';
 
@@ -18,17 +16,19 @@ import {LearnCards} from './LearnCards';
 const getCard = (cards: LearnCardType[]) => {
 	const sum = cards.reduce((acc, card) => acc + (6 - card.grade) * (6 - card.grade), 0);
 	const rand = Math.random() * sum;
-	const res = cards.reduce((acc: { sum: number, id: number}, card, i) => {
+	const res = cards.reduce((acc: { sum: number, id: number }, card, i) => {
 			const newSum = acc.sum + (6 - card.grade) * (6 - card.grade);
 			return {sum: newSum, id: newSum < rand ? i : acc.id};
 		}
 		, {sum: 0, id: -1});
-	console.log('test: ', sum, rand, res);
+	// console.log('test: ', sum, rand, res);
 
 	return cards[res.id + 1];
 };
 
 export const LearnCardsContainer = () => {
+
+	const disptach = AppDispatch();
 
 
 	const [card, setCard] = useState<LearnCardType>({
@@ -57,27 +57,27 @@ export const LearnCardsContainer = () => {
 	const [stateLearn, setStateLearn] = useState<'question' | 'answer'>('question');
 	// const [currentQuestion, setCurrentQuestion] = useState<number>(0);
 
-	const data = useSelector<AppRootStateType, LearnCardsStateType>(state => state.learnCards);
 	const stateCards = useSelector<AppRootStateType, Array<LearnCardType>>(state => state.learnCards.cards);
 
 	const onShowAnswer = () => {
 		setStateLearn('answer');
 	};
 
-	const onNextQuestion = () => {
-		// if (data.cardsTotalCount === currentQuestion + 1) {
-		// 	setCurrentQuestion(0);
-		// } else {
-		// 	setCurrentQuestion(currentQuestion + 1);
-		// }
+	const onNextQuestion = (rating: number) => {
+
+		disptach(putRatingCard(rating, card._id));
+
 		setCard(getCard(stateCards));
 		setStateLearn('question');
 	};
-	
+
 	const onCancel = () => {
 		navigate(PATH.PACKS_LIST);
 	};
 
+	useEffect(() => {
+		setCard(getCard(stateCards));
+	},[stateCards]);
 
 
 	return (
