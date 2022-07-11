@@ -23,7 +23,7 @@ export const LearnCards = (props: LearnCardsType) => {
 	const rate = ['Did not know', 'Forgot', 'A lot of thought', 'Сonfused', 'Knew the answer'];
 
 	const [yourself, setYourself] = useState<string>(rate[0]);
-	const [rating, setRatingId] = useState<number>(0);
+	const [rating, setRatingId] = useState<number>(1);
 	
 	const handleChangeRadio = (options: string, rating: number) => {
 		setYourself(options);

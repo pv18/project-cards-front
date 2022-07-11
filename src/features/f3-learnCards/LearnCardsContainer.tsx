@@ -28,7 +28,7 @@ const getCard = (cards: LearnCardType[]) => {
 
 export const LearnCardsContainer = () => {
 
-	const disptach = AppDispatch();
+	const dispatch = AppDispatch();
 
 
 	const [card, setCard] = useState<LearnCardType>({
@@ -65,7 +65,7 @@ export const LearnCardsContainer = () => {
 
 	const onNextQuestion = (rating: number) => {
 
-		disptach(putRatingCard(rating, card._id));
+		dispatch(putRatingCard(rating, card._id));
 
 		setCard(getCard(stateCards));
 		setStateLearn('question');
