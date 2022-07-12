@@ -22,19 +22,24 @@
       cursor: pointer;
 
       &:first-child {
-        width: 35%;
+        width: 30%;
         padding-left: 24px;
       }
 
       &:nth-child(2) {
-        width: 35%;
+        width: 30%;
       }
 
       &:nth-child(3) {
-        width: 15%;
+        width: 12%;
+      }
+
+      &:nth-child(4) {
+        width: 13%;
       }
 
       &:last-child {
+        width: 15%;
         padding-right: 24px;
       }
 
@@ -58,6 +63,7 @@
     }
 
     td {
+      max-width: 200px;
       position: relative;
       font-family: 'SF UI Display', sans-serif;
       font-style: normal;
@@ -65,24 +71,65 @@
       font-size: 13px;
       line-height: 16px;
       color: #000000;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      overflow: hidden;
 
       &:first-child {
-        width: 35%;
+        width: 30%;
         padding-left: 24px;
+        padding-right: 10px;
       }
 
       &:nth-child(2) {
-        width: 35%;
+        padding-right: 10px;
+        width: 30%;
       }
 
       &:nth-child(3) {
-        width: 15%;
+        width: 12%;
+      }
+
+      &:nth-child(4) {
+        width: 13%;
       }
 
       &:last-child {
+        width: 15%;
         padding-right: 24px;
       }
     }
   }
 
+  .buttons {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+
+    .btn {
+      width: 55px;
+      padding: 6px 0;
+      font-family: 'SF UI Display', sans-serif;
+      font-style: normal;
+      font-weight: 600;
+      font-size: 12px;
+      line-height: 14px;
+      color: #21268F;
+      background: #D7D8EF;
+      border-radius: 2px;
+      border: none;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: 1s linear;
+
+      &:active {
+        transform: scale(0.5);
+      }
+    }
+
+    .active {
+      background: #F1453D;
+      color: #FFFFFF;
+    }
+  }
 }

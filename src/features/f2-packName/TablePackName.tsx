@@ -3,6 +3,7 @@ import {CardsType, FilterPackName} from './TablePackNameContainer';
 import {Rating} from '../f12-rating/Rating';
 import Arrow from '../../assets/img/polygon.svg';
 import s from './TablePackName.module.scss';
+import {apiCard} from './api/api';
 
 
 type TablePackNamePropsType = {
@@ -12,6 +13,12 @@ type TablePackNamePropsType = {
 }
 
 export const TablePackName: React.FC<TablePackNamePropsType> = (props) => {
+
+    // для удаления карточки
+    // const deleteCard = (id: string) => {
+    //     apiCard.deleteCard(id);
+    // };
+
     return (
         <table className={s.table}>
             <thead>
@@ -32,6 +39,9 @@ export const TablePackName: React.FC<TablePackNamePropsType> = (props) => {
                     <span>Grade</span>
                     {props.filter === 'grade' && <img src={Arrow} alt="Arrow"/>}
                 </th>
+                <th>
+                    <span>Actions</span>
+                </th>
             </tr>
             </thead>
             <tbody>
@@ -40,6 +50,14 @@ export const TablePackName: React.FC<TablePackNamePropsType> = (props) => {
                     <td>{c.answer}</td>
                     <td>{new Date(Date.parse(c.updated)).toLocaleDateString()}</td>
                     <td><Rating value={c.grade}/></td>
+                    <td>
+                        <div className={s.buttons}>
+                            <button className={s.btn}>Edit</button>
+                            <button className={`${s.btn} ${s.active}`}>
+                                Delete
+                            </button>
+                        </div>
+                    </td>
                 </tr>
             )}
             </tbody>

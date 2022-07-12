@@ -79,9 +79,6 @@ export const learnCardsReducer = (state= initialState, action: LearnCardsActionT
 	}
 };
 
-
-
-
 export const setCards = (data: LearnCardsStateType) => {
 	return {
 		type: 'LEARN/SET-CARDS',
