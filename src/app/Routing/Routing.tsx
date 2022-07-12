@@ -1,7 +1,6 @@
 import React from 'react';
 import {Route, Routes, Navigate} from 'react-router-dom';
 
-import {ProfilePage} from '../../features/f4-profile/ProfilePage';
 import {ErrorPage} from '../../features/f12-404/ErrorPage';
 import {LoginContainer} from '../../features/f0-auth/a1-login/LoginContainer';
 import {RecoveryContainer} from '../../features/f0-auth/a3-recovery/RecoveryContainer';
@@ -14,6 +13,7 @@ import {NewPasswordContainer} from '../../features/f0-auth/a2-new-password/NewPa
 import {LearnCardsContainer} from '../../features/f3-learnCards/LearnCardsContainer';
 import {Layout} from '../Layout';
 import {WithAuthRedirect} from '../../hoc/WithAuthRedirect';
+import ProfileContainer from "../../features/f4-profile/ProfileContainer";
 
 export const PATH = {
     LOGIN: '/login',
@@ -37,7 +37,7 @@ export const Routing = () => {
                     <Route path={PATH.PROFILE}
                            element={
                                <WithAuthRedirect>
-                                   <ProfilePage/>
+                                   <ProfileContainer/>
                                </WithAuthRedirect>}/>
                     <Route path={PATH.EDIT_PROFILE}
                            element={

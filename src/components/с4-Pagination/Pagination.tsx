@@ -3,51 +3,76 @@ import React, {ChangeEvent} from 'react';
 import s from './Pagination.module.scss';
 
 type PaginationPropsType = {
-    pageCount: number
-    totalCount: number
+    totalPages: number
     currentPage: number
-    setPageCount: (rangePages:number)=>void
+    setPageCount: (rangePages: number) => void
     setCurrentPage: (pageCount: number) => void
     prevPage: () => void
     nextPage: () => void
 }
 
-const Pagination = (props: PaginationPropsType) => {
-    const pageNumbers = [];
-    const rangePages = 10;
+const getRange = (start: number, end: number) => {
+    return Array(end - start + 1)
+        .fill(end - start + 1)
+        .map((el, indexCurrentElement) => indexCurrentElement + start);
+};
 
-    if ( props.currentPage < rangePages ) {
-        for (let i = 1; i <= rangePages; i++) {
-            pageNumbers.push(i);
-        }
-    } else if (props.currentPage >= Math.ceil(props.totalCount / props.pageCount)- rangePages) {
-        for (let i = 1; i <= rangePages; i++)
-            pageNumbers.push(i);
-        } else {
-        for (let i = props.currentPage - rangePages / 2; i <= props.currentPage + rangePages / 2; i++) {
-            pageNumbers.push(i);
-        }
+
+const Pagination = (props: PaginationPropsType) => {
+
+    const onChangeHandlerRange = (e: ChangeEvent<HTMLSelectElement>) => {
+        props.setPageCount(+e.currentTarget.value);
+    };
+
+    let delta: number;
+    if (props.totalPages <= 7) {
+        // delta === 7: [1 2 3 4 5 6 7]
+        delta = 7;
+    } else {
+        // delta === 2: [1 ... 4 5 6 ... 10]
+        // delta === 4: [1 2 3 4 5 ... 10]
+        delta = props.currentPage > 4 && props.currentPage < props.totalPages - 3 ? 2 : 4;
+    }
+    const range = {
+        start: Math.round(props.currentPage - delta / 2),
+        end: Math.round(props.currentPage + delta / 2),
+    };
+
+    if (range.start - 1 === 1 || range.end + 1 === props.totalPages) {
+        range.start += 1;
+        range.end += 1;
+    }
+    let pages: any =
+        props.currentPage > delta
+            ? getRange(Math.min(range.start, props.totalPages - delta), Math.min(range.end, props.totalPages))
+            : getRange(1, Math.min(props.totalPages, delta + 1));
+
+    const withDots = (value: number, pair: Array<any>) => (pages.length + 1 !== props.totalPages ? pair : [value]);
+
+    if (pages[0] !== 1) {
+        pages = withDots(1, [1, '...']).concat(pages);
     }
 
-
-    const onChangeHandlerRange = (e:ChangeEvent<HTMLSelectElement>) => {
-            props.setPageCount(+e.currentTarget.value);
-    };
+    if (pages[pages.length - 1] < props.totalPages) {
+        pages = pages.concat(withDots(props.totalPages, ['...', props.totalPages]));
+    }
     return (
         <div className={s.block}>
-            <button onClick={props.prevPage}>Prev</button>
+            <button onClick={props.prevPage}>{'<'}</button>
             <div className={s.block__pages}>
-                {pageNumbers.map((page) => (
-                    <button
-                        key={page}
-                        className={page === props.currentPage ? s.page_active : s.page}
-                        onClick={() => props.setCurrentPage(page)}
-                    >
-                        {page}
-                    </button>
+                {pages.map((page: number | '...') => (
+                    (page !== '...')
+                        ? <button
+                            key={page}
+                            className={page === props.currentPage ? s.page_active : s.page}
+                            onClick={() => props.setCurrentPage(page)}
+                        >
+                            {page}
+                        </button>
+                        : <span>...</span>
                 ))}
             </div>
-            <button onClick={props.nextPage}>Next</button>
+            <button onClick={props.nextPage}>{'>'}</button>
             <span>Show</span>
             <form>
                 <select defaultValue={8} onChange={onChangeHandlerRange}>

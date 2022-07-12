@@ -12,6 +12,7 @@ import {PATH} from '../../../app/Routing/Routing';
 import {NavBarContainer} from '../../f6-navbar/NavBarContainer';
 
 import EditProfile from './EditProfile';
+import s from './EditProfileContainer.module.scss'
 
 const EditProfileContainer = () => {
     const navigate = useNavigate();
@@ -34,16 +35,18 @@ const EditProfileContainer = () => {
         dispatch(putUserProfile(newName, avatar));
     };
     return (
-        <div>
+        <>
             <NavBarContainer/>
-            <EditProfile
-                email={email}
-                name={newName}
-                setNewName={setNewName}
-                onClickHandlerSave={onClickHandlerSave}
-                isLoading={isLoading}
-            />
-        </div>
+            <div className={s.blockEditProfile}>
+                <EditProfile
+                    email={email}
+                    name={newName}
+                    setNewName={setNewName}
+                    onClickHandlerSave={onClickHandlerSave}
+                    isLoading={isLoading}
+                />
+            </div>
+        </>
     );
 };
 

@@ -19,7 +19,7 @@ export const HeaderContainer = () => {
     return (
         <div className={s.block}>
             <NavBar/>
-            <Button variant={'secondary'} onClick={onclickHandler}>LogOut</Button>
+            {/*<Button variant={'secondary'} onClick={onclickHandler}>LogOut</Button>*/}
         </div>
     );
 };

@@ -8,8 +8,9 @@ import {Button} from '../../../components/c5-Button/Button';
 
 import {Preloader} from '../../../components/с2-Preloader/Preloader';
 
+import iconImg from '../../../assets/img/union.svg';
+
 import s from './EditProfile.module.scss';
-import iconImg from '../../../assets/img/union.svg'
 
 type EditProfilePropsType = {
     email: string
@@ -49,7 +50,7 @@ const EditProfile = (props: EditProfilePropsType) => {
                     <div className={s.containerEditProfile__avatar_icon}
                          onClick={onClickHandlerAvatar}>
                         <img src={iconImg}
-                             alt="icon"
+                             alt='icon'
                              className={s.containerEditProfile__avatar_iconImg}/>
                     </div>
                 </div>

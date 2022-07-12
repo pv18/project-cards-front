@@ -11,14 +11,18 @@ const PaginationContainer = () => {
     const dispatch = AppDispatch();
     const [currentPage, setCurrentPage] = useState<number>(1);
     const [pageCount, setPageCount] = useState<number>(8);
-
+    const isId = useSelector<AppRootStateType, boolean>(state => state.app.isId);
 
     useEffect(() => {
         dispatch(setPagination(pageCount, currentPage));
-    }, [currentPage, pageCount]);
+    }, [currentPage, pageCount, dispatch]);
+
+    useEffect(() => {
+        setCurrentPage(1);
+    }, [isId]);
 
     const totalCount = useSelector<AppRootStateType, number>(state => state.tablePacks.cardPacksTotalCount);
-
+    const totalPages = Math.ceil(totalCount / pageCount);
 
     const prevPage = () => {
         return currentPage > 1
@@ -26,14 +30,14 @@ const PaginationContainer = () => {
             : 1;
     };
     const nextPage = () => {
-        return currentPage < Math.ceil(totalCount / pageCount)
+        return currentPage < totalPages
             ? setCurrentPage(currentPage + 1)
             : 1;
     };
+
     return (
         <div>
-            <Pagination pageCount={pageCount}
-                        totalCount={totalCount}
+            <Pagination totalPages={totalPages}
                         currentPage={currentPage}
                         setPageCount={setPageCount}
                         setCurrentPage={setCurrentPage}
