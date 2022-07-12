@@ -15,6 +15,7 @@ interface IModalAddCard {
 export const ModalAddCard = (props: IModalAddCard) => {
     const dispatch = useDispatch()
 
+    // Функция добавления карточки
     const addNewCard = () => {
 
         if (props.cardID) {
