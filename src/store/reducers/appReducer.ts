@@ -14,7 +14,7 @@ const initialState: AppStateType = {
     isAuth: false,
     isLoading: false,
     currentPage: 1,
-    pageCount: 10,
+    pageCount: 8,
     packName: '',
     isId: false,
     error: '',
