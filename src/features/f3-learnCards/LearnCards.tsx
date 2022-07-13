@@ -45,11 +45,9 @@ export const LearnCards = (props: LearnCardsType) => {
 					<h3>Learn “Pack Name”</h3>
 				</div>
 
-
 				<div className={s.cards__question}>
 					Question:
 					<span>
-						{/*“How "This" works in JavaScript?”*/}
 						{props.question}
 					</span>
 				</div>
@@ -59,7 +57,6 @@ export const LearnCards = (props: LearnCardsType) => {
 					<div className={s.cards__question}>
 						Answer:
 						<span>
-						{/*“How "This" works in JavaScript?”*/}
 							{props.answer}
 						</span>
 					</div>
@@ -76,21 +73,6 @@ export const LearnCards = (props: LearnCardsType) => {
 							value={yourself}
 							onChangeOption={handleChangeRadio}
 						/>
-						{/*<SuperCheckbox>*/}
-						{/*	Did not know*/}
-						{/*</SuperCheckbox>*/}
-						{/*<SuperCheckbox>*/}
-						{/*	Forgot*/}
-						{/*</SuperCheckbox>*/}
-						{/*<SuperCheckbox>*/}
-						{/*	A lot of thought*/}
-						{/*</SuperCheckbox>*/}
-						{/*<SuperCheckbox>*/}
-						{/*	Сonfused*/}
-						{/*</SuperCheckbox>*/}
-						{/*<SuperCheckbox>*/}
-						{/*	Knew the answer*/}
-						{/*</SuperCheckbox>*/}
 					</div>
 				}
 
