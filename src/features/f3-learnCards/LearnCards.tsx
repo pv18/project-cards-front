@@ -2,13 +2,12 @@ import React, {useState} from 'react';
 
 import {Button} from '../../components/c5-Button/Button';
 
-import SuperCheckbox from '../../components/с3-SuperCheckbox/SuperCheckbox';
-
 import {SuperRadio} from '../../components/c7-SuperRadio/SuperRadio';
 
 import s from './LearnCards.module.scss';
 
 type LearnCardsType = {
+	name: string | undefined
 	stateLearn: 'question' | 'answer'
 	question: string
 	answer: string
@@ -20,7 +19,7 @@ type LearnCardsType = {
 
 export const LearnCards = (props: LearnCardsType) => {
 
-	const rate = ['Did not know', 'Forgot', 'A lot of thought', 'Сonfused', 'Knew the answer'];
+	const rate = ['Did not know', 'Forgot', 'A lot of thought', 'Confused', 'Knew the answer'];
 
 	const [yourself, setYourself] = useState<string>(rate[0]);
 	const [rating, setRatingId] = useState<number>(1);
@@ -42,7 +41,7 @@ export const LearnCards = (props: LearnCardsType) => {
 			<div className={s.cards}>
 
 				<div className={s.cards__title}>
-					<h3>Learn “Pack Name”</h3>
+					<h3>Learn: “{props.name}”</h3>
 				</div>
 
 				<div className={s.cards__question}>

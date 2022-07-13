@@ -13,7 +13,7 @@ type TablePacksPropsType = {
 	showModalDelete: (id: string, name: string) => void
 	showCardsPack: (id: string, pageCount: number, name: string) => void
 	sortTableValue: (value: string) => void
-	learnCardsPack: (id: string) => void
+	learnCardsPack: (id: string, name: string) => void
 }
 
 
@@ -60,7 +60,7 @@ export const TablePacks = (props: TablePacksPropsType) => {
 							el.cardsCount > 0 &&
 							<button
 								className={s.table__btn}
-								onClick={() => learnCardsPack(el._id)}
+								onClick={() => learnCardsPack(el._id, el.name)}
 							>
 								Learn
 							</button>
