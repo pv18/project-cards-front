@@ -32,6 +32,8 @@ export const LearnCards = (props: LearnCardsType) => {
 	
 	const onClickNextAsk = () => {
 		props.onNextQuestion(rating);
+		setYourself(rate[0]);
+		setRatingId(1);
 	};
 
 
