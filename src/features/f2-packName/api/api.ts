@@ -13,7 +13,7 @@ export const apiCard = {
     },
 
     deleteCard(id: string) {
-        return instance.delete(`cards/card?${id}`)
+        return instance.delete('cards/card', {params:{id: id}})
     },
 
     addNewCard(card?: NewCardType) {

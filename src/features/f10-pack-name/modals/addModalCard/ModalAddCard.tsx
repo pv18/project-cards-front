@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import s from './ModalAddCard.module.scss';
 import IconDelete from '../../../../assets/img/delete.svg';
 import {Button} from '../../../../components/c5-Button/Button';
@@ -13,6 +13,9 @@ interface IModalAddCard {
 }
 
 export const ModalAddCard = (props: IModalAddCard) => {
+    const [question, setQuestion] = useState('')
+    const [answer, setAnswer] = useState('')
+
     const dispatch = useDispatch()
 
     // Функция добавления карточки
@@ -21,8 +24,8 @@ export const ModalAddCard = (props: IModalAddCard) => {
         if (props.cardID) {
             const params: NewCardType = {
                 cardsPack_id: props.cardID,
-                question: 'asdfasdf',
-                answer: 'aaaa'
+                question: question,
+                answer: answer
             }
 
             apiCard.addNewCard(params)
@@ -50,8 +53,14 @@ export const ModalAddCard = (props: IModalAddCard) => {
                      onClick={() => dispatch(changeModalAddCard(false))}
                 />
             </div>
-            <TextField label={'Question'}/>
-            <TextField label={'Answer'}/>
+            <TextField label={'Question'}
+                       value={question}
+                       onChange={(e) => setQuestion(e.currentTarget.value)}
+            />
+            <TextField label={'Answer'}
+                       value={answer}
+                       onChange={(e) => setAnswer(e.currentTarget.value)}
+            />
             <div className={s.buttons}>
                 <Button width={'250px'}
                         variant={'secondary'}

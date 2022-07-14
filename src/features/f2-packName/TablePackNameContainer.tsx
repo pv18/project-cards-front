@@ -6,7 +6,6 @@ import {useDispatch, useSelector} from 'react-redux';
 import {AppRootStateType} from '../../store/store';
 import {useParams} from 'react-router-dom';
 import {apiCard} from './api/api';
-import {apiCards} from '../f1-packsList/api/api';
 
 
 export type CardsType = {
@@ -42,8 +41,6 @@ export const TablePackNameContainer = () => {
                 });
         }
     }, []);
-
-
 
 
     const getFilteredCards = (cards: CardPackNameType[], filter: FilterPackName) => {

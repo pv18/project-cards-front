@@ -3,7 +3,11 @@ import {CardsType, FilterPackName} from './TablePackNameContainer';
 import {Rating} from '../f12-rating/Rating';
 import Arrow from '../../assets/img/polygon.svg';
 import s from './TablePackName.module.scss';
-import {apiCard} from './api/api';
+import {apiCard, NewCardType} from './api/api';
+import {setPackNameList} from './api/bll/packNameReducer';
+import {changeModalAddCard} from '../../store/reducers/modalsReducer';
+import {useDispatch} from 'react-redux';
+import {useParams} from 'react-router-dom';
 
 
 type TablePackNamePropsType = {
@@ -13,11 +17,24 @@ type TablePackNamePropsType = {
 }
 
 export const TablePackName: React.FC<TablePackNamePropsType> = (props) => {
+    const dispatch = useDispatch()
+    const {packId} = useParams()
 
     // для удаления карточки
-    // const deleteCard = (id: string) => {
-    //     apiCard.deleteCard(id);
-    // };
+    const deleteCard = (id: string) => {
+        if (packId) {
+            apiCard.deleteCard(id)
+                .then(res => {
+                })
+                .catch(err => {
+                });
+
+            apiCard.getCards({cardsPack_id: packId, pageCount: 10})
+                .then(res => {
+                    dispatch(setPackNameList(res.data.cards));
+                });
+        }
+    };
 
     return (
         <table className={s.table}>
@@ -53,7 +70,9 @@ export const TablePackName: React.FC<TablePackNamePropsType> = (props) => {
                     <td>
                         <div className={s.buttons}>
                             <button className={s.btn}>Edit</button>
-                            <button className={`${s.btn} ${s.active}`}>
+                            <button className={`${s.btn} ${s.active}`}
+                                onClick={() => deleteCard(c._id)}
+                            >
                                 Delete
                             </button>
                         </div>

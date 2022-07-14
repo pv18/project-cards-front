@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, {useState} from 'react';
 
 import {useNavigate, useParams} from 'react-router-dom';
 
@@ -9,8 +9,6 @@ import Arrow from '../../assets/img/arrow-left.svg';
 import {TablePackNameContainer} from '../f2-packName/TablePackNameContainer';
 
 import {TableSearch} from '../f7-tableSearch/TableSearch';
-import {apiCard} from '../f2-packName/api/api';
-import {CardPackNameType, setPackNameList} from '../f2-packName/api/bll/packNameReducer';
 import {AppRootStateType} from '../../store/store';
 import {Button} from '../../components/c5-Button/Button';
 
