@@ -15,7 +15,8 @@ import s from './login.module.scss';
 type LoginPropsType = {
 	email: string
 	password: string
-	activeLoginBtn: boolean
+	//activeLoginBtn: boolean
+	isLoading:boolean
 	rememberMe: boolean
 	onChangeHandlerEmail: (e: ChangeEvent<HTMLInputElement>) => void
 	onChangeHandlerPassword: (e: ChangeEvent<HTMLInputElement>) => void
@@ -60,7 +61,8 @@ export const Login = (props: LoginPropsType) => {
 
 				<div className={s.form__buttonWrap}>
 					<Button
-						disabled={props.activeLoginBtn}
+						/*disabled={props.activeLoginBtn}*/
+						disabled={props.isLoading}
 						onClick={props.onSubmitHandler}
 						width={'266px'}>
 						Login

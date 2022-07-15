@@ -13,6 +13,7 @@ import {AppActionsType, appReducer} from './reducers/appReducer';
 import {PackListActionType, tablePacksReducer} from './reducers/tablePacksReducer';
 import {authReducer} from './reducers/authReducer';
 import {modalsReducer} from './reducers/modalsReducer';
+import { packListReducer } from '../features/f1-packsList/api/n0-bll/packListReducer';
 
 
 export type AppRootStateType = ReturnType<typeof rootReducer>
@@ -36,6 +37,8 @@ const rootReducer = combineReducers({
     tablePacks: tablePacksReducer,
     modals: modalsReducer,
 	learnCards: learnCardsReducer,
+    packList: packListReducer,
+
 });
 
 export const store = createStore(rootReducer, applyMiddleware(thunk));

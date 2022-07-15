@@ -32,11 +32,12 @@
       display: flex;
 
       &_photo {
+        size: auto;
         background: blue;
         width: 150px;
         height: 150px;
         border-radius: 50%;
-        margin-top: 15px;
+        //margin-top: 15px;
       }
 
       &_icon {

@@ -22,7 +22,8 @@ export type CardPacksType = {
     _id: string
 }
 export type ParamsType = {
-
+    showMinCard: number
+    showMaxCard: number
 }
 
 export type PackStateType = {
@@ -39,6 +40,7 @@ export type PackStateType = {
 
 export type PackListActionType = ReturnType<typeof setPackList>
     | ReturnType<typeof setGrade>
+    | ReturnType<typeof setMinMax>
 
 const initialState: PackStateType = {
     cardPacks: [{
@@ -60,7 +62,8 @@ const initialState: PackStateType = {
         _id: '629e59e17cbffe0004d99dd4',
     }],
     params: {
-
+        showMinCard: 0,
+        showMaxCard: 103,
     },
     cardPacksTotalCount: 5087,
     maxCardsCount: 103,
@@ -83,7 +86,16 @@ export const tablePacksReducer = (state = initialState, acton: PackListActionTyp
             return {
                 ...state, cardPacks: state.cardPacks.map(cardPack => cardPack._id === acton.cardPackId
                     ? {...cardPack, grade: acton.grade}
-                    : cardPack)
+                    : cardPack),
+            };
+        }
+        case 'PACK/SET-MIN-MAX': {
+            return {
+                ...state,
+                params: {
+                    showMinCard: acton.min,
+                    showMaxCard: acton.max,
+                },
             };
         }
         default:
@@ -99,6 +111,14 @@ export const setPackList = (data: PackStateType) => {
     } as const;
 };
 
+// set Min/Max
+export const setMinMax = (min: number, max: number) => {
+    return {
+        type: 'PACK/SET-MIN-MAX',
+        min,
+        max,
+    } as const;
+};
 // Thunk Creator
 export const getPackListTC = (params?: GetParamsType): AppThunkType => (dispatch) => {
     dispatch(setIsLoading(true));
@@ -150,10 +170,10 @@ const setGrade = (grade:number,cardPackId: string) => {
 
 // ТС для отправки рейтинга
 const sendGrade = (grade: number, cardPackId:string):AppThunkType => (dispatch) => {
-    dispatch(setIsLoading(true))
+    dispatch(setIsLoading(true));
     ApiCards.sendRate(grade,cardPackId)
         .then(resData => {
-            dispatch(setGrade(resData.updatedGrade.grade, resData.updatedGrade._id))
+            dispatch(setGrade(resData.updatedGrade.grade, resData.updatedGrade._id));
         })
         .catch(err => {
             if (err) {
@@ -165,4 +185,4 @@ const sendGrade = (grade: number, cardPackId:string):AppThunkType => (dispatch) 
         .finally(() => {
             dispatch(setIsLoading(false));
         });
-}
+};

@@ -1,7 +1,7 @@
 import React from 'react';
 import {Route, Routes, Navigate} from 'react-router-dom';
 
-import {ErrorPage} from '../../features/f12-404/ErrorPage';
+import {ErrorPage} from '../../features/f14-404/ErrorPage';
 import {LoginContainer} from '../../features/f0-auth/a1-login/LoginContainer';
 import {RecoveryContainer} from '../../features/f0-auth/a3-recovery/RecoveryContainer';
 import {RegistrationContainer} from '../../features/f0-auth/a4-registration/RegistrationContainer';

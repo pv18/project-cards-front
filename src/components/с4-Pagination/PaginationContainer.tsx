@@ -12,6 +12,8 @@ const PaginationContainer = () => {
     const [currentPage, setCurrentPage] = useState<number>(1);
     const [pageCount, setPageCount] = useState<number>(8);
     const isId = useSelector<AppRootStateType, boolean>(state => state.app.isId);
+    const isLoading = useSelector<AppRootStateType, boolean>(state => state.app.isLoading);
+
 
     useEffect(() => {
         dispatch(setPagination(pageCount, currentPage));
@@ -43,6 +45,7 @@ const PaginationContainer = () => {
                         setCurrentPage={setCurrentPage}
                         prevPage={prevPage}
                         nextPage={nextPage}
+                        isLoading={isLoading}
             />
         </div>);
 };
