@@ -11,6 +11,7 @@ import {apiCard} from './api/api';
 export type CardsType = {
     answer: string
     question: string
+    comments: string
     cardsPack_id: string
     grade: number
     shots: number
@@ -20,14 +21,14 @@ export type CardsType = {
     _id: string
 }
 
-export type FilterPackName = 'answer' | 'question' | 'updated' | 'grade'
+export type FilterPackName = '0name' | '0cardsCount' | '0updated'
 
-// interface ITablePackNameContainer {
-//     data: CardsType[]
-// }
+interface ITablePackNameContainer {
+    filterTitle: string
+}
 
-export const TablePackNameContainer = () => {
-    const [filter, setFilter] = useState<FilterPackName>('updated');
+export const TablePackNameContainer = (props: ITablePackNameContainer) => {
+    const [filter, setFilter] = useState<FilterPackName>('0updated');
 
     const cards = useSelector<AppRootStateType, CardPackNameType[]>(state => state.packName.cards);
     const {packId} = useParams();
@@ -35,29 +36,17 @@ export const TablePackNameContainer = () => {
 
     useEffect(() => {
         if (packId) {
-            apiCard.getCards({cardsPack_id: packId, pageCount: 10})
+            apiCard.getCards({cardsPack_id: packId, pageCount: 10, sortCards: filter})
                 .then(res => {
                     dispatch(setPackNameList(res.data.cards));
                 });
         }
-    }, []);
+    }, [filter]);
 
+    const filteredCards = cards.filter(card => {
+        return card.question.toLowerCase().includes(props.filterTitle.toLowerCase())
+    })
 
-    const getFilteredCards = (cards: CardPackNameType[], filter: FilterPackName) => {
-        switch (filter) {
-            case 'question':
-                return cards.sort((a, b) => a.question < b.question ? 1 : -1);
-            case 'answer':
-                return cards.sort((a, b) => a.answer < b.answer ? 1 : -1);
-            case 'updated':
-                return cards.sort((a, b) => a.updated < b.updated ? 1 : -1);
-            case 'grade':
-                return cards.sort((a, b) => b.grade - a.grade);
-            default:
-                return cards;
-        }
-    };
-    const filteredCards = getFilteredCards(cards, filter);
     return (
         <div>
             <TablePackName data={filteredCards} filter={filter} changeFilter={setFilter}/>

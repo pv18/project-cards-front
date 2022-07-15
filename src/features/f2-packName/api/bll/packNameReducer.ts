@@ -1,6 +1,7 @@
 export type CardPackNameType = {
     answer: string
     question: string
+    comments: string
     cardsPack_id: string
     grade: number
     shots: number

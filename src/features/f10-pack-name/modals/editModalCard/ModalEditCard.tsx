@@ -5,10 +5,11 @@ import {useDispatch, useSelector} from 'react-redux';
 import IconDelete from '../../../../assets/img/delete.svg';
 import {Button} from '../../../../components/c5-Button/Button';
 import {TextField} from '../../../../components/с1-Textfield/TextField';
-import {changeModalEditCard} from '../../../../store/reducers/modalsReducer';
-import {apiCard, ChangeCardType, NewCardType} from '../../../f2-packName/api/api';
+import {apiCard, ChangeCardType} from '../../../f2-packName/api/api';
 import {setPackNameList} from '../../../f2-packName/api/bll/packNameReducer';
 import {AppRootStateType} from '../../../../store/store';
+
+import {changeModalEditCard} from '../../../../store/reducers/modalsReducer';
 
 import s from './ModalEditCard.module.scss';
 
@@ -18,7 +19,7 @@ interface IModalEditCard {
 
 export const ModalEditCard = (props: IModalEditCard) => {
     const question = useSelector<AppRootStateType, string>(state => state.modals.modalCardEditCard.question);
-    const answer = useSelector<AppRootStateType, string>(state => state.modals.modalCardEditCard.answer);
+    const answer = useSelector<AppRootStateType, string>(state => state.modals.modalCardEditCard.comments);
     const cardID = useSelector<AppRootStateType, string>(state => state.modals.modalCardEditCard.id);
     const [titleQuestion, setTitleQuestion] = useState<string>(question);
     const [titleAnswer, setTitleAnswer] = useState<string>(answer);

@@ -2,7 +2,7 @@ type EditModal = {
     value: boolean
     id: string
     question: string
-    answer: string
+    comments: string
 }
 
 type ModalsType = {
@@ -21,17 +21,17 @@ const initialState: ModalsType = {
     modalDelete: false,
     modalADD: false,
     modalAddCard: false,
-    modalCardEditCard: {value: false, id: '', question: '', answer: ''},
-}
+    modalCardEditCard: {value: false, id: '', question: '', comments: ''},
+};
 
 export const modalsReducer = (state: ModalsType = initialState, action: ActionTypes): ModalsType => {
     switch (action.type) {
         case 'MODALS/CHANGE-MODAL-DELETE':
-            return {...state, modalDelete: action.value}
+            return {...state, modalDelete: action.value};
         case 'MODALS/CHANGE-MODAL-ADD':
-            return {...state, modalADD: action.value}
+            return {...state, modalADD: action.value};
         case 'MODALS/CHANGE-MODAL-ADD-CARD':
-            return {...state, modalAddCard: action.value}
+            return {...state, modalAddCard: action.value};
         case 'MODALS/CARD/CHANGE-MODAL-EDIT-CARD':
             return {
                 ...state, modalCardEditCard: {
@@ -39,17 +39,17 @@ export const modalsReducer = (state: ModalsType = initialState, action: ActionTy
                     value: action.value,
                     id: action.id,
                     question: action.question,
-                    answer: action.answer
-                }
-            }
+                    comments: action.comments,
+                },
+            };
         default:
-            return state
+            return state;
     }
-}
+};
 
 
 export const changeModalDelete = (value: boolean) => ({type: 'MODALS/CHANGE-MODAL-DELETE', value} as const);
 export const changeModalADD = (value: boolean) => ({type: 'MODALS/CHANGE-MODAL-ADD', value} as const);
 export const changeModalAddCard = (value: boolean) => ({type: 'MODALS/CHANGE-MODAL-ADD-CARD', value} as const);
-export const changeModalEditCard = (value: boolean, id: string, question: string, answer: string) => (
-    {type: 'MODALS/CARD/CHANGE-MODAL-EDIT-CARD', value, id, question, answer} as const);
+export const changeModalEditCard = (value: boolean, id: string, question: string, comments: string) => (
+    {type: 'MODALS/CARD/CHANGE-MODAL-EDIT-CARD', value, id, question, comments} as const);

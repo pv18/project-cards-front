@@ -45,21 +45,20 @@ export const TablePackName: React.FC<TablePackNamePropsType> = (props) => {
             <table className={s.table}>
                 <thead>
                 <tr>
-                    <th onClick={() => props.changeFilter('question')}>
+                    <th onClick={() => props.changeFilter('0name')}>
                         <span>Question</span>
-                        {props.filter === 'question' && <img src={Arrow} alt="Arrow"/>}
+                        {props.filter === '0name' && <img src={Arrow} alt="Arrow"/>}
                     </th>
-                    <th onClick={() => props.changeFilter('answer')}>
+                    <th>
                         <span>Answer</span>
-                        {props.filter === 'answer' && <img src={Arrow} alt="Arrow"/>}
                     </th>
-                    <th onClick={() => props.changeFilter('updated')}>
+                    <th onClick={() => props.changeFilter('0updated')}>
                         <span>Last Updated</span>
-                        {props.filter === 'updated' && <img src={Arrow} alt="Arrow"/>}
+                        {props.filter === '0updated' && <img src={Arrow} alt="Arrow"/>}
                     </th>
-                    <th onClick={() => props.changeFilter('grade')}>
+                    <th onClick={() => props.changeFilter('0cardsCount')}>
                         <span>Grade</span>
-                        {props.filter === 'grade' && <img src={Arrow} alt="Arrow"/>}
+                        {props.filter === '0cardsCount' && <img src={Arrow} alt="Arrow"/>}
                     </th>
                     <th>
                         <span>Actions</span>
@@ -69,7 +68,7 @@ export const TablePackName: React.FC<TablePackNamePropsType> = (props) => {
                 <tbody>
                 {props.data.map(c => <tr key={c.updated}>
                         <td>{c.question}</td>
-                        <td>{c.answer}</td>
+                        <td>{c.comments}</td>
                         <td>{new Date(Date.parse(c.updated)).toLocaleDateString()}</td>
                         <td><Rating value={c.grade}/></td>
                         <td>

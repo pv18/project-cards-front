@@ -43,7 +43,7 @@ export const PackName = () => {
                         </Button>
                     </div>
                 </div>
-                <TablePackNameContainer/>
+                <TablePackNameContainer filterTitle={search}/>
             </div>
             <Modal visibility={isModal}>
                 <ModalAddCard cardID={packId}/>
