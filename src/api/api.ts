@@ -87,7 +87,7 @@ const instance = axios.create({
 
 
 export const AuthAPI = {
-
+    // удалить
     loginMe(data: LoginDataType) {
         return instance.post<AuthResponseType>('auth/login', data);
     },
