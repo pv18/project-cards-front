@@ -28,9 +28,9 @@ export const LoginContainer = () => {
 	const [rememberMe, setRememberMe] = useState<boolean>(false);
 	// const [activeBtn, setActiveBtn] = useState<boolean>(false);
 
-	const activeLoginBtn = useSelector<AppRootStateType, boolean>(state => state.auth.activeLoginBtn);
+	//const activeLoginBtn = useSelector<AppRootStateType, boolean>(state => state.auth.activeLoginBtn);
+	const isLoading = useSelector<AppRootStateType, boolean>(state => state.app.isLoading);
 	const isAuth = useSelector<AppRootStateType, boolean>(state => state.app.isAuth);
-
 
 	useEffect(() => {
 		if (isAuth) {
@@ -82,7 +82,8 @@ export const LoginContainer = () => {
 			<Login
 				email={email}
 				password={password}
-				activeLoginBtn={activeLoginBtn}
+				//activeLoginBtn={activeLoginBtn}
+				isLoading={isLoading}
 				rememberMe={rememberMe}
 				onChangeChecked={onChangeChecked}
 				onChangeHandlerEmail={onChangeHandlerEmail}

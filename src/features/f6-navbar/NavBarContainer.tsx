@@ -15,14 +15,19 @@ export const NavBarContainer = () => {
 
     const dispatch = AppDispatch();
     const profileIcon = useSelector<AppRootStateType, string | undefined>(state => state.profile.userData.avatar);
+    const isLoading = useSelector<AppRootStateType, boolean>(state => state.app.isLoading);
+    const avatar = useSelector<AppRootStateType, string|undefined>(state => state.profile.userData.avatar);
+
     const onClickHandlerLogOut = () => {
-      dispatch(setActiveMenuItem(''));
-      dispatch(setLogOut());
+        (!isLoading)
+        && (dispatch(setActiveMenuItem('')))
+        && (dispatch(setLogOut()));
     };
     return (
         <>
             <NavBar onClickHandlerLogOut={onClickHandlerLogOut}
                     profileIcon={profileIcon}
+                    avatar={avatar}
             />
         </>
     );

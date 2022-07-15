@@ -5,6 +5,7 @@ import s from './Pagination.module.scss';
 type PaginationPropsType = {
     totalPages: number
     currentPage: number
+    isLoading: boolean
     setPageCount: (rangePages: number) => void
     setCurrentPage: (pageCount: number) => void
     prevPage: () => void
@@ -58,7 +59,9 @@ const Pagination = (props: PaginationPropsType) => {
     }
     return (
         <div className={s.block}>
-            <button onClick={props.prevPage}>{'<'}</button>
+            <button onClick={props.prevPage}
+                    disabled={props.isLoading}
+            >{'<'}</button>
             <div className={s.block__pages}>
                 {pages.map((page: number | '...') => (
                     (page !== '...')
@@ -66,16 +69,19 @@ const Pagination = (props: PaginationPropsType) => {
                             key={page}
                             className={page === props.currentPage ? s.page_active : s.page}
                             onClick={() => props.setCurrentPage(page)}
+                            disabled={props.isLoading}
                         >
                             {page}
                         </button>
                         : <span>...</span>
                 ))}
             </div>
-            <button onClick={props.nextPage}>{'>'}</button>
+            <button onClick={props.nextPage}
+                    disabled={props.isLoading}
+            >{'>'}</button>
             <span>Show</span>
             <form>
-                <select defaultValue={8} onChange={onChangeHandlerRange}>
+                <select defaultValue={8} onChange={onChangeHandlerRange} disabled={props.isLoading}>
                     <option value={4}>4</option>
                     <option value={6}>6</option>
                     <option value={8}>8</option>

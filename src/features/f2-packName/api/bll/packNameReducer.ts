@@ -23,15 +23,15 @@ export type PackNameStateType = {
 
 export type PackNameActionType = ReturnType<typeof setPackNameList>
 
-const initialState:PackNameStateType = {
+const initialState: PackNameStateType = {
     cards: [],
     cardsTotalCount: 10,
     maxGrade: 6,
     minGrade: 0,
     page: 1,
     pageCount: 4,
-    packUserId: ''
-}
+    packUserId: '',
+};
 
 export const packNameReducer = (state = initialState, acton: PackNameActionType): PackNameStateType => {
     switch (acton.type) {
@@ -54,3 +54,14 @@ export const setPackNameList = (data: CardPackNameType[]) => {
         data,
     } as const;
 };
+
+/*export const getCards = (cardsPack_id: string, pageCount: number): AppThunkType => (dispatch) => {
+    dispatch(setIsLoading(true));
+    apiCard.getCards({cardsPack_id: cardsPack_id, pageCount: pageCount})
+        .then(res => {
+            dispatch(setPackNameList(res.data.cards));
+        })
+        .finally(() => {
+            dispatch(setIsLoading(false));
+        });
+};*/

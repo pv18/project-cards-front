@@ -126,8 +126,15 @@ export const getLearnCardsPack = (id: string): AppThunkType => (dispatch) => {
 
 
 export const putRatingCard = (rating: number, card_id: string): AppThunkType => (dispatch) => {
+	dispatch(setIsLoading(true));
 	ApiCards.sendRate(rating, card_id)
 	.then(data => {
 		dispatch(setGradeCard(data.updatedGrade.card_id, data.updatedGrade.grade));
-	});
+	})
+		.catch(err=>{
+
+		})
+		.finally(()=>{
+			dispatch(setIsLoading(false));
+		});
 };

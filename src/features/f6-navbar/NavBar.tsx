@@ -6,6 +6,7 @@ import {Switch} from './switch/Switch';
 type navPropsType = {
     onClickHandlerLogOut: () => void
     profileIcon: string | undefined
+    avatar: string|undefined
 }
 
 export const NavBar = (props: navPropsType) => {
@@ -20,8 +21,8 @@ export const NavBar = (props: navPropsType) => {
                      props.onClickHandlerLogOut();
                  }}
             >
-                <div className={s.profileIcon}>
-
+                <div >
+                    <img src={props.avatar} className={s.profileIcon}/>
                 </div>
                 <span>LogOut</span>
             </div>

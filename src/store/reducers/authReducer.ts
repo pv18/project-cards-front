@@ -145,7 +145,8 @@ const recoveryPassword = (recoverySuccess: boolean) => {
 // thunk creator
 
 export const setDataLoginTC = (data: LoginDataType): AppThunkType => (dispatch) => {
-    dispatch(isToggleLoginBtn(true));
+    //dispatch(isToggleLoginBtn(true));
+    dispatch(setIsLoading(true));
     AuthAPI.loginMe(data)
         .then(res => {
             dispatch(setDataLoginAC(res.data));
@@ -156,23 +157,29 @@ export const setDataLoginTC = (data: LoginDataType): AppThunkType => (dispatch) 
             dispatch(setErrorMessage(error.response.data.error));
         })
         .finally(() => {
-            dispatch(isToggleLoginBtn(false));
+           // dispatch(isToggleLoginBtn(false));
+            dispatch(setIsLoading(false));
         });
 };
 
 export const setLogOut = (): AppThunkType => (dispatch) => {
+    dispatch(setIsLoading(true));
     AuthAPI.logOut()
         .then(resData => {
                 dispatch(setIsAuth(false));
         })
         .catch(error => {
             dispatch(setErrorMessage(error.response.data.error));
+        })
+        .finally(()=>{
+            dispatch(setIsLoading(false));
         });
 };
 
 // ТС для страницы восстановления пароля
 export const recoveryPass = (email: string): AppThunkType => (dispatch) => {
     dispatch(setErrorMessage(''));
+    dispatch(setIsLoading(true));
     AuthAPI.recoveryPass(email)
         .then(resData => {
             if (resData.info.length) {
@@ -182,6 +189,9 @@ export const recoveryPass = (email: string): AppThunkType => (dispatch) => {
         })
         .catch(err => {
             dispatch(setErrorMessage(err.response.data.error));
+        })
+        .finally(()=>{
+            dispatch(setIsLoading(false));
         });
 };
 
@@ -191,6 +201,7 @@ const setRegistrationStatus = (registration: boolean) => ({type: 'AUTH/SET-STATU
 
 // ТС для страницы регистрации
 export const postRegisterTC = (data: RegistrationDataType): AppThunkType => (dispatch) => {
+    dispatch(setIsLoading(true));
     AuthAPI.registrationMe(data)
         .then(res => {
             dispatch(setRegistrationStatus(true));
@@ -198,6 +209,9 @@ export const postRegisterTC = (data: RegistrationDataType): AppThunkType => (dis
         })
         .catch(err => {
             dispatch(setErrorMessage(err.response.data.error));
+        })
+        .finally(()=>{
+            dispatch(setIsLoading(false));
         });
 };
 

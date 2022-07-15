@@ -125,7 +125,7 @@ export const ProfileAPI = {
                 return res.data;
             });
     },
-    putProfile(name: string, avatar: string) {
+    putProfile(name: string, avatar: string | undefined) {
         return instance.put('/auth/me', {name, avatar})
             .then(res => {
                 return res.data;

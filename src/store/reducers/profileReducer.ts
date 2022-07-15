@@ -90,6 +90,7 @@ const setErrorMessage = (error: string) => ({type: 'PROFILE/SET-ERROR', error} a
 
 // TC получение профиля
 export const getUserProfile = (): AppThunkType => (dispatch) => {
+    dispatch(setIsLoading(true));
     ProfileAPI.getProfile()
         .then(resData => {
             dispatch(setProfile(resData));
@@ -98,10 +99,13 @@ export const getUserProfile = (): AppThunkType => (dispatch) => {
         .catch((error)=>{
             dispatch(setErrorMessage(error.response.data.error));
             dispatch(setIsAuth(false));
+        })
+        .finally(() => {
+            dispatch(setIsLoading(false));
         });
 };
 // TC редактирования профиля
-export const putUserProfile = (name:string, avatar:string): AppThunkType => (dispatch) => {
+export const putUserProfile = (name:string, avatar:string | undefined): AppThunkType => (dispatch) => {
     dispatch(setIsLoading(true));
     dispatch(setErrorMessage(''));
     ProfileAPI.putProfile(name,avatar)
@@ -111,7 +115,10 @@ export const putUserProfile = (name:string, avatar:string): AppThunkType => (dis
             dispatch(toggleFetching(false));
         })
         .catch((error)=>{
-            if (error) {
+            if (error.response.status == 401) {
+                dispatch(setIsAuth(false));
+                dispatch(setErrorMessage(error.response.data.error));
+            } else if (error.response.status >= 400) {
                 dispatch(setErrorMessage(error.response.data.error));
             } else {
                 dispatch(setErrorMessage('Some error!'));
