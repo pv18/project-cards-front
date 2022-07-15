@@ -1,7 +1,11 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 
 import {TablePackName} from './TablePackName';
-import {CardPackNameType} from './api/bll/packNameReducer';
+import {CardPackNameType, setPackNameList} from './api/bll/packNameReducer';
+import {useDispatch, useSelector} from 'react-redux';
+import {AppRootStateType} from '../../store/store';
+import {useParams} from 'react-router-dom';
+import {apiCard} from './api/api';
 
 
 export type CardsType = {
@@ -18,12 +22,26 @@ export type CardsType = {
 
 export type FilterPackName = 'answer' | 'question' | 'updated' | 'grade'
 
-interface ITablePackNameContainer {
-    data: CardsType[]
-}
+// interface ITablePackNameContainer {
+//     data: CardsType[]
+// }
 
-export const TablePackNameContainer: React.FC<ITablePackNameContainer> = (props) => {
+export const TablePackNameContainer = () => {
     const [filter, setFilter] = useState<FilterPackName>('updated');
+
+    const cards = useSelector<AppRootStateType, CardPackNameType[]>(state => state.packName.cards);
+    const {packId} = useParams();
+    const dispatch = useDispatch();
+
+    useEffect(() => {
+        if (packId) {
+            apiCard.getCards({cardsPack_id: packId, pageCount: 10})
+                .then(res => {
+                    dispatch(setPackNameList(res.data.cards));
+                });
+        }
+    }, []);
+
 
     const getFilteredCards = (cards: CardPackNameType[], filter: FilterPackName) => {
         switch (filter) {
@@ -39,7 +57,7 @@ export const TablePackNameContainer: React.FC<ITablePackNameContainer> = (props)
                 return cards;
         }
     };
-    const filteredCards = getFilteredCards(props.data, filter);
+    const filteredCards = getFilteredCards(cards, filter);
     return (
         <div>
             <TablePackName data={filteredCards} filter={filter} changeFilter={setFilter}/>
