@@ -1,7 +1,7 @@
 import React from 'react';
 
 import {TablePacksContainer} from '../f8-tablePack/TablePacksContainer';
-import PaginationContainer from '../../components/с4-Pagination/PaginationContainer';
+import PaginationContainer from '../../components/c4-Pagination/PaginationContainer';
 
 import {NavBarContainer} from '../f6-navbar/NavBarContainer';
 

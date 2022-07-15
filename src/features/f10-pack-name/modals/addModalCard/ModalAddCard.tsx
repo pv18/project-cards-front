@@ -2,7 +2,7 @@ import React, {useState} from 'react';
 import s from './ModalAddCard.module.scss';
 import IconDelete from '../../../../assets/img/delete.svg';
 import {Button} from '../../../../components/c5-Button/Button';
-import {TextField} from '../../../../components/с1-Textfield/TextField';
+import {TextField} from '../../../../components/c1-Textfield/TextField';
 import {useDispatch} from 'react-redux';
 import {changeModalAddCard} from '../../../../store/reducers/modalsReducer';
 import {apiCard, NewCardType} from '../../../f2-packName/api/api';

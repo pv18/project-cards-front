@@ -4,7 +4,7 @@ import {useSelector} from 'react-redux';
 
 import {Outlet} from 'react-router-dom';
 
-import {Preloader} from '../components/с2-Preloader/Preloader';
+import {Preloader} from '../components/c2-Preloader/Preloader';
 
 import {AppDispatch, AppRootStateType} from '../store/store';
 

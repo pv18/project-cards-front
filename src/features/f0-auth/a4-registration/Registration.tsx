@@ -1,7 +1,7 @@
 import React, {ChangeEvent} from 'react';
 
 import {Button} from '../../../components/c5-Button/Button';
-import {TextField} from '../../../components/с1-Textfield/TextField';
+import {TextField} from '../../../components/c1-Textfield/TextField';
 
 import s from './Registration.module.scss';
 

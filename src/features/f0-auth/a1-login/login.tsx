@@ -2,11 +2,11 @@ import {ChangeEvent} from 'react';
 
 import {useSelector} from 'react-redux';
 
-import {TextField} from '../../../components/с1-Textfield/TextField';
+import {TextField} from '../../../components/c1-Textfield/TextField';
 
 import {Button} from '../../../components/c5-Button/Button';
 
-import SuperCheckbox from '../../../components/с3-SuperCheckbox/SuperCheckbox';
+import SuperCheckbox from '../../../components/c3-SuperCheckbox/SuperCheckbox';
 
 import {AppRootStateType} from '../../../store/store';
 

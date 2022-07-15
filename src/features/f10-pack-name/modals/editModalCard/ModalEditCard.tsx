@@ -4,7 +4,7 @@ import {useDispatch, useSelector} from 'react-redux';
 
 import IconDelete from '../../../../assets/img/delete.svg';
 import {Button} from '../../../../components/c5-Button/Button';
-import {TextField} from '../../../../components/с1-Textfield/TextField';
+import {TextField} from '../../../../components/c1-Textfield/TextField';
 import {apiCard, ChangeCardType} from '../../../f2-packName/api/api';
 import {setPackNameList} from '../../../f2-packName/api/bll/packNameReducer';
 import {AppRootStateType} from '../../../../store/store';

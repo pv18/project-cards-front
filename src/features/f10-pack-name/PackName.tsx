@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 
 import {useNavigate, useParams} from 'react-router-dom';
 
@@ -11,12 +11,10 @@ import {TablePackNameContainer} from '../f2-packName/TablePackNameContainer';
 import {TableSearch} from '../f7-tableSearch/TableSearch';
 import {apiCard} from '../f2-packName/api/api';
 import {CardPackNameType, setPackNameList} from '../f2-packName/api/bll/packNameReducer';
-import {AppDispatch, AppRootStateType} from '../../store/store';
+import {AppRootStateType} from '../../store/store';
 import {Button} from '../../components/c5-Button/Button';
 
 import {NavBarContainer} from '../f6-navbar/NavBarContainer';
-
-import {setIsLoading} from '../../store/reducers/appReducer';
 
 import s from './PackName.module.scss';
 import {Modal} from '../../components/c6-modal/Modal';

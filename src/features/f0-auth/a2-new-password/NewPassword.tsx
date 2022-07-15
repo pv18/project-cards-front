@@ -1,5 +1,5 @@
 import React, {ChangeEvent} from 'react';
-import {TextField} from '../../../components/с1-Textfield/TextField';
+import {TextField} from '../../../components/c1-Textfield/TextField';
 import {Button} from '../../../components/c5-Button/Button';
 import s from './NewPassword.module.scss';
 

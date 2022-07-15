@@ -2,7 +2,7 @@ import React, {useState} from 'react';
 
 import {Button} from '../../components/c5-Button/Button';
 
-import {SuperRadio} from '../../components/c7-SuperRadio/SuperRadio';
+import {SuperRadio} from '../../components/c8-SuperRadio/SuperRadio';
 
 import s from './LearnCards.module.scss';
 

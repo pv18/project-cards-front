@@ -2,11 +2,11 @@ import React, {ChangeEvent, useState} from 'react';
 
 import {useNavigate} from 'react-router-dom';
 
-import {TextField} from '../../../components/с1-Textfield/TextField';
+import {TextField} from '../../../components/c1-Textfield/TextField';
 
 import {Button} from '../../../components/c5-Button/Button';
 
-import {Preloader} from '../../../components/с2-Preloader/Preloader';
+import {Preloader} from '../../../components/c2-Preloader/Preloader';
 
 import iconImg from '../../../assets/img/union.svg';
 
