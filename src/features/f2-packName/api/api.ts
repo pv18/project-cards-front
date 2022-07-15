@@ -18,6 +18,10 @@ export const apiCard = {
 
     addNewCard(card?: NewCardType) {
         return instance.post('cards/card', {card})
+    },
+
+    changeCard(card?: ChangeCardType) {
+        return instance.put('cards/card', {card})
     }
 };
 
@@ -65,4 +69,10 @@ export type NewCardType = {
     questionImg?: string // не обязателен
     questionVideo?: string // не обязателен
     answerVideo?: string // не обязателен
+}
+
+export type ChangeCardType = {
+    _id: string
+    question?: string
+    comments?: string
 }
