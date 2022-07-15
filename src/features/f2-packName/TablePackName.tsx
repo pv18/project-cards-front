@@ -68,13 +68,13 @@ export const TablePackName: React.FC<TablePackNamePropsType> = (props) => {
                 <tbody>
                 {props.data.map(c => <tr key={c.updated}>
                         <td>{c.question}</td>
-                        <td>{c.comments}</td>
+                        <td>{c.answer}</td>
                         <td>{new Date(Date.parse(c.updated)).toLocaleDateString()}</td>
                         <td><Rating value={c.grade}/></td>
                         <td>
                             <div className={s.buttons}>
                                 <button className={s.btn}
-                                        onClick={() => dispatch(changeModalEditCard(true, c._id, c.question, c.answer))}
+                                        onClick={() => dispatch(changeModalEditCard(true, c._id, c.question,'', c.answer))}
                                 >
                                     Edit
                                 </button>

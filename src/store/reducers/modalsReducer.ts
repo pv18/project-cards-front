@@ -2,6 +2,7 @@ type EditModal = {
     value: boolean
     id: string
     question: string
+    answer: string
     comments: string
 }
 
@@ -21,7 +22,7 @@ const initialState: ModalsType = {
     modalDelete: false,
     modalADD: false,
     modalAddCard: false,
-    modalCardEditCard: {value: false, id: '', question: '', comments: ''},
+    modalCardEditCard: {value: false, id: '', question: '', comments: '', answer: ''},
 };
 
 export const modalsReducer = (state: ModalsType = initialState, action: ActionTypes): ModalsType => {
@@ -40,6 +41,7 @@ export const modalsReducer = (state: ModalsType = initialState, action: ActionTy
                     id: action.id,
                     question: action.question,
                     comments: action.comments,
+                    answer: action.answer,
                 },
             };
         default:
@@ -51,5 +53,5 @@ export const modalsReducer = (state: ModalsType = initialState, action: ActionTy
 export const changeModalDelete = (value: boolean) => ({type: 'MODALS/CHANGE-MODAL-DELETE', value} as const);
 export const changeModalADD = (value: boolean) => ({type: 'MODALS/CHANGE-MODAL-ADD', value} as const);
 export const changeModalAddCard = (value: boolean) => ({type: 'MODALS/CHANGE-MODAL-ADD-CARD', value} as const);
-export const changeModalEditCard = (value: boolean, id: string, question: string, comments: string) => (
-    {type: 'MODALS/CARD/CHANGE-MODAL-EDIT-CARD', value, id, question, comments} as const);
+export const changeModalEditCard = (value: boolean, id: string, question: string, comments: string, answer: string) => (
+    {type: 'MODALS/CARD/CHANGE-MODAL-EDIT-CARD', value, id, question, comments, answer} as const);

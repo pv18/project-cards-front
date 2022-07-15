@@ -75,4 +75,5 @@ export type ChangeCardType = {
     _id: string
     question?: string
     comments?: string
+    answer?: string
 }

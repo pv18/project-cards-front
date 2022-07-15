@@ -1,3 +1,7 @@
+import {setIsLoading} from '../../../../store/reducers/appReducer';
+import {AppThunkType} from '../../../../store/store';
+import {apiCard} from '../api';
+
 export type CardPackNameType = {
     answer: string
     question: string
@@ -55,7 +59,7 @@ export const setPackNameList = (data: CardPackNameType[]) => {
     } as const;
 };
 
-/*export const getCards = (cardsPack_id: string, pageCount: number): AppThunkType => (dispatch) => {
+export const getCards = (cardsPack_id: string, pageCount: number): AppThunkType => (dispatch) => {
     dispatch(setIsLoading(true));
     apiCard.getCards({cardsPack_id: cardsPack_id, pageCount: pageCount})
         .then(res => {
@@ -64,4 +68,4 @@ export const setPackNameList = (data: CardPackNameType[]) => {
         .finally(() => {
             dispatch(setIsLoading(false));
         });
-};*/
+};

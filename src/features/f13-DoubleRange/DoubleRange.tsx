@@ -2,7 +2,6 @@ import React, {ChangeEvent, useState} from 'react';
 import {useSelector} from 'react-redux';
 
 import {AppDispatch, AppRootStateType} from '../../store/store';
-import SuperDoubleRange from '../../components/c8-SuperDoubleRange/SuperDoubleRange';
 import {setMinMax} from '../../store/reducers/tablePacksReducer';
 
 const DoubleRange = () => {

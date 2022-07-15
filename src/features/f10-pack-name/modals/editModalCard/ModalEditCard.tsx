@@ -19,7 +19,7 @@ interface IModalEditCard {
 
 export const ModalEditCard = (props: IModalEditCard) => {
     const question = useSelector<AppRootStateType, string>(state => state.modals.modalCardEditCard.question);
-    const answer = useSelector<AppRootStateType, string>(state => state.modals.modalCardEditCard.comments);
+    const answer = useSelector<AppRootStateType, string>(state => state.modals.modalCardEditCard.answer);
     const cardID = useSelector<AppRootStateType, string>(state => state.modals.modalCardEditCard.id);
     const [titleQuestion, setTitleQuestion] = useState<string>(question);
     const [titleAnswer, setTitleAnswer] = useState<string>(answer);
@@ -34,7 +34,8 @@ export const ModalEditCard = (props: IModalEditCard) => {
             const params: ChangeCardType = {
                 _id: cardID,
                 question: titleQuestion,
-                comments: titleAnswer,
+                answer: titleAnswer,
+                comments: '',
             };
 
             apiCard.changeCard(params)
@@ -48,7 +49,7 @@ export const ModalEditCard = (props: IModalEditCard) => {
                     dispatch(setPackNameList(res.data.cards));
                 });
 
-            dispatch(changeModalEditCard(false, cardID, titleQuestion, titleAnswer));
+            dispatch(changeModalEditCard(false, cardID, titleQuestion,'', titleAnswer ));
         }
 
     };
@@ -59,7 +60,7 @@ export const ModalEditCard = (props: IModalEditCard) => {
                 <h3>СARD EDITING</h3>
                 <img src={IconDelete}
                      alt='delete'
-                     onClick={() => dispatch(changeModalEditCard(false, cardID, question, titleAnswer))}
+                     onClick={() => dispatch(changeModalEditCard(false, cardID, question,'', titleAnswer))}
                 />
             </div>
             <TextField label={'edit question'}
@@ -73,7 +74,7 @@ export const ModalEditCard = (props: IModalEditCard) => {
             <div className={s.buttons}>
                 <Button width={'250px'}
                         variant={'secondary'}
-                        onClick={() => dispatch(changeModalEditCard(false, cardID, titleQuestion, titleAnswer))}
+                        onClick={() => dispatch(changeModalEditCard(false, cardID, titleQuestion,'', titleAnswer))}
                 >
                     Cancel
                 </Button>

@@ -10,8 +10,8 @@ import {TablePackNameContainer} from '../f2-packName/TablePackNameContainer';
 
 import {TableSearch} from '../f7-tableSearch/TableSearch';
 import {apiCard} from '../f2-packName/api/api';
-import {CardPackNameType, setPackNameList} from '../f2-packName/api/bll/packNameReducer';
-import {AppRootStateType} from '../../store/store';
+import {CardPackNameType, getCards, setPackNameList} from '../f2-packName/api/bll/packNameReducer';
+import {AppDispatch, AppRootStateType} from '../../store/store';
 import {Button} from '../../components/c5-Button/Button';
 
 import {NavBarContainer} from '../f6-navbar/NavBarContainer';
@@ -26,19 +26,14 @@ export const PackName = () => {
     const isModal = useSelector<AppRootStateType, boolean>(state => state.modals.modalAddCard)
     const navigate = useNavigate();
     const {name, packId, pageCount} = useParams();
-    const dispatch = useDispatch()
     const cards = useSelector<AppRootStateType, CardPackNameType[]>(state => state.packName.cards);
     const isLoading = useSelector<AppRootStateType, boolean>(state => state.app.isLoading);
 
-    //const dispatch = AppDispatch()
+    const dispatch = AppDispatch()
 
     useEffect(() => {
         if (packId && pageCount) {
-            //dispatch(getCards(packId, +pageCount))
-            apiCard.getCards({cardsPack_id: packId, pageCount: +pageCount})
-                .then(res => {
-                    dispatch(setPackNameList(res.data.cards));
-                });
+            dispatch(getCards(packId, +pageCount))
         }
     }, []);
 
@@ -61,12 +56,10 @@ export const PackName = () => {
                     <div className={s.buttonWrap}>
                         <Button width={'200px'}
                                 onClick={() => dispatch(changeModalAddCard(true))}
+                                disabled={isLoading}
                         >
                             Add new question
                         </Button>
-                        <Button width={'200px'}
-                                disabled={isLoading}
-                        >Add new question</Button>
                     </div>
                 </div>
                 <TablePackNameContainer filterTitle={search}/>
