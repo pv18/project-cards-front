@@ -80,9 +80,9 @@ export const TablePacksContainer = () => {
 		setSortPacks(0 + value);
 	};
 
-	const learnCardsPack = (id: string) => {
+	const learnCardsPack = (id: string, name: string) => {
 		dispatch(getLearnCardsPack(id));
-		navigate(PATH.LEARN_CARDS);
+		navigate(`${PATH.LEARN_CARDS}/${name}`);
 	};
 
 	return (

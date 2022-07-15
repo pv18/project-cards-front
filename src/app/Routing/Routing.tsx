@@ -69,7 +69,9 @@ export const Routing = () => {
                     <Route path={'*'} element={<ErrorPage/>}/>
                     <Route path={'/'} element={<Navigate to={PATH.LOGIN}/>}/>
 
-                    <Route path={PATH.LEARN_CARDS} element={<LearnCardsContainer/>}/>
+                    <Route path={PATH.LEARN_CARDS} element={<LearnCardsContainer/>}>
+                        <Route path={':name'} element={<LearnCardsContainer/>}/>
+                    </Route>
                 </Route>
             </Routes>
         </>

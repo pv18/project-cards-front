@@ -13,7 +13,7 @@ type TablePacksPropsType = {
 	showModalDelete: (id: string, name: string) => void
 	showCardsPack: (id: string, pageCount: number, name: string) => void
 	sortTableValue: (value: string) => void
-	learnCardsPack: (id: string) => void
+	learnCardsPack: (id: string, name: string) => void
 }
 
 
@@ -56,7 +56,15 @@ export const TablePacks = (props: TablePacksPropsType) => {
 								<button className={s.table__btn}>Edit</button>
 							</span>
 						}
-						<button onClick={() => learnCardsPack(el._id)} className={s.table__btn}>Learn</button>
+						{
+							el.cardsCount > 0 &&
+							<button
+								className={s.table__btn}
+								onClick={() => learnCardsPack(el._id, el.name)}
+							>
+								Learn
+							</button>
+						}
 					</th>
 				</tr>
 			);
@@ -90,7 +98,7 @@ export const TablePacks = (props: TablePacksPropsType) => {
 				</tr>
 				</thead>
 				<tbody className={s.table__body}>
-					{renderCardsPacks()}
+				{renderCardsPacks()}
 				</tbody>
 			</table>
 		</div>

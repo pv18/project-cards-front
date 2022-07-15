@@ -2,7 +2,7 @@ import React, {useEffect, useState} from 'react';
 
 import {useSelector} from 'react-redux';
 
-import {useNavigate} from 'react-router-dom';
+import {useNavigate, useParams} from 'react-router-dom';
 
 import {AppDispatch, AppRootStateType} from '../../store/store';
 
@@ -29,6 +29,8 @@ const getCard = (cards: LearnCardType[]) => {
 export const LearnCardsContainer = () => {
 
 	const dispatch = AppDispatch();
+
+	const {name} = useParams();
 
 
 	const [card, setCard] = useState<LearnCardType>({
@@ -83,6 +85,7 @@ export const LearnCardsContainer = () => {
 	return (
 		<>
 			<LearnCards
+				name={name}
 				stateLearn={stateLearn}
 				question={card.question}
 				answer={card.answer}
