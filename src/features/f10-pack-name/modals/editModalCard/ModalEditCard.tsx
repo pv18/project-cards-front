@@ -1,17 +1,16 @@
 import React, {useState} from 'react';
 
-import {useDispatch, useSelector} from 'react-redux';
+import {useSelector} from 'react-redux';
 
 import IconDelete from '../../../../assets/img/delete.svg';
 import {Button} from '../../../../components/c5-Button/Button';
 import {TextField} from '../../../../components/c1-Textfield/TextField';
-import {apiCard, ChangeCardType} from '../../../f2-packName/api/api';
-import {setPackNameList} from '../../../f2-packName/api/bll/packNameReducer';
-import {AppRootStateType} from '../../../../store/store';
+import {AppDispatch, AppRootStateType} from '../../../../store/store';
 
-import {changeModalEditCard} from '../../../../store/reducers/modalsReducer';
+import {changeModalEditCard, editCardTC} from '../../../../store/reducers/modalsReducer';
 
 import s from './ModalEditCard.module.scss';
+import {ChangeCardType} from '../../../../api/api';
 
 interface IModalEditCard {
     cardID?: string
@@ -25,7 +24,7 @@ export const ModalEditCard = (props: IModalEditCard) => {
     const [titleAnswer, setTitleAnswer] = useState<string>(answer);
 
 
-    const dispatch = useDispatch();
+    const dispatch = AppDispatch();
 
     // Функция изменения карточки
     const changeCard = () => {
@@ -38,18 +37,7 @@ export const ModalEditCard = (props: IModalEditCard) => {
                 comments: '',
             };
 
-            apiCard.changeCard(params)
-                .then(res => {
-                })
-                .catch(err => {
-                });
-
-            apiCard.getCards({cardsPack_id: props.cardID, pageCount: 10})
-                .then(res => {
-                    dispatch(setPackNameList(res.data.cards));
-                });
-
-            dispatch(changeModalEditCard(false, cardID, titleQuestion,'', titleAnswer ));
+            dispatch(editCardTC(params, props.cardID))
         }
 
     };

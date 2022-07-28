@@ -1,6 +1,7 @@
-import {setIsLoading} from '../../../../store/reducers/appReducer';
-import {AppThunkType} from '../../../../store/store';
-import {apiCard} from '../api';
+import {AppThunkType} from '../store';
+import {CardAPI} from '../../api/api';
+
+import {setIsLoading} from './appReducer';
 
 export type CardPackNameType = {
     answer: string
@@ -59,11 +60,27 @@ export const setPackNameList = (data: CardPackNameType[]) => {
     } as const;
 };
 
-export const getCards = (cardsPack_id: string, pageCount: number): AppThunkType => (dispatch) => {
+export const getCards = (cardsPack_id: string, pageCount: number, sortCards?: string): AppThunkType => (dispatch) => {
     dispatch(setIsLoading(true));
-    apiCard.getCards({cardsPack_id: cardsPack_id, pageCount: pageCount})
+    CardAPI.getCards({cardsPack_id, pageCount, sortCards})
         .then(res => {
             dispatch(setPackNameList(res.data.cards));
+        })
+        .catch((err) => {
+        })
+        .finally(() => {
+            dispatch(setIsLoading(false));
+        });
+};
+
+export const removeCard = (id: string, packId: string): AppThunkType => (dispatch) => {
+    dispatch(setIsLoading(true));
+    CardAPI.deleteCard(id)
+        .then(res => {
+            CardAPI.getCards({cardsPack_id: packId, pageCount: 10})
+                .then(res => {
+                    dispatch(setPackNameList(res.data.cards));
+                });
         })
         .finally(() => {
             dispatch(setIsLoading(false));

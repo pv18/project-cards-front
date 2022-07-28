@@ -1,3 +1,8 @@
+import {AppThunkType} from '../store';
+import {setIsLoading} from './appReducer';
+import {CardAPI, ChangeCardType, NewCardType} from '../../api/api';
+import {setPackNameList} from './packNameReducer';
+
 type EditModal = {
     value: boolean
     id: string
@@ -55,3 +60,52 @@ export const changeModalADD = (value: boolean) => ({type: 'MODALS/CHANGE-MODAL-A
 export const changeModalAddCard = (value: boolean) => ({type: 'MODALS/CHANGE-MODAL-ADD-CARD', value} as const);
 export const changeModalEditCard = (value: boolean, id: string, question: string, comments: string, answer: string) => (
     {type: 'MODALS/CARD/CHANGE-MODAL-EDIT-CARD', value, id, question, comments, answer} as const);
+
+
+export const addCardTC = (payload: NewCardType, cardID: string): AppThunkType => (dispatch) => {
+    dispatch(setIsLoading(true))
+    CardAPI.addNewCard(payload)
+        .then(res => {
+            CardAPI.getCards({cardsPack_id: cardID, pageCount: 10})
+                .then(res => {
+                    dispatch(setPackNameList(res.data.cards));
+                });
+        })
+        .catch(err => {
+        })
+        .finally(() => {
+            dispatch(setIsLoading(false))
+        })
+}
+
+
+
+// CardAPI.changeCard(params)
+//     .then(res => {
+//     })
+//     .catch(err => {
+//     });
+//
+// CardAPI.getCards({cardsPack_id: props.cardID, pageCount: 10})
+//     .then(res => {
+//         dispatch(setPackNameList(res.data.cards));
+//     });
+//
+// dispatch(changeModalEditCard(false, cardID, titleQuestion,'', titleAnswer ));
+
+export const editCardTC = (payload: ChangeCardType, cardID: string): AppThunkType => (dispatch) => {
+    dispatch(setIsLoading(true))
+    CardAPI.changeCard(payload)
+        .then(res => {
+            dispatch(changeModalEditCard(false, cardID, payload.question,'', payload.answer))
+            CardAPI.getCards({cardsPack_id: cardID, pageCount: 10})
+                .then(res => {
+                    dispatch(setPackNameList(res.data.cards));
+                });
+        })
+        .catch(err => {
+        })
+        .finally(() => {
+            dispatch(setIsLoading(false))
+        })
+}

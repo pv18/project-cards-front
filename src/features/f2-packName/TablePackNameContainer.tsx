@@ -1,11 +1,10 @@
 import React, {useEffect, useState} from 'react';
 
 import {TablePackName} from './TablePackName';
-import {CardPackNameType, setPackNameList} from './api/bll/packNameReducer';
-import {useDispatch, useSelector} from 'react-redux';
-import {AppRootStateType} from '../../store/store';
+import {CardPackNameType, getCards} from '../../store/reducers/packNameReducer';
+import {useSelector} from 'react-redux';
+import {AppDispatch, AppRootStateType} from '../../store/store';
 import {useParams} from 'react-router-dom';
-import {apiCard} from './api/api';
 
 
 export type CardsType = {
@@ -32,14 +31,11 @@ export const TablePackNameContainer = (props: ITablePackNameContainer) => {
 
     const cards = useSelector<AppRootStateType, CardPackNameType[]>(state => state.packName.cards);
     const {packId} = useParams();
-    const dispatch = useDispatch();
+    const dispatch = AppDispatch();
 
     useEffect(() => {
         if (packId) {
-            apiCard.getCards({cardsPack_id: packId, pageCount: 10, sortCards: filter})
-                .then(res => {
-                    dispatch(setPackNameList(res.data.cards));
-                });
+            dispatch(getCards(packId, 10, filter))
         }
     }, [filter]);
 

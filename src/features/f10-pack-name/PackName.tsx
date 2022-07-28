@@ -2,15 +2,14 @@ import React, {useEffect, useState} from 'react';
 
 import {useNavigate, useParams} from 'react-router-dom';
 
-import {useDispatch, useSelector} from 'react-redux';
+import {useSelector} from 'react-redux';
 
 import Arrow from '../../assets/img/arrow-left.svg';
 
 import {TablePackNameContainer} from '../f2-packName/TablePackNameContainer';
 
 import {TableSearch} from '../f7-tableSearch/TableSearch';
-import {apiCard} from '../f2-packName/api/api';
-import {CardPackNameType, getCards, setPackNameList} from '../f2-packName/api/bll/packNameReducer';
+import {CardPackNameType, getCards} from '../../store/reducers/packNameReducer';
 import {AppDispatch, AppRootStateType} from '../../store/store';
 import {Button} from '../../components/c5-Button/Button';
 
@@ -30,12 +29,6 @@ export const PackName = () => {
     const isLoading = useSelector<AppRootStateType, boolean>(state => state.app.isLoading);
 
     const dispatch = AppDispatch()
-
-    useEffect(() => {
-        if (packId && pageCount) {
-            dispatch(getCards(packId, +pageCount))
-        }
-    }, []);
 
     const getFilteredCardsAfterSearch = search === ''
         ? cards

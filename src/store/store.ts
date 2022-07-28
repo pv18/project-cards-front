@@ -3,7 +3,7 @@ import {AnyAction, applyMiddleware, combineReducers, createStore} from 'redux';
 import thunk, {ThunkAction, ThunkDispatch} from 'redux-thunk';
 import {useDispatch} from 'react-redux';
 
-import {packNameReducer} from '../features/f2-packName/api/bll/packNameReducer';
+import {PackNameActionType, packNameReducer} from './reducers/packNameReducer';
 
 import {learnCardsReducer} from './reducers/learnCardsReducer';
 
@@ -13,7 +13,7 @@ import {AppActionsType, appReducer} from './reducers/appReducer';
 import {PackListActionType, tablePacksReducer} from './reducers/tablePacksReducer';
 import {authReducer} from './reducers/authReducer';
 import {modalsReducer} from './reducers/modalsReducer';
-import { packListReducer } from '../features/f1-packsList/api/n0-bll/packListReducer';
+import {packListReducer} from '../features/f1-packsList/api/n0-bll/packListReducer';
 
 
 export type AppRootStateType = ReturnType<typeof rootReducer>
@@ -22,6 +22,7 @@ export type AppRootStateType = ReturnType<typeof rootReducer>
 export type AppRootActionType = ProfileActionType
     | AppActionsType
     | PackListActionType
+    | PackNameActionType
 
 
 export const AppDispatch = () => useDispatch<ThunkDispatch<AppRootStateType, void, AnyAction>>();
@@ -36,7 +37,7 @@ const rootReducer = combineReducers({
     packName: packNameReducer,
     tablePacks: tablePacksReducer,
     modals: modalsReducer,
-	learnCards: learnCardsReducer,
+    learnCards: learnCardsReducer,
     packList: packListReducer,
 
 });

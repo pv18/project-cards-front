@@ -3,14 +3,13 @@ import {CardsType, FilterPackName} from './TablePackNameContainer';
 import {Rating} from '../f12-rating/Rating';
 import Arrow from '../../assets/img/polygon.svg';
 import s from './TablePackName.module.scss';
-import {apiCard} from './api/api';
-import {setPackNameList} from './api/bll/packNameReducer';
+import {getCards, removeCard, setPackNameList} from '../../store/reducers/packNameReducer';
 import {changeModalEditCard} from '../../store/reducers/modalsReducer';
 import {useDispatch, useSelector} from 'react-redux';
 import {useParams} from 'react-router-dom';
 import {Modal} from '../../components/c6-modal/Modal';
 import {ModalEditCard} from '../f10-pack-name/modals/editModalCard/ModalEditCard';
-import {AppRootStateType} from '../../store/store';
+import {AppDispatch, AppRootStateType} from '../../store/store';
 
 
 type TablePackNamePropsType = {
@@ -21,22 +20,13 @@ type TablePackNamePropsType = {
 
 export const TablePackName: React.FC<TablePackNamePropsType> = (props) => {
     const isModal = useSelector<AppRootStateType, boolean>(state => state.modals.modalCardEditCard.value)
-    const dispatch = useDispatch()
+    const dispatch = AppDispatch()
     const {packId} = useParams()
 
     // для удаления карточки
     const deleteCard = (id: string) => {
         if (packId) {
-            apiCard.deleteCard(id)
-                .then(res => {
-                })
-                .catch(err => {
-                });
-
-            apiCard.getCards({cardsPack_id: packId, pageCount: 10})
-                .then(res => {
-                    dispatch(setPackNameList(res.data.cards));
-                });
+            dispatch(removeCard(id, packId))
         }
     };
 

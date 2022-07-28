@@ -1,7 +1,6 @@
 import {AppThunkType} from '../store';
-import {apiCard} from '../../features/f2-packName/api/api';
 
-import {ApiCards} from '../../api/api';
+import {ApiCards, CardAPI} from '../../api/api';
 
 import {setIsLoading} from './appReducer';
 
@@ -115,7 +114,7 @@ export const setGradeCard = (card_id: string, grade: number) => {
 
 export const getLearnCardsPack = (id: string): AppThunkType => (dispatch) => {
 	dispatch(setIsLoading(true));
-	apiCard.getCards({cardsPack_id: id, pageCount: 112})
+	CardAPI.getCards({cardsPack_id: id, pageCount: 112})
 	.then(res => {
 		dispatch(setCards(res.data));
 	})

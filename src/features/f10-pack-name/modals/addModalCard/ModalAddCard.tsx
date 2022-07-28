@@ -4,9 +4,10 @@ import IconDelete from '../../../../assets/img/delete.svg';
 import {Button} from '../../../../components/c5-Button/Button';
 import {TextField} from '../../../../components/c1-Textfield/TextField';
 import {useDispatch} from 'react-redux';
-import {changeModalAddCard} from '../../../../store/reducers/modalsReducer';
-import {apiCard, NewCardType} from '../../../f2-packName/api/api';
-import {setPackNameList} from '../../../f2-packName/api/bll/packNameReducer';
+import {addCardTC, changeModalAddCard} from '../../../../store/reducers/modalsReducer';
+import {setPackNameList} from '../../../../store/reducers/packNameReducer';
+import {CardAPI, NewCardType} from '../../../../api/api';
+import {AppDispatch} from '../../../../store/store';
 
 interface IModalAddCard {
     cardID?: string
@@ -16,7 +17,7 @@ export const ModalAddCard = (props: IModalAddCard) => {
     const [question, setQuestion] = useState('')
     const [answer, setAnswer] = useState('')
 
-    const dispatch = useDispatch()
+    const dispatch = AppDispatch()
 
     // Функция добавления карточки
     const addNewCard = () => {
@@ -28,16 +29,7 @@ export const ModalAddCard = (props: IModalAddCard) => {
                 answer: answer
             }
 
-            apiCard.addNewCard(params)
-                .then(res => {
-                })
-                .catch(err => {
-                });
-
-            apiCard.getCards({cardsPack_id: props.cardID, pageCount: 10})
-                .then(res => {
-                    dispatch(setPackNameList(res.data.cards));
-                });
+            dispatch(addCardTC(params, props.cardID))
 
             dispatch(changeModalAddCard(false))
         }
