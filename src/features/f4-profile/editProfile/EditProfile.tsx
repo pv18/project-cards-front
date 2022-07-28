@@ -19,38 +19,34 @@ type EditProfilePropsType = {
     setNewName: (name: string) => void
     setNewPathFile: (newPathFile: string) => void
     onClickHandlerSave: () => void
+    onClickPaste: () => void
     newPathFile: string | undefined
+    showInputAvatar: boolean
+    setShowInputAvatar: (showInputAvatar: boolean) => void
 }
 
 // Редактирование профиля пользователя
 const EditProfile = (props: EditProfilePropsType) => {
 
     const navigate = useNavigate();
-    const [showInputFile, setShowInputFile] = useState<boolean>(false);
-
 
     // обработчик для изменения имени профиля
     const onChangeHandler = (e: ChangeEvent<HTMLInputElement>) => {
         !props.isLoading && props.setNewName(e.currentTarget.value);
     };
 
-    const formData = new FormData(); // for send to back
+    // const formData = new FormData(); // for send to back
 
     // обработчик для изменения аватарки
     const onClickHandlerAvatar = () => {
-        setShowInputFile(true);
+        props.setShowInputAvatar(true);
         //alert('Аватар будет изменен');
     };
     // обработчик для кнопки Cancel (возврат на предыдущую страницу без сохранения)
     const onClickHandlerCancel = () => {
         !props.isLoading && navigate(-1);
     };
-    const onChangeAvatar = (e: ChangeEvent<HTMLInputElement>) => {
-        console.log(e.target.files ? e.target.files[0].name : 'NoFile');
-        if (e.target.files) {
 
-        }
-    };
     const onChangeNewPathAvatar = (e: ChangeEvent<HTMLInputElement>) => {
         props.setNewPathFile(e.currentTarget.value);
     };
@@ -72,8 +68,12 @@ const EditProfile = (props: EditProfilePropsType) => {
                              className={s.containerEditProfile__avatar_iconImg}/>
                     </div>
                 </div>
-                {(showInputFile) && <input type='text' onChange={onChangeNewPathAvatar} value={props.newPathFile}/>}
-                {(showInputFile) && <input type='file' accept='.jpg, .jpeg, .png' onChange={onChangeAvatar}/>}
+                {(props.showInputAvatar) &&
+                    <div className={s.containerEditProfile__changeAvatar}>
+                        <input type='text' onChange={onChangeNewPathAvatar} value={props.newPathFile}/>
+                        <div className={s.containerEditProfile__changeAvatar_pasteLink}
+                             onClick={props.onClickPaste}>Paste</div>
+                    </div>}
                 <form className={s.containerEditProfile__form}>
                     <TextField type={'text'}
                                label={'Nickname'}

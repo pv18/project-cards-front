@@ -59,7 +59,19 @@
         width: 18px;
       }
     }
-
+    &__changeAvatar {
+      display: flex;
+      flex-direction: row;
+      &_pasteLink {
+        width: 60px;
+        height: 30px;
+        background: rgba(45, 46, 70, 0.5);
+        border: 1px solid #FFFFFF;
+        padding-top: 5px;
+        text-align: center;
+        color: white;
+      }
+    }
     &__form {
       width: 347px;
       margin-top: 38px;

@@ -13,7 +13,7 @@ import {NewPasswordContainer} from '../../features/f0-auth/a2-new-password/NewPa
 import {LearnCardsContainer} from '../../features/f3-learnCards/LearnCardsContainer';
 import {Layout} from '../Layout';
 import {WithAuthRedirect} from '../../hoc/WithAuthRedirect';
-import ProfileContainer from "../../features/f4-profile/ProfileContainer";
+import ProfileContainer from '../../features/f4-profile/ProfileContainer';
 
 export const PATH = {
     LOGIN: '/login',
@@ -66,7 +66,7 @@ export const Routing = () => {
                         </WithAuthRedirect>}>
                         {/*роутинг на таблицу с карточками вместо PacksList доделать*/}
                     </Route>
-                    <Route path={'*'} element={<ErrorPage/>}/>
+                   z<Route path={'*'} element={<ErrorPage/>}/>
                     <Route path={'/'} element={<Navigate to={PATH.LOGIN}/>}/>
 
                     <Route path={PATH.LEARN_CARDS} element={<LearnCardsContainer/>}>

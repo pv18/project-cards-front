@@ -25,6 +25,7 @@ const EditProfileContainer = () => {
 
     const [newName, setNewName] = useState<string>(name);
     const [newPathFile, setNewPathFile] = useState<string | undefined>(avatar);
+    const [showInputAvatar, setShowInputAvatar] = useState<boolean>(false);
 
     /*let avatar = '';*/
 
@@ -36,6 +37,20 @@ const EditProfileContainer = () => {
     const onClickHandlerSave = () => {
         dispatch(putUserProfile(newName, newPathFile));
     };
+
+    const onClickPaste = () => {
+        navigator.clipboard.readText()
+            .then(text => {
+                // `text` содержит текст, прочитанный из буфера обмена
+                setNewPathFile(text);
+                setShowInputAvatar(false);
+            })
+            .catch(err => {
+                // возможно, пользователь не дал разрешение на чтение данных из буфера обмена
+                console.log('Something went wrong', err);
+            });
+    };
+
     return (
         <>
             <NavBarContainer/>
@@ -48,6 +63,9 @@ const EditProfileContainer = () => {
                     isLoading={isLoading}
                     setNewPathFile={setNewPathFile}
                     newPathFile={newPathFile}
+                    onClickPaste={onClickPaste}
+                    showInputAvatar={showInputAvatar}
+                    setShowInputAvatar={setShowInputAvatar}
                 />
             </div>
         </>
