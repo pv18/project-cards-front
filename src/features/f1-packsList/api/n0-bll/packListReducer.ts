@@ -51,7 +51,7 @@ const initialState: PackStateType = {
 		_id: '629e59e17cbffe0004d99dd4',
 	}],
 	cardPacksTotalCount: 5087,
-	maxCardsCount: 103,
+	maxCardsCount: 110,
 	minCardsCount: 0,
 	page: 1,
 	pageCount: 10,
@@ -59,12 +59,12 @@ const initialState: PackStateType = {
 	tokenDeathTime: 1655151219458,
 };
 
-export const packListReducer = (state = initialState, acton: PackListActionType): PackStateType => {
-	switch (acton.type) {
+export const packListReducer = (state = initialState, action: PackListActionType): PackStateType => {
+	switch (action.type) {
 		case 'PACK/SET-PACK_LIST': {
 			return {
 				...state,
-				...acton.data,
+				...action.data,
 			};
 		}
 

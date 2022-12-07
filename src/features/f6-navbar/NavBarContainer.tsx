@@ -17,6 +17,7 @@ export const NavBarContainer = () => {
     const profileIcon = useSelector<AppRootStateType, string | undefined>(state => state.profile.userData.avatar);
     const isLoading = useSelector<AppRootStateType, boolean>(state => state.app.isLoading);
     const avatar = useSelector<AppRootStateType, string|undefined>(state => state.profile.userData.avatar);
+    const profileName = useSelector<AppRootStateType, string>(state => state.profile.userData.name);
 
     const onClickHandlerLogOut = () => {
         (!isLoading)
@@ -28,6 +29,7 @@ export const NavBarContainer = () => {
             <NavBar onClickHandlerLogOut={onClickHandlerLogOut}
                     profileIcon={profileIcon}
                     avatar={avatar}
+                    profileName={profileName}
             />
         </>
     );

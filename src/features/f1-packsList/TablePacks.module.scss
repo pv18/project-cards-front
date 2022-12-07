@@ -1,5 +1,4 @@
-$colorBg: #ECECF9;
-$colorWhite: #FFFFFF;
+@import 'src/common/style/variables';
 
 
 .tablePacks {
@@ -8,13 +7,13 @@ $colorWhite: #FFFFFF;
 	justify-content: center;
 	width: 700px;
 	//height: 700px;
-	border: 1px solid black;
+	border: 1px solid $colorTextSecond;
 	//overflow: scroll;
 }
 
 .table {
 	width: 100%;
-	border: 1px solid red;
+	border: 1px solid $colorAttention;
 
 	&__wrap {
 		align-items: end;

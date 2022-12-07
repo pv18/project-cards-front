@@ -31,9 +31,9 @@ export const Layout = () => {
 
     return (
         <div className={s.wrapper}>
-            <div>
+{/*            <div>
                 <HeaderContainer/>
-            </div>
+            </div>*/}
             <div>
                 {isLoading && <Preloader/>}
             </div>

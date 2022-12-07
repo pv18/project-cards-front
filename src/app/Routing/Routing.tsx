@@ -66,7 +66,7 @@ export const Routing = () => {
                         </WithAuthRedirect>}>
                         {/*роутинг на таблицу с карточками вместо PacksList доделать*/}
                     </Route>
-                   z<Route path={'*'} element={<ErrorPage/>}/>
+                   <Route path={'*'} element={<ErrorPage/>}/>
                     <Route path={'/'} element={<Navigate to={PATH.LOGIN}/>}/>
 
                     <Route path={PATH.LEARN_CARDS} element={<LearnCardsContainer/>}>

@@ -5,7 +5,7 @@ import PaginationContainer from '../../components/c4-Pagination/PaginationContai
 
 import {NavBarContainer} from '../f6-navbar/NavBarContainer';
 
-import DoubleRange from '../f13-DoubleRange/DoubleRange';
+import MultiRangeSliderContainer from '../f13-MultiRangeSliderContainer/MultiRangeSliderContainer';
 import MyAllContainer from '../f9-my-all/MyAllContainer';
 
 import s from './PacksList.module.scss';
@@ -21,7 +21,7 @@ export const PacksList = () => {
                         <h4 className={s.title}>Show packs cards</h4>
                         <MyAllContainer/>
                         <h4 className={s.title}>Number of cards</h4>
-                        <DoubleRange/>
+                        <MultiRangeSliderContainer/>
                     </div>
                     <div className={s.main}>
                         <h2 className={s.title}>Packs list</h2>

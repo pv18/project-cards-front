@@ -14,10 +14,12 @@ const MyAll = (props: MyAllPropsType) => {
             <button className={!props.isId ? s.primary : s.active}
                     onClick={props.onclickHandlerMy}
                     disabled={props.isLoading}
+                    data-descriptions='Show only own cards.'
             >My</button>
             <button className={props.isId ? s.primary : s.active}
                     onClick={props.onclickHandlerAll}
                     disabled={props.isLoading}
+                    data-descriptions='Show all cards.'
             >All</button>
         </div>
     );

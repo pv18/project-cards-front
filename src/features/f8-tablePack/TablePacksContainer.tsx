@@ -47,6 +47,7 @@ export const TablePacksContainer = () => {
 	const onHandlerSubmitPackName = () => {
 		if (namePack) {
 			dispatch(postNewPackTC(namePack));
+			setNamePack('');
 		}
 	};
 
