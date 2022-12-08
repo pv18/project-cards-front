@@ -14,6 +14,8 @@ type MultiRangeSliderPropsType = {
 }
 
 const MultiRangeSlider = (props: MultiRangeSliderPropsType) => {
+    const leftRange = props.minCardsCount;
+    const rightRange = props.maxCardsCount;
     const onChangeRangeMin = (e: ChangeEvent<HTMLInputElement>) => {
             const value = Math.min(Number(e.target.value), props.currentMaxValue - 1);
             props.setCurrentMinValue(value);
@@ -35,6 +37,7 @@ console.log(`min: ${props.minCardsCount}, currentMinValue: ${props.currentMinVal
                 className={`${s.thumb} + ${s.thumb__left}`}
                 style={{zIndex: props.currentMinValue > props.maxCardsCount - 100 ? '5' : undefined}}
                 onMouseLeave={props.onKeyUp}
+                data-currentMinValue = {props.currentMinValue}
             />
             <input
                 type='range'
@@ -44,13 +47,14 @@ console.log(`min: ${props.minCardsCount}, currentMinValue: ${props.currentMinVal
                 onChange={onChangeRangeMax}
                 className={`${s.thumb} + ${s.thumb__right}`}
                 onMouseLeave={props.onKeyUp}
+                data-currentMaxValue = {props.currentMaxValue}
             />
 
             <div className={s.slider}>
                 <div className={s.slider__track}/>
                 <div ref={props.rangeRef} className={s.slider__range}/>
-                <div className={s.slider__left_value}>{props.currentMinValue}</div>
-                <div className={s.slider__right_value}>{props.currentMaxValue}</div>
+                <div className={s.slider__left_value}>{leftRange}</div>
+                <div className={s.slider__right_value}>{rightRange}</div>
             </div>
         </div>
     );
