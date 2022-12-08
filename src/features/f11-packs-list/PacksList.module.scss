@@ -1,0 +1,44 @@
+.wrapper {
+  .table {
+    width: 1200px;
+    min-height: 300px;
+    height: auto;
+    margin: 0 auto;
+    display: flex;
+    background: #FEFEFF;
+    border-radius: 8px;
+
+    .leftBar {
+      width: 243px;
+      height: auto;
+      padding: 33px 23px 0;
+      background: #ECECF9;
+      border-radius: 8px 0 0 8px;
+
+      .title {
+        margin-bottom: 20px;
+        font-family: 'SF UI Display', sans-serif;
+        font-style: normal;
+        font-weight: 600;
+        font-size: 16px;
+        line-height: 19px;
+        color: #2D2E46;
+      }
+    }
+
+    .main {
+      padding: 24px 48px;
+      width: 100%;
+
+      .title {
+        margin-bottom: 15px;
+        font-family: 'Poppins', sans-serif;
+        font-style: normal;
+        font-weight: 600;
+        font-size: 22px;
+        line-height: 33px;
+        color: #2D2E46;
+      }
+    }
+  }
+}

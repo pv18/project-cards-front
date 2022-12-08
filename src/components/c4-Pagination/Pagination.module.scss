@@ -1,0 +1,41 @@
+.block {
+  margin-top: 20px;
+  margin-left: 20px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  & button {
+    border: 0;
+    background: none;
+  }
+  & form {
+    margin: 0 10px 0 10px;
+  }
+
+  .block__pages {
+    .page {
+      margin-left: 7px;
+      margin-right: 7px;
+      padding: 5px;
+    }
+
+    .page_active {
+      margin-left: 7px;
+      margin-right: 7px;
+      padding: 4px 7px;
+      color: #F2F5F7;
+      background: #21268F;
+      border-radius: 3px;
+      //border: 1px solid #21268F;
+    }
+  }
+  & span {
+    margin-left: 7px;
+    margin-right: 7px;
+
+    font-family: 'Lato';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 12px;
+  }
+}

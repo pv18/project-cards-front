@@ -1,0 +1,49 @@
+.wrapper {
+  width: 346px;
+  display: flex;
+
+  .icon * {
+    stroke: rgba(45, 46, 70, 0.4);
+  }
+
+  span {
+    margin-left: 5px;
+    font-family: 'SF UI Display', sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 16px;
+    text-align: center;
+    letter-spacing: 0.4px;
+    color: rgba(45, 46, 70, 0.4);
+  }
+
+  .block {
+    height: 60px;
+    width: 173px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: transparent;
+    cursor: pointer;
+  }
+
+  .active {
+    height: 60px;
+    width: 173px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #DCCCDB;
+    border-bottom: 2px solid #21268F;
+
+    span {
+      color: rgb(45, 46, 70);
+    }
+
+    .icon * {
+      stroke: rgb(45, 46, 70);
+    }
+  }
+
+}

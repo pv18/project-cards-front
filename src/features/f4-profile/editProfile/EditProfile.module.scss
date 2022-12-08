@@ -1,0 +1,101 @@
+.blockEditProfile {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  .containerEditProfile {
+    width: 412px;
+    height: 540px;
+
+    background: #F9F9FE;
+    border-radius: 8px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    &__personal {
+      font-family: 'Poppins';
+      font-style: normal;
+      font-weight: 600;
+      font-size: 22px;
+      line-height: 33px;
+      margin-top: 36px;
+      /* identical to box height */
+
+      text-align: right;
+
+      color: #2D2E46;
+    }
+
+    &__avatar {
+      display: flex;
+
+      &_photo {
+        size: auto;
+        background: blue;
+        width: 150px;
+        height: 150px;
+        border-radius: 50%;
+        //margin-top: 15px;
+      }
+
+      &_icon {
+        border-radius: 50%;
+        margin-top: 120px;
+        margin-left: -40px;
+        display: flex;
+        justify-content: center;
+
+        width: 40px;
+        height: 40px;
+        left: 657px;
+        top: 232px;
+
+        background: rgba(45, 46, 70, 0.5);
+        border: 1px solid #FFFFFF;
+      }
+      &_iconImg {
+        width: 18px;
+      }
+    }
+    &__changeAvatar {
+      display: flex;
+      flex-direction: row;
+      &_pasteLink {
+        width: 60px;
+        height: 30px;
+        background: rgba(45, 46, 70, 0.5);
+        border: 1px solid #FFFFFF;
+        padding-top: 5px;
+        text-align: center;
+        color: white;
+      }
+    }
+    &__form {
+      width: 347px;
+      margin-top: 38px;
+    }
+
+    &__buttons {
+      width: 347px;
+      margin-top: 30px;
+      display: flex;
+      justify-content: space-between;
+
+
+      ._button {
+        padding: 8px 0;
+        font-family: 'SF UI Display', sans-serif;
+        font-weight: 500;
+        font-size: 16px;
+        line-height: 19px;
+        border: none;
+        border-radius: 30px;
+        cursor: pointer;
+        transition: 1s linear;
+      }
+    }
+  }
+
+}
