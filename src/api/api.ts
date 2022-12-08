@@ -148,14 +148,14 @@ export const AuthAPI = {
         return instance.post<RegistrationResponseType>('auth/register', data);
     },
     recoveryPass(email: string) {
-        return instance.put<RecoveryResponseType>('auth/forgot', {
+        return instance.post<RecoveryResponseType>('auth/forgot', {
             email, // кому восстанавливать пароль
-            from: 'test-front-admin <kisseli@mail.ru>',
+            from: '<kisseli@mail.ru>',
             // можно указать разработчика фронта)
-            message: `<div style="background-color: lime; padding: 15px">
-            password recovery link: 
-            <a href='http://localhost:3000/#/new_password/$token$'>
-            link</a>
+            message: `<div style="background-color: #9A91C8; padding: 50px 20px; text-align: center; border: 2px solid #2D2E46; border-radius: 10px">
+            <span style="font-weight: bold; font-size: 1.2em;" style="font-size: 1.2em;">Password recovery link:</span> 
+            <a href='http://localhost:3000/#/new_password/$token$'>link for recovery password.</a>
+            <p>Follow the link for password recovery and follow the instructions.</p>
             </div>`, // хтмп-письмо, вместо $token$ бэк вставит токен
         })
             .then(res => res.data);
