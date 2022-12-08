@@ -25,7 +25,7 @@ type AuthStateType = {
     error?: string,
     activeLoginBtn: boolean;
     registration: boolean,
-    /*    recoverySuccess: boolean,*/
+    recoveryEmail: string,
     info: string,
 }
 
@@ -54,7 +54,7 @@ const initialState: AuthStateType = {
     error: '',
     activeLoginBtn: false,
     registration: false,
-    /*    recoverySuccess: false,*/
+    recoveryEmail: '',
     info: '',
 };
 
@@ -77,6 +77,7 @@ export const authReducer = (state = initialState, action: AuthActionsType) => {
         case 'AUTH/RECOVERY-PASSWORD': {
             return {
                 ...state,
+                recoveryEmail: action.email,
             };
         }
         /*        case 'AUTH/LOG-OUT': {
@@ -136,10 +137,11 @@ const isToggleLoginBtn = (isToggle: boolean) => {
 };*/
 
 //
-const recoveryPassword = (recoverySuccess: boolean) => {
+const recoveryPassword = (recoverySuccess: boolean, email: string) => {
     return {
         type: 'AUTH/RECOVERY-PASSWORD',
         recoverySuccess,
+        email,
     } as const;
 };
 // thunk creator
@@ -157,7 +159,7 @@ export const setDataLoginTC = (data: LoginDataType): AppThunkType => (dispatch) 
             dispatch(setErrorMessage(error.response.data.error));
         })
         .finally(() => {
-           // dispatch(isToggleLoginBtn(false));
+            // dispatch(isToggleLoginBtn(false));
             dispatch(setIsLoading(false));
         });
 };
@@ -166,12 +168,12 @@ export const setLogOut = (): AppThunkType => (dispatch) => {
     dispatch(setIsLoading(true));
     AuthAPI.logOut()
         .then(resData => {
-                dispatch(setIsAuth(false));
+            dispatch(setIsAuth(false));
         })
         .catch(error => {
             dispatch(setErrorMessage(error.response.data.error));
         })
-        .finally(()=>{
+        .finally(() => {
             dispatch(setIsLoading(false));
         });
 };
@@ -183,14 +185,13 @@ export const recoveryPass = (email: string): AppThunkType => (dispatch) => {
     AuthAPI.recoveryPass(email)
         .then(resData => {
             if (resData.info.length) {
-                dispatch(recoveryPassword(true));
+                dispatch(recoveryPassword(true, email));
             }
-            /*dispatch(recoveryPassword(resData.info, resData.error));*/
         })
         .catch(err => {
             dispatch(setErrorMessage(err.response.data.error));
         })
-        .finally(()=>{
+        .finally(() => {
             dispatch(setIsLoading(false));
         });
 };
@@ -205,12 +206,11 @@ export const postRegisterTC = (data: RegistrationDataType): AppThunkType => (dis
     AuthAPI.registrationMe(data)
         .then(res => {
             dispatch(setRegistrationStatus(true));
-
         })
         .catch(err => {
             dispatch(setErrorMessage(err.response.data.error));
         })
-        .finally(()=>{
+        .finally(() => {
             dispatch(setIsLoading(false));
         });
 };
