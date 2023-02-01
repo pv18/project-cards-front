@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/project-cards-front/static/css/main.8b3d0d68.css",
-    "main.js": "/project-cards-front/static/js/main.8bddc126.js",
+    "main.css": "/project-cards-front/static/css/main.571258be.css",
+    "main.js": "/project-cards-front/static/js/main.afa967ce.js",
     "static/media/cards.svg": "/project-cards-front/static/media/cards.53becb9f8bb57c3242d7e3a8a0b3d743.svg",
     "static/media/email.svg": "/project-cards-front/static/media/email.bc3a4042aa92b59c4f9009cd85275c1f.svg",
     "static/media/union.svg": "/project-cards-front/static/media/union.3df451824be6edaac0dc33b1aedae92b.svg",
@@ -14,11 +14,11 @@
     "static/media/delete.svg": "/project-cards-front/static/media/delete.bd72ece561ff841df80e82c1a5ce8aaf.svg",
     "static/media/arrow-left.svg": "/project-cards-front/static/media/arrow-left.d52a0f56410b4c87aee61f6bc39ddef2.svg",
     "static/media/polygon.svg": "/project-cards-front/static/media/polygon.f30a3c93800d45e28b3fd57be8ec4b46.svg",
-    "main.8b3d0d68.css.map": "/project-cards-front/static/css/main.8b3d0d68.css.map",
-    "main.8bddc126.js.map": "/project-cards-front/static/js/main.8bddc126.js.map"
+    "main.571258be.css.map": "/project-cards-front/static/css/main.571258be.css.map",
+    "main.afa967ce.js.map": "/project-cards-front/static/js/main.afa967ce.js.map"
   },
   "entrypoints": [
-    "static/css/main.8b3d0d68.css",
-    "static/js/main.8bddc126.js"
+    "static/css/main.571258be.css",
+    "static/js/main.afa967ce.js"
   ]
 }
