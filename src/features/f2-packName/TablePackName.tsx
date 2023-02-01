@@ -3,13 +3,13 @@ import {CardsType, FilterPackName} from './TablePackNameContainer';
 import {Rating} from '../f12-rating/Rating';
 import Arrow from '../../assets/img/polygon.svg';
 import s from './TablePackName.module.scss';
-import {getCards, removeCard, setPackNameList} from '../../store/reducers/packNameReducer';
-import {changeModalEditCard} from '../../store/reducers/modalsReducer';
-import {useDispatch, useSelector} from 'react-redux';
-import {useParams} from 'react-router-dom';
-import {Modal} from '../../components/c6-modal/Modal';
-import {ModalEditCard} from '../f10-pack-name/modals/editModalCard/ModalEditCard';
-import {AppDispatch, AppRootStateType} from '../../store/store';
+import { removeCard} from '../../store/reducers/packNameReducer';
+import { changeModalEditCard } from '../../store/reducers/modalsReducer';
+import { useSelector } from 'react-redux';
+import { useParams } from 'react-router-dom';
+import { Modal } from '../../components/c6-modal/Modal';
+import { ModalEditCard } from '../f10-pack-name/modals/editModalCard/ModalEditCard';
+import { AppDispatch, AppRootStateType } from '../../store/store';
 
 
 type TablePackNamePropsType = {

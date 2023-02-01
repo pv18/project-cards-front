@@ -1,11 +1,12 @@
 import React, {ChangeEvent, useState} from 'react';
-
+/*
 import {useSelector} from 'react-redux';
 
 import {AppRootStateType} from '../../store/store';
 
 import {TablePacks} from './TablePacks';
 import {apiCards} from './api/api';
+import {Button} from "../../components/c5-Button/Button";
 
 export const PackListContainer = () => {
 
@@ -36,14 +37,15 @@ export const PackListContainer = () => {
 				<input onChange={onChangePackName}
 					   value={namePack}
 					   disabled={isLoading}/>
-				<button onClick={onHandlerSubmitPackName}
+				{/!*<button onClick={onHandlerSubmitPackName}
 						disabled={isLoading}>
 					add new pack
-				</button>
+				</button>*!/}
+				<Button disabled={isLoading}>+</Button>
 			</div>
 			<TablePacks/>
 		</div>
 
 	);
-};
+};*/
 
