@@ -32,7 +32,7 @@ export const TextField = ({label, type = 'text', ...rest}: TextFieldPropsType) =
     return (
         <div className={s.group}>
             <input type={value} required {...rest}/>
-            <span className={s.highlight}></span>
+            {/*<span className={s.highlight}></span>*/}
             <span className={s.bar}></span>
             <label>{label}</label>
             {type === 'password' &&

@@ -24,7 +24,6 @@ export const PacksList = () => {
                         <MultiRangeSliderContainer/>
                     </div>
                     <div className={s.main}>
-                        <h2 className={s.title}>Packs list</h2>
                         <TablePacksContainer/>
                         <PaginationContainer/>
                     </div>

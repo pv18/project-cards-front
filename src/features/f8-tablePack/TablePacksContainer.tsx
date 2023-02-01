@@ -13,6 +13,9 @@ import {ModalDelete} from '../f11-packs-list/modals/deleteModal/ModalDelete';
 import {Modal} from '../../components/c6-modal/Modal';
 
 import {TablePacks} from './TablePacks';
+import { Button } from '../../components/c5-Button/Button';
+import s from './TablePacksContainer.module.scss'
+import { TextField } from '../../components/c1-Textfield/TextField';
 
 export const TablePacksContainer = () => {
 
@@ -90,14 +93,19 @@ export const TablePacksContainer = () => {
 
 	return (
 		<>
-			<div>
-				<input onChange={onChangePackName}
-					   value={namePack}
-					   disabled={isLoading}/>
-				<button onClick={onHandlerSubmitPackName}
-						disabled={isLoading}>
-					add new pack
-				</button>
+			<div className={s.addContainer}>
+				<h2 className={s.title}>Packs list</h2>
+				<section>
+					<TextField onChange={onChangePackName}
+							   value={namePack}
+							   disabled={isLoading}
+							   placeholder={'title new card'}
+					></TextField>
+					<Button onClick={onHandlerSubmitPackName}
+							disabled={isLoading}
+							width ='50px'
+					>+</Button>
+				</section>
 			</div>
 			<TablePacks
 				sortTableValue={sortTableValue}
