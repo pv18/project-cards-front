@@ -45,23 +45,19 @@
 
 		}
 
-		&__forgot {
+		&__passwordSettings {
+			display: flex;
+			justify-content: space-between;
 			margin-top: 14px;
-			margin-right: 18px;
-			text-align: end;
-			cursor: pointer;
-			color: #2D2E46;
-
-			@include FontSanFrancisco();
-			font-weight: 400;
-			font-size: 14px;
-			line-height: 17px;
-
-		}
-
-		&__errorMessage {
-			margin-top: 20px;
-			color: red;
+			&_forgot {
+				cursor: pointer;
+				margin-left: 15px;
+				font-weight: 500;
+				font-size: 16px;
+				color: #2D2E46;
+				opacity: 0.5;
+				text-decoration: underline;
+			}
 		}
 
 		&__buttonWrap {
@@ -70,7 +66,7 @@
 	}
 
 	&__quest {
-		margin-top: 45px;
+		margin-top: 30px;
 		@include FontSanFrancisco();
 		font-weight: 600;
 		font-size: 14px;
@@ -80,7 +76,8 @@
 		opacity: 0.5;
 	}
 
-	&__subTitle {
+	&__subTitle,
+	&__demo {
 		margin-top: 11px;
 		@include FontSanFrancisco();
 		font-weight: 600;
@@ -88,6 +85,11 @@
 		line-height: 24px;
 		text-align: center;
 		color: #21268F;
+	}
+
+	&__errorMessage {
+		margin-top: 20px;
+		color: red;
 	}
 }
 
