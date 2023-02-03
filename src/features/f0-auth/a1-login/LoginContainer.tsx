@@ -77,6 +77,9 @@ export const LoginContainer = () => {
 		}
 	};
 
+	const useDemoAccountHandler = () => {
+		dispatch(setDataLoginTC({email: 'test-account-hr@mail.ru', password: 'test11kiki66', rememberMe: false}));
+	}
 	return (
 		<div className={s.blockLogin}>
 			<Login
@@ -91,6 +94,7 @@ export const LoginContainer = () => {
 				onSubmitHandler={onSubmitHandler}
 				redirectLink={redirectLink}
 				navigateRegistration={navigateRegistration}
+				useDemoAccountHandler={useDemoAccountHandler}
 			/>
 		</div>
 	);

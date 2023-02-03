@@ -156,7 +156,13 @@ export const setDataLoginTC = (data: LoginDataType): AppThunkType => (dispatch) 
             dispatch(setIsAuth(true));
         })
         .catch(error => {
-            dispatch(setErrorMessage(error.response.data.error));
+            if (error.response.data.isEmailValid) {
+                dispatch(setErrorMessage('Email is not valid.'));
+            } else if (error.response.data.isPassValid) {
+                dispatch(setErrorMessage('Password is not valid.'));
+            } else {
+                dispatch(setErrorMessage('Some error has occurred.'));
+            }
         })
         .finally(() => {
             // dispatch(isToggleLoginBtn(false));

@@ -24,6 +24,7 @@ type LoginPropsType = {
 	onSubmitHandler: () => void
 	redirectLink: () => void
 	navigateRegistration: () => void
+	useDemoAccountHandler: ()=>void
 }
 
 export const Login = (props: LoginPropsType) => {
@@ -48,16 +49,17 @@ export const Login = (props: LoginPropsType) => {
 						type={'password'}/>
 				</div>
 
-				<SuperCheckbox onChange={props.onChangeChecked} checked={props.rememberMe}>
-					remember Me
-				</SuperCheckbox>
+				<section className={s.form__passwordSettings}>
+					<SuperCheckbox onChange={props.onChangeChecked} checked={props.rememberMe}>
+						remember Me
+					</SuperCheckbox>
 
-				<div className={s.form__forgot}>
-					<span onClick={props.redirectLink}>Forgot Password</span>
-				</div>
+					<div className={s.form__passwordSettings_forgot}>
+						<span onClick={props.redirectLink}>Forgot Password</span>
+					</div>
+				</section>
 
-				{/*показываем ошибку если отправка api не удалась*/}
-				<span className={s.form__errorMessage}>{error}</span>
+
 
 				<div className={s.form__buttonWrap}>
 					<Button
@@ -78,6 +80,13 @@ export const Login = (props: LoginPropsType) => {
 				onClick={props.navigateRegistration}>
 				Sign Up
 			</div>
+			<div
+				className={s.login__demo}
+				onClick={props.useDemoAccountHandler}>
+				Demo
+			</div>
+			{/*показываем ошибку если отправка api не удалась*/}
+			<span className={s.login__errorMessage}>{error}</span>
 		</section>
 	);
 };
